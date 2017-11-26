@@ -1,0 +1,8 @@
+/*Custom style to be added*/
+.xt-product-subpage .product-sidebar {
+    margin-top: 350px !important;
+}
+
+.activeMenu{
+	color: #f26667 !important;
+}
