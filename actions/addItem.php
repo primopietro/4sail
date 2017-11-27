@@ -72,5 +72,5 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
     $anImage->setItem_id("2");
     $anImage->addDBObject();
  
-
+    header("Location: ../index.php");
 ?>

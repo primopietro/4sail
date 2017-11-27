@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2017 at 05:20 PM
+-- Generation Time: Nov 27, 2017 at 11:30 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `4sail`
 --
-CREATE DATABASE IF NOT EXISTS `4sail` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `4sail`;
 
 -- --------------------------------------------------------
 
@@ -54,7 +52,8 @@ INSERT INTO `category` (`cat_id`, `cat_title`) VALUES
 
 CREATE TABLE `image` (
   `image_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `item_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -269,12 +268,12 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `item_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `referral`
 --

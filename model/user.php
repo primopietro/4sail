@@ -1,7 +1,7 @@
 <?php
 require_once 'BaseModel.php';
 class User extends BaseModel {
-	protected $table_name = 'transaction';
+	protected $table_name = 'user';
 	protected $primary_key = "user_id";
 	protected $user_id= 0;
 	

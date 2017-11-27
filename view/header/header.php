@@ -1,5 +1,5 @@
 <?php  
-
+if(!isset($_SESSION)){session_start();}
 $addedString = "";
 if(isset( $_SESSION['currentItem'])){
     if( $_SESSION['currentItem'] != 0){
@@ -24,7 +24,15 @@ if(isset( $_SESSION['currentItem'])){
                     
                     <div class="user-nav pull-right col-md-6 col-sm-6 col-xs-12">
                         <ul>
-                            <li><a href="">login</a></li>
+                        	<?php
+                        	if(!isset($_SESSION['current_user'])){
+                        	    echo' <li><a href="actions/login.php">Login</a></li>';
+                        	}else{
+                        	    echo' <li><a href="addItem.php">Sell an item</a></li>';
+                        	    echo' <li><a href="actions/logout.php">Logout</a></li>';
+                        	}
+                        	?>
+                           
                         </ul>
                     </div>
                 </div>
@@ -89,7 +97,7 @@ if(isset( $_SESSION['currentItem'])){
                                                 $aLI =  '  <option>'.$aLocalCategory["cat_title"].'</option>';
                                                 echo $aLI;
                                              }
-                                            ?>
+                                       ?>
                                       
                                     </select>
                                 </div>
