@@ -1,4 +1,12 @@
+<?php  
 
+$addedString = "";
+if(isset( $_SESSION['currentItem'])){
+    if( $_SESSION['currentItem'] != 0){
+        $addedString = "../";
+    }
+}
+?>
 <!--
         |========================
         |  HEADER
@@ -46,7 +54,17 @@
                                                     $aLI .=' class="activeMenu" ';
                                                 }
                                 
-                                                 $aLI .= 'href="./'.$aLocalCategory['cat_id'].'"> '.$aLocalCategory['cat_title'].'</a></li>';
+                                                
+                                                $tempPath =  'href="./';
+                                                if(isset( $_SESSION['currentItem'])){
+                                                    if( $_SESSION['currentItem'] != 0){
+                                                        $tempPath =  'href="../';
+                                                    }
+                                                }
+                                                
+                                                $aLI .=  $tempPath;
+                                                
+                                                 $aLI .= $aLocalCategory['cat_id'].'"> '.$aLocalCategory['cat_title'].'</a></li>';
                                                 echo $aLI;
                                              }
                                             ?>
@@ -91,21 +109,21 @@
                                         <ul class="dropdown-menu xt-cart-items">
                                             <li>
                                                 <a href="">
-                                                    <img src="assets/images/4.jpg" alt="">
+                                                    <img src="<?php echo $addedString; ?>assets/images/4.jpg" alt="">
                                                     <h3>Lipstick</h3>
                                                     <span class="cart-price">$299</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="">
-                                                    <img src="assets/images/1.jpg" alt="">
+                                                    <img src="<?php echo $addedString; ?>assets/images/1.jpg" alt="">
                                                     <h3>T-Shirt</h3>
                                                     <span class="cart-price">$499</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="">
-                                                    <img src="assets/images/3.jpg" alt="">
+                                                    <img src="<?php echo $addedString; ?>assets/images/3.jpg" alt="">
                                                     <h3>Shirt</h3>
                                                     <span class="cart-price">$399</span>
                                                 </a>

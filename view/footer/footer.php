@@ -1,3 +1,12 @@
+ <?php  
+
+$addedString = "";
+if(isset( $_SESSION['currentItem'])){
+    if( $_SESSION['currentItem'] != 0){
+        $addedString = "../";
+    }
+}
+?>
  <!--
         |========================
         |  FOOTER
@@ -9,7 +18,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
                             <div class="footer-widget footer-contact">
-                                <img src="assets/images/flogo.png" alt="" class="img-responsive">
+                                <img src="<?php echo $addedString; ?>assets/images/flogo.png" alt="" class="img-responsive">
                                 <ul>
                                     <li><i class="fa fa-mobile-phone"></i><a href="">+(1234) 456 7896</a></li>
                                     <li><i class="fa fa-envelope-o"></i><a href="">info@xootheme.com</a></li>
@@ -114,7 +123,7 @@
                             <p>Free Bootstrap eCommerce Template by <a href="https://xoothemes.com/" target="_blank">XooThemes</a>.</p>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                           <img src="assets/images/payment.png" alt="" class="img-responsive">
+                           <img src="<?php echo $addedString; ?>assets/images/payment.png" alt="" class="img-responsive">
                         </div>
                     </div>
                 </div>
