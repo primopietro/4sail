@@ -6,6 +6,7 @@ $(document).on("click",".addObj",function(){
 		var description = $("#item_desc").val();
 		var keywords = $("#item_keywords").val();
 		var idUser = "0";
+		
 		data+="&item_cat="+category;
 		data+="&item_title="+title;
 		data+="&item_price="+price;

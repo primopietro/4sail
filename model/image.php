@@ -5,6 +5,7 @@ class Image extends BaseModel {
 	protected $primary_key = "image_id";
 	protected $image_id = 0;
 	protected $item_id = 0;
+	protected $name= "";
 
 
 
@@ -43,6 +44,25 @@ class Image extends BaseModel {
      */
     public function setItem_id($item_id){
         $this->item_id = $item_id;
+        return $this;
+    }
+
+
+    /**
+     * name
+     * @return unkown
+     */
+    public function getName(){
+        return $this->name;
+    }
+
+    /**
+     * name
+     * @param unkown $name
+     * @return Image
+     */
+    public function setName($name){
+        $this->name = $name;
         return $this;
     }
 

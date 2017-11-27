@@ -4,7 +4,7 @@ require_once 'static/header.php';
 ?>
 
 <div class="col-md-5">
-	<form action="actions/addItem.php"  method="post">
+	<form action="actions/addItem.php"  method="post" enctype="multipart/form-data">
        	<select class="form-control" name="item_cat">
           <option value="1">Électronique</option>
           <option value="2">Vêtements pour homme</option>
@@ -18,6 +18,7 @@ require_once 'static/header.php';
     	<input class="form-control " type="text" name="item_price" placeholder="Price $"required><br>
     	<input class="form-control" type="text" name="item_desc" placeholder="Description"required><br>
     	<input class="form-control" type="text" name="item_keywords" placeholder="Keywords"required><br>
+    	<input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
     	<button id="addObj" class="btn btn-fill" type="submit">Add</button>
     </form>
 </div>
