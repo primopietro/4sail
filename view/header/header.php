@@ -24,7 +24,6 @@ if(isset( $_SESSION['currentItem'])){
                     
                     <div class="user-nav pull-right col-md-6 col-sm-6 col-xs-12">
                         <ul>
-                            <li><a href="">Checkout</a></li>
                             <li><a href="">login</a></li>
                         </ul>
                     </div>
