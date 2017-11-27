@@ -82,7 +82,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                     <p><?php echo $anItem["item_desc"]?></p>
                                     
                                     <div class="product-add-cart">
-                                        <a href="" class="btn btn-fill">Add to cart</a>
+                                        <a href="" class="btn btn-fill">Buy now</a>
                                       </div>
                                     <div class="product-additional-info">
                                         <ul>

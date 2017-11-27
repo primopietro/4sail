@@ -77,7 +77,7 @@
                                                         <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
                                                     </div>
                                                     <div class="add-cart">
-                                                        <a href="" class="btn btn-fill">Add to cart</a>
+                                                        <a href="" class="btn btn-fill">Buy now</a>
                                                         <ul class="reaction">
                                                             <li><a href="./'.$aCategory["cat_id"].'/'.$aLocalItem["item_id"].'"><i class="fa fa-search"></i></a></li>
                                                         </ul>
