@@ -17,7 +17,7 @@ if(isset( $_SESSION['currentItem'])){
                 <div class="container">
                     <div class="xt-language col-md-6 col-sm-6 col-xs-12">
                         <div class="each-nav">
-                            <a class="navbar-brand" href="./" style='padding-top: 15px;font-size: 42px;font-weight: 900;'>4Sail</a>
+                            <a class="navbar-brand" href="http://localhost/4sail/" style='padding-top: 15px;font-size: 42px;font-weight: 900;'>4Sail</a>
                           
                         </div>
                     </div>
