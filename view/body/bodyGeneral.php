@@ -19,42 +19,6 @@
                         <div class="clearfix"></div>                        
                         
                        
-                        <div class="xt-top-product">
-                            <h3>Top Rated Products</h3>
-                            <div class="each-top-product">
-                                <div class="top-item">
-                                    <img src="assets/images/1.jpg" alt="" class="img-responsive">
-                                    <div class="top-item-info">
-                                        <a href=""><h4>T-SHIRT</h4></a>
-                                        <span>$260</span>
-                                        <del>$280</del>
-                                    </div>
-                                </div>                               
-                                <div class="top-item">
-                                    <img src="assets/images/3.jpg" alt="" class="img-responsive">
-                                    <div class="top-item-info">
-                                        <a href=""><h4>NEW LOOK</h4></a>
-                                        <span>$260</span>
-                                        <del>$280</del>
-                                    </div>
-                                </div>                                
-                                <div class="top-item">
-                                    <img src="assets/images/b2.jpg" alt="" class="img-responsive">
-                                    <div class="top-item-info">
-                                        <a href=""><h4>Shirt</h4></a>
-                                        <span>$260</span>
-                                        <del>$280</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="xt-side-deal">
-                            <div class="xt-off-deal cover-bg white xt-deal xt-color-bg">
-                                <span>summer collection 2017</span>
-                                <h2 class="xt-deal-price">66<span>%<br>off</span></h2>
-                                <a href="" class="btn btn-border">Shop now</a>
-                            </div>
-                        </div>
                     </aside>
                     <div class="col-md-9">
                         <!--end singlw item info -->
