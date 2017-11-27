@@ -15,7 +15,7 @@ if(isset( $_SESSION['currentItem'])){
 <html lang="en">
     <head>
         <!-- TITLE OF SITE -->
-        <title> eCommerce </title>
+        <title> 4Sail </title>
         
         <!-- Meta -->
         <meta charset="utf-8">
