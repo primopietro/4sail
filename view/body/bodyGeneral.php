@@ -58,7 +58,11 @@
                                     $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
                                     $component = '<div class="col-md-4 col-sm-4">
                                         <div class="xt-feature">
-                                            <div class="product-img">
+                                            <div class="product-img ';
+                                    if($aLocalItem["points"] >0 ){
+                                        $component .= " no0points ";
+                                    }
+                                            $component .='">
                                                 <img src="assets/images/2.jpg" alt="" class="img-responsive">
                                                </div>
                                             <div class="product-info">

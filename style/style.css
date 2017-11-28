@@ -6,3 +6,8 @@
 .activeMenu{
 	color: #f26667 !important;
 }
+
+.no0points{
+	border: 5px solid black;
+	margin-bottom:-5px;
+}
