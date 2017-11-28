@@ -7,6 +7,7 @@ if(isset( $_SESSION['currentItem'])){
     }
 }
 ?>
+           <div class='allpage'></div>
 <!--
         |========================
         |  HEADER
@@ -28,6 +29,7 @@ if(isset( $_SESSION['currentItem'])){
                         	if(!isset($_SESSION['current_user'])){
                         	    echo' <li><a href="actions/login.php">Login</a></li>';
                         	}else{
+                        		echo' <li>Points : '.$_SESSION['current_user']['points'].'</li>';
                         	    echo' <li><a href="addItem.php">Sell an item</a></li>';
                         	    echo' <li><a href="actions/logout.php">Logout</a></li>';
                         	}

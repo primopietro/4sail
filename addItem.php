@@ -27,9 +27,13 @@ require_once 'view/menu/menu.php';
             ?>
         </select><br>
     	<input class="form-control" type="text" name="item_title" placeholder="Title"required><br>
-    	<input class="form-control " type="text" name="item_price" placeholder="Price $"required><br>
+    	<input class="form-control " type="number" name="item_price" placeholder="Price $"required><br>
     	<input class="form-control" type="text" name="item_desc" placeholder="Description"required><br>
     	<input class="form-control" type="text" name="item_keywords" placeholder="Keywords"required><br>
+    	
+    	<input class="form-control" placeholder="Points" type="number" name="item_points" min="0" max="<?php 
+           echo    $_SESSION['current_user']['points'];
+            ?>" required><br>
     	<input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
     	<button id="addObj" class="btn btn-fill" style='margin-top:10px;margin-bottom:10px;' type="submit">Add</button>
     </form>

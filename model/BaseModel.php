@@ -182,6 +182,10 @@ class BaseModel{
         $internalAttributes = get_object_vars ( $this);
         
         $sql = "SELECT * FROM `" . $this->table_name . "` ";
+        
+        if($this->table_name == "item"){
+        	$sql .= ' order by points DESC, item_id ';
+        }
         $result = $conn->query ( $sql );
         //echo $sql;
         if ($result->num_rows > 0) {

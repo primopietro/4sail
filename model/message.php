@@ -9,11 +9,6 @@ class Message extends BaseModel {
 	protected $fk_user_to = 0;
 	protected $object = "";
 	protected $messaged = "";
-	
-
-
-
-
 
     /**
      * message_id

@@ -1,8 +1,9 @@
 <?php
-
+if(!isset($_SESSION['current_user'])){session_start();}
 
 $anObject = null;
 require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/item.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/user.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/image.php';
 
 $anItem = new Item();
@@ -14,6 +15,7 @@ $title = htmlspecialchars ($_POST ['item_title'] );
 $price = htmlspecialchars ($_POST ['item_price'] );
 $desc = htmlspecialchars ($_POST ['item_desc'] );
 $key = htmlspecialchars ($_POST ['item_keywords'] );
+$points = htmlspecialchars ($_POST ['item_points'] );
 $userId ="1";
 
 
@@ -24,8 +26,16 @@ $anItem->setItem_price($price);
 $anItem->setItem_desc($desc);
 $anItem->setItem_keywords($key);
 $anItem->setUser_id($userId);
+$anItem->setPoints($points);
+
+
 
 $anItem->addDBObject();
+
+$aUser = new User();
+$newPoints = $_SESSION['current_user']['points'] - $points;
+$_SESSION['current_user']['points'] = $newPoints;
+$aUser = $aUser->updateObjectDynamically("points", $newPoints, $_SESSION['current_user']['user_id']);
 
 
 //---get image---

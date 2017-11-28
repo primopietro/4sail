@@ -12,6 +12,7 @@ class Item extends BaseModel {
 	protected $item_desc = "";
 	protected $item_keywords ="";
 	protected $user_id = 0;
+	protected $points = 0;
 
 
 
@@ -140,6 +141,25 @@ class Item extends BaseModel {
      */
     public function setUser_id($user_id){
         $this->user_id = $user_id;
+        return $this;
+    }
+
+
+    /**
+     * points
+     * @return unkown
+     */
+    public function getPoints(){
+        return $this->points;
+    }
+
+    /**
+     * points
+     * @param unkown $points
+     * @return Item
+     */
+    public function setPoints($points){
+        $this->points = $points;
         return $this;
     }
 

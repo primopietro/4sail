@@ -3,6 +3,7 @@
         |  PRODUCT SUB PAGE
         |========================
         -->
+        <div class='none divToDisplay'></div>
         <div class="xt-product-subpage">    
             <div class="container">
                 <div class="row">
@@ -72,6 +73,7 @@
                                                     <div class="product-title">
                                                         <span class="category xt-uppercase">'.$aCategory["cat_title"].'</span>
                                                         <span class="name xt-semibold">'.$aLocalItem["item_title"].'</span>
+														<span class="name">Nb. points used: '.$aLocalItem["points"].'</span>
                                                     </div>
                                                     <div class="price-tag pull-right">
                                                         <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
@@ -80,8 +82,13 @@
                                                         <a href="" class="btn btn-fill">Buy now</a>
                                                         <ul class="reaction">
                                                             <li><a href="./'.$aCategory["cat_id"].'/'.$aLocalItem["item_id"].'"><i class="fa fa-search"></i></a></li>
-                                                        </ul>
-                                                    </div>
+                                                        </ul>';
+                                    
+														if(isset($_SESSION['current_user'])){
+															$component .= '<a id="contactSeller" idToSend="'.$aLocalItem["user_id"].'">Contact</a>';
+														}
+														
+												$component .= '</div>
                                                 </div>
                                             </div>
                                         </div>
