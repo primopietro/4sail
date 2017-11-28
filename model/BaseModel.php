@@ -152,6 +152,9 @@ class BaseModel{
     
     	$sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
     
+    	if($this->table_name == "item"){
+    	    $sql .= ' order by points DESC, item_id ';
+    	}
     	//echo $sql;
     	
     	$result = $conn->query ( $sql );
