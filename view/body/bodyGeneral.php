@@ -19,7 +19,7 @@
                               $aCategory = new Category();
                               $aCategory = $aCategory->getObjectFromDB( $_SESSION['currentCategory']);
                               
-                              $string = ' <div class="price-range" style="margin-top:-350px;margin-bottom:250px;"><h2>';                           
+                              $string = ' <div class="price-range" style="margin-top:-350px;margin-bottom:50px;"><h2>';                           
                               $string .= $aCategory['cat_title'];
                               $string .= '</h2></div><div class="clearfix"></div>  ';
                             echo $string;
