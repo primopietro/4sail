@@ -1,3 +1,6 @@
+  <?php
+  require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/actions/store.php";
+  ?>
    <!--
         |========================
         |  PRODUCT SUB PAGE
@@ -34,7 +37,7 @@
                             <div class="each-price-range">
                                 <div id="xt-price-range"></div>
                                 <input type="text" id="amount"  class="price-range-amount">
-                                <a href="" class="btn btn-fill">Filter</a>
+                                <button id="filter" class="btn btn-fill">Filter</button>
                             </div>
                         </div>
                         <div class="clearfix"></div>                        
@@ -53,74 +56,8 @@
                                 </div>
                                 <div class="clearfix"></div>
                                    <div class="xt-each-feature">
-                                <?php 
-                                require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
-                                
-                               
-                                $anItem = new Item();
-                                
-                              
-                                $anItemList = array();
-                                //If no category is selected, show all products
-                                //TODO: fix == 7 because of 'others' this is a temporary fix
-                                if($_SESSION['currentCategory'] ==0  ||$_SESSION['currentCategory'] ==7  ){
-                                    $anItemList = $anItem->getListOfAllDBObjects();
-                                }
-                                //Else show product for a certain category
-                                else{
-                                    $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory']);
-                                }
-                                
-                                //for each item in list
-                                foreach($anItemList as $aLocalItem){
-                                  
-                                    $aCategory = new Category();
-                                    $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
-                                    $component = '<div class="col-md-4 col-sm-4">
-                                        <div class="xt-feature">
-                                            <div class="product-img ';
-                                    if($aLocalItem["points"] >0 ){
-                                        $component .= " no0points ";
-                                    }
-                                            $component .='">
-                                                <img src="assets/images/2.jpg" alt="" class="img-responsive">
-                                               </div>
-                                            <div class="product-info">
-                                                <div class="product-title">
-                                                    <span class="category xt-uppercase">'.$aCategory["cat_title"].'</span>
-                                                    <span class="name xt-semibold">'.$aLocalItem["item_title"].'</span>
-                                                </div>
-                                                <div class="price-tag pull-right">
-                                                    <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
-                                                </div>
-                                                <div class="xt-featured-caption">
-                                                    <div class="product-title">
-                                                        <span class="category xt-uppercase">'.$aCategory["cat_title"].'</span>
-                                                        <span class="name xt-semibold">'.$aLocalItem["item_title"].'</span>
-														<span class="name">Nb. points used: '.$aLocalItem["points"].'</span>
-                                                    </div>
-                                                    <div class="price-tag pull-right">
-                                                        <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
-                                                    </div>
-                                                    <div class="add-cart">
-                                                        <a href="" class="btn btn-fill">Buy now</a>
-                                                        <ul class="reaction">
-                                                            <li><a href="./'.$aCategory["cat_id"].'/'.$aLocalItem["item_id"].'"><i class="fa fa-search"></i></a></li>
-                                                        </ul>';
-                                    
-														if(isset($_SESSION['current_user'])){
-															$component .= '<a id="contactSeller" idToSend="'.$aLocalItem["user_id"].'">Contact</a>';
-														}
-														
-												$component .= '</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>';
-                                    
-                                    echo $component;
-                                }
-                                ?>
+                               <?php loadStore(null,null) ?>
+
                                                                
                                 </div>
                                 <div class="clearfix"></div>
