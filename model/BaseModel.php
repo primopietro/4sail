@@ -153,7 +153,7 @@ class BaseModel{
     	$sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
     
     	if($this->table_name == "item"){
-    	    $sql .= ' order by points DESC, item_id ';
+    	    $sql .= ' order by points DESC, item_id DESC';
     	}
     	//echo $sql . "<br>";
     	
@@ -187,7 +187,7 @@ class BaseModel{
         $sql = "SELECT * FROM `" . $this->table_name . "` ";
         
         if($this->table_name == "item"){
-        	$sql .= ' order by points DESC, item_id ';
+        	$sql .= ' order by points DESC, item_id DESC';
         }
         $result = $conn->query ( $sql );
         //echo $sql . "<br>";

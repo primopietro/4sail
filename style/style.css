@@ -3,6 +3,21 @@
     margin-top: 350px !important;
 }
 
+
+@media screen and (min-width: 1200px) {
+   
+    .product-img {
+		max-height:237px !important;
+		overflow:hidden;
+	}
+}
+@media screen and (min-width: 800px) {
+   
+    .product-img {
+		max-height:200px !important;
+		overflow:hidden;
+	}
+}
 .activeMenu{
 	color: #f26667 !important;
 }
