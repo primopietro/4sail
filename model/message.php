@@ -9,6 +9,9 @@ class Message extends BaseModel {
 	protected $fk_user_to = 0;
 	protected $object = "";
 	protected $messaged = "";
+	protected $date_sent = "";
+	protected $date_viewed = "";
+	
 
     /**
      * message_id
@@ -97,6 +100,43 @@ class Message extends BaseModel {
      */
     public function setMessaged($messaged){
         $this->messaged = $messaged;
+        return $this;
+    }
+
+
+    /**
+     * date_sent
+     * @return unkown
+     */
+    public function getDate_sent(){
+        return $this->date_sent;
+    }
+
+    /**
+     * date_sent
+     * @param unkown $date_sent
+     * @return Message
+     */
+    public function setDate_sent($date_sent){
+        $this->date_sent = $date_sent;
+        return $this;
+    }
+
+    /**
+     * date_viewed
+     * @return unkown
+     */
+    public function getDate_viewed(){
+        return $this->date_viewed;
+    }
+
+    /**
+     * date_viewed
+     * @param unkown $date_viewed
+     * @return Message
+     */
+    public function setDate_viewed($date_viewed){
+        $this->date_viewed = $date_viewed;
         return $this;
     }
 
