@@ -155,7 +155,7 @@ class BaseModel{
     	if($this->table_name == "item"){
     	    $sql .= ' order by points DESC, item_id ';
     	}
-    	//echo $sql;
+    	//echo $sql . "<br>";
     	
     	$result = $conn->query ( $sql );
     	
@@ -190,7 +190,7 @@ class BaseModel{
         	$sql .= ' order by points DESC, item_id ';
         }
         $result = $conn->query ( $sql );
-        //echo $sql;
+        //echo $sql . "<br>";
         if ($result->num_rows > 0) {
             $localObjects = array ();
             while ( $row = $result->fetch_assoc () ) {

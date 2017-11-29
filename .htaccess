@@ -1,4 +1,8 @@
  Options -MultiViews
     RewriteEngine On
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [QSA,L] 
+    RewriteRule ^ index.php [QSA,L]
+
