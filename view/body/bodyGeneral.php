@@ -23,8 +23,6 @@
                               
                               $aCategory = new Category();
                               $aCategory = $aCategory->getObjectFromDB( $_SESSION['currentCategory']);
-                              
-                            
                               echo '<h2>'.$aCategory['cat_title'].'</h2>';
                             
                            
@@ -46,7 +44,7 @@
                        
                     </aside>
                     <div class="col-md-9">
-                        <!--end singlw item info -->
+                        <!--end single item info -->
                         <div class="xt-feature-product">
                             <div class="section-separator">
                                 <div class="xt-filter-nav">
@@ -57,10 +55,8 @@
                                 </div>
                                 <div class="clearfix"></div>
                                    <div class="xt-each-feature">
-                               <?php loadStore(null,null) ?>
-
-                                                               
-                                </div>
+                                       <?php loadStore(null,null) ?>
+                                   </div>
                                 <div class="clearfix"></div>
                                 <div class="col-md-12 xt-bottom-hr">
                                     <hr class="xt-hr">
