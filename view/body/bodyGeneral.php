@@ -12,6 +12,26 @@
                 <div class="row">
                     <!-- SIDEBAR -->
                     <aside class="col-md-3 product-sidebar">
+                     
+                      <?php 
+                      echo   ' <div class="price-range" style="margin-top:-350px;margin-bottom:50px;">';                           
+                      require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
+                      if(!isset($_SESSION)){session_start();}
+                      if(isset($_SESSION['currentCategory']) ){
+                          if($_SESSION['currentCategory'] != 0){
+                              
+                              $aCategory = new Category();
+                              $aCategory = $aCategory->getObjectFromDB( $_SESSION['currentCategory']);
+                              
+                            
+                              echo '<h2>'.$aCategory['cat_title'].'</h2>';
+                            
+                           
+                          }
+                      }
+                      echo  '</div><div class="clearfix"></div>  ';
+                      ?>
+                      
                         <div class="price-range">
                             <h3>Price</h3>
                             <div class="each-price-range">
@@ -37,6 +57,7 @@
                                 <div class="clearfix"></div>
                                    <div class="xt-each-feature">
                                <?php loadStore(null,null) ?>
+
                                                                
                                 </div>
                                 <div class="clearfix"></div>

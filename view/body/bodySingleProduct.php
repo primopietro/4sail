@@ -22,7 +22,23 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
         <section class="xt-xt-single-product">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 visible-xs visible-sm padding-right-o"></div>
+                    <div class="col-md-3  padding-right-o"> <?php 
+                      require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
+                      if(!isset($_SESSION)){session_start();}
+                      if(isset($_SESSION['currentCategory']) ){
+                          if($_SESSION['currentCategory'] != 0){
+                              
+                              $aCategory = new Category();
+                              $aCategory = $aCategory->getObjectFromDB( $_SESSION['currentCategory']);
+                              
+                              $string = ' <div class="price-range" style="position:absolute;"><h2 style="color:rgb(51, 51, 51);">';                           
+                              $string .= $aCategory['cat_title'];
+                              $string .= '</h2></div><div class="clearfix"></div>  ';
+                            echo $string;
+                          }
+                      }
+                     
+                      ?></div>
                     <div class="col-md-9 col-md-offset-3 padding-o">
                         <div class="xt-product-inner">
                             <div class="col-md-5">

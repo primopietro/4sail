@@ -47,10 +47,10 @@ if(isset( $_SESSION['currentItem'])){
                         <div class="col-md-3 left-menu-wrapper">
                             <div class="xt-sidenav hidden-xs hidden-sm">
                                 <nav>
-                                    <ul class="xt-side-menu">
+                                    <ul class="xt-side-menu" data-toggle="collapse" data-target="#4sailCategories">
                                         <li>
                                             <a href="#">All Category</a>
-                                            <ul class="xt-dropdown">
+                                            <ul id='4sailCategories' class="xt-dropdown collapse">
                                             <?php 
                                             require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
                                             $aCategory = new Category();
