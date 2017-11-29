@@ -31,6 +31,51 @@ function loadStore($priceFrom, $priceTo){
         $aCategory = new Category();
         $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
         $component = '<div class="col-md-4 col-sm-4">
+                                        <div class="xt-feature">
+                                            <div class="product-img ';
+                                    if($aLocalItem["points"] >0 ){
+                                        $component .= " no0points ";
+                                    }
+                                            $component .='">
+                                                <img src="assets/images/2.jpg" alt="" class="img-responsive">
+                                               </div>
+                                            <div class="product-info">
+                                                <div class="product-title">
+                                                    <span class="category xt-uppercase">'.$aCategory["cat_title"].'</span>
+                                                    <span class="name xt-semibold">'.$aLocalItem["item_title"].'</span>
+                                                </div>
+                                                <div class="price-tag pull-right">
+                                                    <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
+                                                </div>
+                                                <div class="xt-featured-caption">
+                                                    <div class="product-title">
+                                                        <span class="category xt-uppercase">'.$aCategory["cat_title"].'</span>
+                                                        <span class="name xt-semibold">'.$aLocalItem["item_title"].'</span>
+														<span class="name">Nb. points used: '.$aLocalItem["points"].'</span>
+                                                    </div>
+                                                    <div class="price-tag pull-right">
+                                                        <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
+                                                    </div>
+                                                    <div class="add-cart">
+                                                        <a href="" class="btn btn-fill">Buy now</a>
+                                                        <ul class="reaction">
+                                                            <li><a href="./'.$aCategory["cat_id"].'/'.$aLocalItem["item_id"].'"><i class="fa fa-search"></i></a></li>
+                                                        </ul>';
+
+        if(isset($_SESSION['current_user'])){
+            $component .= '<a id="contactSeller" idToSend="'.$aLocalItem["user_id"].'">Contact</a>';
+        }
+
+        $component .= '</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+
+        echo $component;
+        /*$aCategory = new Category();
+        $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
+        $component = '<div class="col-md-4 col-sm-4">
                                             <div class="xt-feature">
                                                 <div class="product-img">
                                                     <img src="assets/images/2.jpg" alt="" class="img-responsive">
@@ -61,7 +106,7 @@ function loadStore($priceFrom, $priceTo){
                                                 </div>
                                             </div>
                                         </div>';
-        echo $component;
+        echo $component;*/
     }
 }
 
