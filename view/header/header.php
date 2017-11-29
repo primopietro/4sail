@@ -27,6 +27,7 @@ if(isset( $_SESSION['currentItem'])){
                         <ul>
                         	<?php
                         	if(!isset($_SESSION['current_user'])){
+                        	    echo' <li><a href="actions/login.php">Sign up</a></li>';
                         	    echo' <li><a href="actions/login.php">Login</a></li>';
                         	}else{
                         		echo' <li>Points : '.$_SESSION['current_user']['points'].'</li>';
