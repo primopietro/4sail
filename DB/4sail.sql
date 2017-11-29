@@ -54,7 +54,8 @@ INSERT INTO `category` (`cat_id`, `cat_title`) VALUES
 
 CREATE TABLE `image` (
   `image_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `item_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

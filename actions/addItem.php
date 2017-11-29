@@ -78,8 +78,12 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
         }
     }
 
+    $anItemList = $anItem->getListOfAllDBObjects();
+    $aTempitem = end($anItemList);
+    
+    
     $anImage->setName($ImageName);
-    $anImage->setItem_id("2");
+    $anImage->setItem_id($aTempitem["item_id"]);
     $anImage->addDBObject();
  
     header("Location: ../index.php");
