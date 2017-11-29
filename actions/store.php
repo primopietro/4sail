@@ -1,6 +1,7 @@
 <?php
 
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
+require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
 
 function loadStore($priceFrom, $priceTo){
@@ -36,8 +37,16 @@ function loadStore($priceFrom, $priceTo){
                                     if($aLocalItem["points"] >0 ){
                                         $component .= " no0points ";
                                     }
+                                    
+                                    $anImage = new Image();
+                                    $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aLocalItem["item_id"] );
+                                    $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
+                                    if(sizeof($anImage)>0){
+                                        $imgString = '<img src="images/'.current($anImage)['name'].'" alt="" class="img-responsive">';
+                                    }
+                                    
                                             $component .='">
-                                                <img src="assets/images/2.jpg" alt="" class="img-responsive">
+                                                '.$imgString.'
                                                </div>
                                             <div class="product-info">
                                                 <div class="product-title">

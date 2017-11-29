@@ -1,5 +1,6 @@
   <?php  
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
+  require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
   $aCategory = new Category();
 $addedString = "";
@@ -45,11 +46,21 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                 <div role="tabpanel" class="tab-pane active xt-product-tab">
                                     <div class="tab-content xt-pro-small-image">
                                         <!-- Tab panel-->
-                                        <div role="tabpanel" id="xt-pro-1" class="tab-pane fade">
-                                            <a class="grouped_elements" data-fancybox="gallery" href="<?php echo $addedString; ?>assets/images/s-1.jpg">
-                                                <img src="<?php echo $addedString; ?>assets/images/s-1.jpg" alt="" class="img-responsive">
+                                        
+                                        <?php 
+                                        $anImage = new Image();
+                                        $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$anItem["item_id"] );
+                                        $imgString = 'assets/images/s-1.jpg';
+                                        if(sizeof($anImage)>0){
+                                            $imgString = 'images/'.current($anImage)['name'];
+                                        }
+                                        ?>
+                                        <div role="tabpanel" id="xt-pro-1" class="tab-pane fade active in">
+                                            <a class="grouped_elements" data-fancybox="gallery" href="<?php echo $addedString .$imgString; ?>">
+                                                <img src="<?php echo $addedString . $imgString; ?>" alt="" class="img-responsive">
                                             </a>
                                         </div>
+                                        <!--  
                                         <div role="tabpanel" id="xt-pro-2" class="tab-pane fade">
                                             <a class="grouped_elements" data-fancybox="gallery" href="<?php echo $addedString; ?>assets/images/s-2.jpg">
                                                 <img src="<?php echo $addedString; ?>assets/images/s-2.jpg" alt="" class="img-responsive">
@@ -64,9 +75,9 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                             <a class="grouped_elements" data-fancybox="gallery" href="<?php echo $addedString; ?>assets/images/s-4.jpg">
                                                 <img src="<?php echo $addedString; ?>assets/images/s-4.jpg" alt="" class="img-responsive">
                                             </a>
-                                        </div>
+                                        </div>-->
                                     </div>
-                                    <!-- Nav tabs -->
+                                    <!-- Nav tabs
                                     <ul id="tablist" class="xt-pro-thumbs-list" role="tablist">
                                         <li role="presentation" class="">
                                             <a href="#xt-pro-1" role="tab" data-toggle="tab" aria-expanded="false">
@@ -87,7 +98,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                             <a href="#xt-pro-4" role="tab" data-toggle="tab" aria-expanded="false">
                                                <img src="<?php echo $addedString; ?>assets/images/s-4.jpg" alt="product thumbs"> 
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
