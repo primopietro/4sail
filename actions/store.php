@@ -42,10 +42,9 @@ function loadStore($priceFrom, $priceTo){
                                     }
                                     
                                     $anImage = new Image();
-                                    $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aLocalItem["item_id"] );
+                                    $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aLocalItem["item_id"] ,null,null,null,null);
                                     $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
-                                   
-                                    if(sizeof($anImage)>0){
+                                   if(sizeof($anImage)>0){
                                         $imgString = '<img src="images/'.current($anImage)['name'].'" alt="" class="img-responsive">';
                                     }
                                     
