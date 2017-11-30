@@ -69,7 +69,7 @@ if(isset( $_SESSION['currentItem'])){
                                             <?php 
                                             require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
                                             $aCategory = new Category();
-                                            $aCategoryList = $aCategory->getListOfAllDBObjects();
+                                            $aCategoryList = $aCategory->getListOfAllDBObjects(null,null);
                                          
                                             foreach($aCategoryList as $aLocalCategory){
                                                 $aLI =  '<li><a ';

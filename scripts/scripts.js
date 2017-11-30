@@ -66,14 +66,46 @@ $(document).mouseup(function(e) {
     }
 });
 
-//Filter prices w00p w00p
+//Filter price
 $(document).on("click","#filter",function(){
+	filter();
+})
 
+//Filter Order
+$(document).on("change","#order",function(){
+    filter();
+})
+
+//Search
+$(document).on("click",".btn-search",function(){
+    filter();
+})
+
+
+
+function filter() {
     var pricerangetext = $("#amount").val();
     var pricewithoutsymbol = pricerangetext.replace('$', '');
     var pricewithoutsymbol2 = pricewithoutsymbol.replace('$', '');
     var pricerange = pricewithoutsymbol2.split(' - ');
-	var data = {priceFrom : pricerange[0], priceTo : pricerange[1]};
+
+    var orderSense = $("#order").val();
+    var orderBy = null;
+    switch(orderSense) {
+        case '1':
+            orderBy = 'price';
+            orderSense = 'ASC';
+            break;
+        case '2':
+            orderBy = 'price';
+            orderSense = 'DESC';
+            break;
+        default:
+            orderBy = null;
+            orderSense = null;
+    }
+
+    var data = {priceFrom : pricerange[0], priceTo : pricerange[1], orderBy : orderBy, orderSense : orderSense };
 
     $.ajax({
         url: ajaxPath + 'actions/store.php?filter=1',
@@ -101,6 +133,7 @@ $(document).on("click","#filter",function(){
             // STOP LOADING SPINNER
         }
     });
+<<<<<<< HEAD
 
 });
 
@@ -144,3 +177,6 @@ $(document).on("click",".4sMessage",function(){
 	        }
 	    });
 });
+=======
+}
+>>>>>>> refs/remotes/origin/master
