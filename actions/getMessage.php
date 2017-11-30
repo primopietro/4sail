@@ -31,17 +31,19 @@ if(isset($_GET['idMessage'])){
     }
     
     $finalString .="<a href='http://localhost/4sail/item/".current($anImage)['item_id']."'>";
-    $finalString .='<img src="http://localhost/4sail/'  . $imgString .'" alt="" class="img-responsive">';
+    $finalString .='<img style="width:100%;" src="http://localhost/4sail/'  . $imgString .'" alt="" class="img-responsive">';
     $finalString .="</a >";
     
-    $finalString .="<h4>".$aMessageToBeDisplayed['object']."</h4>";
+   
 
+    $finalString.= "<h4 class=' title4SMessenger' style='margin-left:15px;margin-right:15px;'> Sent by ".$aUserDisplayed['first_name'].", ".$aUserDisplayed['last_name']."</h4>";
+    $finalString .="<h4 class=' margin-small object4SMessenger'>".$aMessageToBeDisplayed['object']." - </h4>";
+    $finalString .="<div class=' text4SMessenger'>".$aMessageToBeDisplayed['messaged']."</div>";
+    $finalString.= "<h5 class='margin-small'> Phone :".$aUserDisplayed['phone']."</h3>";
+    $finalString.= "<h5 class='margin-small'> Email :".$aUserDisplayed['email']."</h3>";
+    $finalString.= "<h5 class='margin-small'> Sent at : ".$aMessageToBeDisplayed['date_sent']. "</h5>";
 
-    $finalString.= "<h3> Sent by ".$aUserDisplayed['first_name'].", ".$aUserDisplayed['last_name']."</h3>";
-    $finalString.= "<h3> Phone ".$aUserDisplayed['phone'].", ".$aUserDisplayed['email']."</h3>";
-    $finalString.= "<h2> At ".$aMessageToBeDisplayed['date_sent']. "</h2>";
-
-    $finalString .="<div>".$aMessageToBeDisplayed['messaged']."</div>";
+    
     
     $now = new DateTime(null, new DateTimeZone('America/New_York'));
     

@@ -45,7 +45,7 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 }
 
 .divToDisplay{
-	width: 350px;
+	width: 380px;
 	height: 475px;
 	border: 1px solid #000;
 	background: white;
@@ -94,8 +94,30 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 .h4Margin{
 	margin-left: 15px;
 }
+.margin-small{
+	margin: 5px;
+}
 
-
+.divToDisplay *{
+	 font-family: 'Open Sans', sans-serif !important;
+}
+.text4SMessenger{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    min-height: 115px;
+    }
+.title4SMessenger{
+	text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    background-color: #524c4c;
+    color: white;
+    margin-top: -31px;
+    padding: 12px 5px;
+    z-index: 2000;
+    mix-blend-mode: hard-light;
+    display: block;
+}
 @media screen and (min-width: 1200px) {
    
     .product-img {
