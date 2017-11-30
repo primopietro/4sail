@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2017 at 01:30 AM
+-- Generation Time: Nov 29, 2017 at 08:22 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `4sail`
 --
-CREATE DATABASE IF NOT EXISTS `4sail` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `4sail`;
 
 -- --------------------------------------------------------
 
@@ -131,17 +129,21 @@ CREATE TABLE `message` (
   `fk_user_from` int(11) NOT NULL,
   `fk_user_to` int(11) NOT NULL,
   `object` varchar(25) NOT NULL,
-  `messaged` varchar(500) NOT NULL
+  `messaged` varchar(500) NOT NULL,
+  `date_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_viewed` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`) VALUES
-(1, 1, 1, 'yolo', 'test'),
-(2, 1, 2, 'This is a message', 'testerinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterino.'),
-(3, 1, 2, 'yolo', 'swag');
+INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`) VALUES
+(1, 1, 1, 'yolo', 'test', '2017-11-29 20:20:29', NULL),
+(2, 1, 2, 'This is a message', 'testerinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterino.', '2017-11-29 20:20:29', NULL),
+(3, 1, 2, 'yolo', 'swag', '2017-11-29 20:20:29', NULL),
+(4, 1, 1, 'xD', 'a', '2017-11-29 20:20:56', NULL),
+(5, 1, 1, 'test2', 'a', '2017-11-29 20:21:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -294,7 +296,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `referral`
 --
