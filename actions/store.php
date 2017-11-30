@@ -7,27 +7,27 @@ require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
 function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keyword){
     $anItem = new Item();
     $anItemList = array();
-
+    
     //echo $priceFrom . " " . $priceTo . " " . $_SESSION['currentCategory'] . " ";
-
+    
     //If no category is selected, show all products
     if($priceFrom ===null && $_SESSION['currentCategory'] == 0 || $_SESSION['currentCategory'] ==7 && $priceTo === null){
         //echo "no cat no price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjects($orderBy,$orderSense);
+        $anItemList = $anItem->getListOfAllDBObjectsOrder($orderBy,$orderSense);
     }
     elseif ($_SESSION['currentCategory'] ==0  ||$_SESSION['currentCategory'] ==7 && $priceFrom !== null && $priceTo !== null){
         //echo "no cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
+        $anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
     }
     //Else if category and price range, show filtered products
     elseif($priceFrom !== null && $priceTo !== null){
         //echo "cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
+        $anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
     }
     //Else show product for a certain category
     else{
         //echo "cat" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory'],null,null,$search,$keyword);
+        $anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_cat',' = ',$_SESSION['currentCategory'],null,null,$search,$keyword);
     }
     //for each item in list
     if (sizeof($anItemList) > 0) {
@@ -40,14 +40,14 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
             if ($aLocalItem["points"] > 0) {
                 $component .= " no0points ";
             }
-
+            
             $anImage = new Image();
-            $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ', $aLocalItem["item_id"],null,null,null,null);
+            $anImage = $anImage->getListOfAllDBObjectsWhereSort('item_id', ' = ', $aLocalItem["item_id"],null,null,null,null);
             $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
             if (sizeof($anImage) > 0) {
                 $imgString = '<img src="images/' . current($anImage)['name'] . '" alt="" class="img-responsive">';
             }
-
+            
             $component .= '">
                                                 ' . $imgString . '
                                                </div>
@@ -73,19 +73,19 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                                         <ul class="reaction">
                                                             <li><a href="./' . $aCategory["cat_id"] . '/' . $aLocalItem["item_id"] . '"><i class="fa fa-search"></i></a></li>
                                                         </ul>';
-
+            
             if (isset($_SESSION['current_user'])) {
                 $component .= '<a class="name xt-semibold" id="contactSeller" idToSend="' . $aLocalItem["user_id"] . '">Contact Seller</a>';
             }
-
+            
             $component .= '</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>';
-
+            
             echo $component;
-
+            
         }
     }
     else{

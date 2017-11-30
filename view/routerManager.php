@@ -1,5 +1,5 @@
    <?php
-
+   if(!isset($_SESSION)){session_start();}
 /*
  * The following function will strip the script name from URL
  * i.e. http://www.something.com/search/book/fitzgerald will become /search/book/fitzgerald

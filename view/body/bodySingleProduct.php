@@ -20,6 +20,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
         |   PRODUCT DESCRIPTION
         |========================
         -->
+        <div class='none divToDisplay'></div>
         <section class="xt-xt-single-product">
             <div class="container">
                 <div class="row">
@@ -49,8 +50,10 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                         
                                         <?php 
                                         $anImage = new Image();
+
                                         $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$anItem["item_id"],null,null,null,null );
                                         $imgString = 'assets/images/s-1.jpg';
+
                                         if(sizeof($anImage)>0){
                                             $imgString = 'images/'.current($anImage)['name'];
                                         }

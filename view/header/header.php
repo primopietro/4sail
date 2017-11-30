@@ -30,9 +30,25 @@ if(isset( $_SESSION['currentItem'])){
                         	    echo' <li><a href="actions/login.php">Sign up</a></li>';
                         	    echo' <li><a href="actions/login.php">Login</a></li>';
                         	}else{
+
+                        	    
+                        	    require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/message.php";
+                        	    
+                        	    $aMessage = new Message();
+                        	    $aMessageCounter = $aMessage->getNBUnseenMessagesForUser($_SESSION['current_user']['user_id']);
+                        	    
+                        	    
+                        	    echo' <li><a id="loadMessages">';
+                        	    
+                        	    if($aMessageCounter>0){
+                        	        echo '<span >'.$aMessageCounter.'</span>';
+                        	    }
+                        	    
+                        	    echo '<i style="font-size:18px;margin-right:15px;" class=" fa fa-comments-o" aria-hidden="true"></i></a></li>';
                         		echo' <li><a href="#">Points : '.$_SESSION['current_user']['points'].'</a></li>';
-                        	    echo' <li><a href="addItem.php">Sell an item</a></li>';
-                        	    echo' <li><a href="actions/logout.php">Logout</a></li>';
+                        	    echo' <li><a href="http://localhost/4sail/addItem.php">Sell an item</a></li>';
+                        	    echo' <li><a href="http://localhost/4sail/actions/logout.php">Logout</a></li>';
+
                         	}
                         	?>
                            

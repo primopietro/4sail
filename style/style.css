@@ -4,19 +4,17 @@
 }
 
 
-@media screen and (min-width: 1200px) {
-   
-    .product-img {
-		max-height:237px !important;
-		overflow:hidden;
-	}
+.newMessage{
+	background-color: #ffa5a5;
+    color: white;
 }
-@media screen and (min-width: 800px) {
-   
-    .product-img {
-		max-height:300px !important;
-		overflow:hidden;
-	}
+.newMessage:first-child,.regularMessage:first-child{
+	border-top:1px solid grey;
+}
+.newMessage,.regularMessage{
+	padding:5px 15px;
+	border-bottom:1px solid grey;
+	cursor:pointer;
 }
 .activeMenu{
 	color: #f26667 !important;
@@ -26,7 +24,11 @@
 	border: 5px solid black;
 	margin-bottom:-5px;
 }
-
+.msgObj{
+	float:left;
+	max-width:160px;
+	overflow:hidden;
+}
 
 .xt-dropdown{
 	transition:0.35s all linear;
@@ -43,7 +45,7 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 }
 
 .divToDisplay{
-	width: 350px;
+	width: 380px;
 	height: 475px;
 	border: 1px solid #000;
 	background: white;
@@ -51,6 +53,7 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	left: 45%;
 	top: 20%;
 	z-index: 1001;
+	overflow-y:scroll;
 }
 
 .allpage{
@@ -90,4 +93,42 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 
 .h4Margin{
 	margin-left: 15px;
+}
+.margin-small{
+	margin: 5px;
+}
+
+.divToDisplay *{
+	 font-family: 'Open Sans', sans-serif !important;
+}
+.text4SMessenger{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    min-height: 115px;
+    }
+.title4SMessenger{
+	text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    background-color: #524c4c;
+    color: white;
+    margin-top: -31px;
+    padding: 12px 5px;
+    z-index: 2000;
+    mix-blend-mode: hard-light;
+    display: block;
+}
+@media screen and (min-width: 1200px) {
+   
+    .product-img {
+		height:237px !important;
+		overflow:hidden;
+	}
+}
+@media screen and (min-width: 800px) {
+   
+    .product-img {
+		height: 250px !important;
+		overflow:hidden;
+	}
 }

@@ -5,13 +5,14 @@ $(document).on("click",".addMessage",function(){
 	var object = $(this).closest("form").find(".objectInput").val();
 	var messaged = $(this).closest("form").find(".messageInput").val();
 	var fk_user_to = $("#user_id").text();
+	var fk_item_id = $("#item_id").text();
 	
 	var container = $(".divToDisplay");
     var container2 = $(".allpage");
 	
 	var dataToSend = "";
 	
-	dataToSend += "object=" + object + "&messaged=" + messaged + "&fk_user_to=" + fk_user_to;
+	dataToSend += "object=" + object + "&messaged=" + messaged + "&fk_user_to=" + fk_user_to +"&item_id="+fk_item_id;
 
 	if(object != "" && messaged != ""){
 	  $.ajax({
@@ -35,11 +36,13 @@ $(document).on("click","#contactSeller",function(){
 	var div = $(".divToDisplay");
 	var allPage = $(".allpage");
 	var id_user = $(this).attr("idtosend");
+	var id_item = $(this).attr("iditemtosend");
 	
 	var fill = '';
 	
 	fill += "<h4 class='h4Margin'>Send message</h4>" +
 			"<label id='user_id' class='none'>"+ id_user +"</label>" +
+			"<label id='item_id' class='none'>"+ id_item +"</label>" +
 			"<form>" +
 			"<div class='divInput'><label for='object'>Object:</label><input class='objectInput' name='object' type='text'></input></div>" +
 			"<div class='divInput'><label for='messaged'>Message:</label><textarea class='messageInput' name='messaged' type='text'/></div>" +
@@ -142,4 +145,44 @@ function filter() {
             // STOP LOADING SPINNER
         }
     });
+
 }
+//Get message list
+$(document).on("click","#loadMessages",function(){
+	var div = $(".divToDisplay");
+	var allPage = $(".allpage");
+	
+	var fill = '';
+	
+	
+	 fill += "<h4 class='h4Margin'>Message list</h4>" ;
+	 $.ajax({
+	        url: ajaxPath + 'actions/getMessageList.php',
+	        success: function (response) {
+	        	
+	        	fill +=response;
+	        	div.append(fill);
+	        	div.show();
+	        	allPage.show();
+	        }
+	    });
+});
+//Get actual message
+$(document).on("click",".4sMessage",function(){
+	$(".divToDisplay").html("")
+	var div = $(".divToDisplay");
+	var allPage = $(".allpage");
+	var idMessage = $(this).attr('idmsg');
+	var fill = '';
+	
+	 
+	 $.ajax({
+	        url: ajaxPath + 'actions/getMessage.php?idMessage='+idMessage,
+	        success: function (response) {
+	        	fill +=response;
+	        	div.append(fill);
+	        	div.show();
+	        	allPage.show();
+	        }
+	    });
+});
