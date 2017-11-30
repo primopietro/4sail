@@ -142,7 +142,7 @@ class BaseModel{
         
         $conn->close ();
     }
-    public function getListOfAllDBObjectsWhere($argument,$operation, $value) {
+    public function getListOfAllDBObjectsWhere($argument,$operation, $value,$orderBy, $orderSense) {
     	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
     	
     	$internalAttributes = get_object_vars ( $this);
@@ -151,10 +151,16 @@ class BaseModel{
     	
     
     	$sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
-    
-    	if($this->table_name == "item"){
-    	    $sql .= ' order by points DESC, item_id DESC';
-    	}
+
+        if($this->table_name == "item" && $orderBy == null && $orderSense == null){
+            $sql .= ' order by points DESC, item_id DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'DESC'){
+            $sql .= ' order by points DESC, item_price DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'ASC'){
+            $sql .= ' order by points DESC, item_price ASC';
+        }
     	//echo $sql . "<br>";
     	
     	$result = $conn->query ( $sql );
@@ -179,15 +185,21 @@ class BaseModel{
     	return null;
     }
     
-    public  function getListOfAllDBObjects() {
+    public  function getListOfAllDBObjects($orderBy,$orderSense) {
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
         
         $internalAttributes = get_object_vars ( $this);
         
         $sql = "SELECT * FROM `" . $this->table_name . "` ";
         
-        if($this->table_name == "item"){
+        if($this->table_name == "item" && $orderBy == null || $orderBy == 'none' && $orderSense == null){
         	$sql .= ' order by points DESC, item_id DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'desc'){
+            $sql .= ' order by points DESC, item_price DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'asc'){
+            $sql .= ' order by points DESC, item_price ASC';
         }
         $result = $conn->query ( $sql );
         //echo $sql . "<br>";

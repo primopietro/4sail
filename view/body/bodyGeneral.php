@@ -46,6 +46,14 @@
                     <div class="col-md-9">
                         <!--end single item info -->
                         <div class="xt-feature-product">
+                            <div class="col-xs-12 xt-top-hr">
+                                <select id="order" class="selectize-dropdown">
+                                    <option value="0">Order by...</option>
+                                    <option value="1">Lowest Price</option>
+                                    <option value="2">Highest Price</option>
+                                </select>
+                            </div>
+
                             <div class="section-separator">
                                 <div class="xt-filter-nav">
                                     
@@ -55,7 +63,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                                    <div class="xt-each-feature">
-                                       <?php loadStore(null,null) ?>
+                                       <?php loadStore(null,null,null,null) ?>
                                    </div>
                                 <div class="clearfix"></div>
                                 <div class="col-md-12 xt-bottom-hr">

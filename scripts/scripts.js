@@ -65,12 +65,37 @@ $(document).mouseup(function(e) {
 
 //Filter prices w00p w00p
 $(document).on("click","#filter",function(){
+	filter();
+})
 
+//Filter prices w00p w00p
+$(document).on("change","#order",function(){
+    filter();
+})
+
+function filter() {
     var pricerangetext = $("#amount").val();
     var pricewithoutsymbol = pricerangetext.replace('$', '');
     var pricewithoutsymbol2 = pricewithoutsymbol.replace('$', '');
     var pricerange = pricewithoutsymbol2.split(' - ');
-	var data = {priceFrom : pricerange[0], priceTo : pricerange[1]};
+
+    var orderSense = $("#order").val();
+    var orderBy = null;
+    switch(orderSense) {
+        case '1':
+            orderBy = 'price';
+            orderSense = 'ASC';
+            break;
+        case '2':
+            orderBy = 'price';
+            orderSense = 'DESC';
+            break;
+        default:
+            orderBy = null;
+            orderSense = null;
+    }
+
+    var data = {priceFrom : pricerange[0], priceTo : pricerange[1], orderBy : orderBy, orderSense : orderSense };
 
     $.ajax({
         url: ajaxPath + 'actions/store.php?filter=1',
@@ -98,5 +123,4 @@ $(document).on("click","#filter",function(){
             // STOP LOADING SPINNER
         }
     });
-
-});
+}

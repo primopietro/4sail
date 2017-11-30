@@ -4,23 +4,23 @@ require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
 
-function loadStore($priceFrom, $priceTo){
+function loadStore($priceFrom, $priceTo, $orderBy, $orderSense){
     $anItem = new Item();
     $anItemList = array();
     //If no category is selected, show all products
 
-    if($_SESSION['currentCategory'] ==0  || $_SESSION['currentCategory'] ==7 && $priceFrom == null && $priceTo == null){
+    if(!is_numeric($priceFrom) && !is_numeric($priceTo)){
         //echo $priceFrom . "no cat no price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjects();
+        $anItemList = $anItem->getListOfAllDBObjects($orderBy,$orderSense);
     }
     elseif ($_SESSION['currentCategory'] ==0  ||$_SESSION['currentCategory'] ==7 && $priceFrom !== null && $priceTo !== null){
         //echo "no cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense);
     }
     //Else if category and price range, show filtered products
     elseif($priceFrom !== null && $priceTo !== null){
         //echo "cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense);
     }
     //Else show product for a certain category
     else{
@@ -28,101 +28,75 @@ function loadStore($priceFrom, $priceTo){
         $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory']);
     }
     //for each item in list
-    foreach($anItemList as $aLocalItem) {
-        $aCategory = new Category();
-        $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
-        $component = '<div class="col-md-4 col-sm-4">
+    if (sizeof($anItemList) > 0) {
+        foreach ($anItemList as $aLocalItem) {
+            $aCategory = new Category();
+            $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
+            $component = '<div class="col-md-4 col-sm-4">
                                         <div class="xt-feature">
                                             <div class="product-img ';
-                                    if($aLocalItem["points"] >0 ){
-                                        $component .= " no0points ";
-                                    }
-                                    
-                                    $anImage = new Image();
-                                    $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aLocalItem["item_id"] );
-                                    $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
-                                    if(sizeof($anImage)>0){
-                                        $imgString = '<img src="images/'.current($anImage)['name'].'" alt="" class="img-responsive">';
-                                    }
-                                    
-                                            $component .='">
-                                                '.$imgString.'
+            if ($aLocalItem["points"] > 0) {
+                $component .= " no0points ";
+            }
+
+            $anImage = new Image();
+            $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ', $aLocalItem["item_id"],null,null);
+            $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
+            if (sizeof($anImage) > 0) {
+                $imgString = '<img src="images/' . current($anImage)['name'] . '" alt="" class="img-responsive">';
+            }
+
+            $component .= '">
+                                                ' . $imgString . '
                                                </div>
                                             <div class="product-info">
                                                 <div class="product-title">
-                                                    <span class="category xt-uppercase">'.$aCategory["cat_title"].'</span>
-                                                    <span class="name xt-semibold">'.$aLocalItem["item_title"].'</span>
+                                                    <span class="category xt-uppercase">' . $aCategory["cat_title"] . '</span>
+                                                    <span class="name xt-semibold">' . $aLocalItem["item_title"] . '</span>
                                                 </div>
                                                 <div class="price-tag pull-right">
-                                                    <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
+                                                    <span class="new-price xt-semibold">' . $aLocalItem["item_price"] . '$</span>
                                                 </div>
                                                 <div class="xt-featured-caption">
                                                     <div class="product-title">
-                                                        <span class="category xt-uppercase">'.$aCategory["cat_title"].'</span>
-                                                        <span class="name xt-semibold">'.$aLocalItem["item_title"].'</span>
-														<span class="name">Nb. points used: '.$aLocalItem["points"].'</span>
+                                                        <span class="category xt-uppercase">' . $aCategory["cat_title"] . '</span>
+                                                        <span class="name xt-semibold">' . $aLocalItem["item_title"] . '</span>
+														<span class="name">Nb. points used: ' . $aLocalItem["points"] . '</span>
                                                     </div>
                                                     <div class="price-tag pull-right">
-                                                        <span class="new-price xt-semibold">'.$aLocalItem["item_price"].'$</span>
+                                                        <span class="new-price xt-semibold">' . $aLocalItem["item_price"] . '$</span>
                                                     </div>
                                                     <div class="add-cart">
                                                         <a href="" class="btn btn-fill">Buy now</a>
                                                         <ul class="reaction">
-                                                            <li><a href="./'.$aCategory["cat_id"].'/'.$aLocalItem["item_id"].'"><i class="fa fa-search"></i></a></li>
+                                                            <li><a href="./' . $aCategory["cat_id"] . '/' . $aLocalItem["item_id"] . '"><i class="fa fa-search"></i></a></li>
                                                         </ul>';
 
-        if(isset($_SESSION['current_user'])){
-            $component .= '<a id="contactSeller" idToSend="'.$aLocalItem["user_id"].'">Contact</a>';
-        }
+            if (isset($_SESSION['current_user'])) {
+                $component .= '<a id="contactSeller" idToSend="' . $aLocalItem["user_id"] . '">Contact</a>';
+            }
 
-        $component .= '</div>
+            $component .= '</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>';
 
-        echo $component;
-        /*$aCategory = new Category();
-        $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
-        $component = '<div class="col-md-4 col-sm-4">
-                                            <div class="xt-feature">
-                                                <div class="product-img">
-                                                    <img src="assets/images/2.jpg" alt="" class="img-responsive">
-                                                   </div>
-                                                <div class="product-info">
-                                                    <div class="product-title">
-                                                        <span class="category xt-uppercase">' . $aCategory["cat_title"] . '</span>
-                                                        <span class="name xt-semibold">' . $aLocalItem["item_title"] . '</span>
-                                                    </div>
-                                                    <div class="price-tag pull-right">
-                                                        <span class="new-price xt-semibold">' . $aLocalItem["item_price"] . '$</span>
-                                                    </div>
-                                                    <div class="xt-featured-caption">
-                                                        <div class="product-title">
-                                                            <span class="category xt-uppercase">' . $aCategory["cat_title"] . '</span>
-                                                            <span class="name xt-semibold">' . $aLocalItem["item_title"] . '</span>
-                                                        </div>
-                                                        <div class="price-tag pull-right">
-                                                            <span class="new-price xt-semibold">' . $aLocalItem["item_price"] . '$</span>
-                                                        </div>
-                                                        <div class="add-cart">
-                                                            <a href="" class="btn btn-fill">Buy now</a>
-                                                            <ul class="reaction">
-                                                                <li><a href="./' . $aCategory["cat_id"] . '/' . $aLocalItem["item_id"] . '"><i class="fa fa-search"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>';
-        echo $component;*/
+            echo $component;
+
+        }
+    }
+    else{
+        echo "We found no items matching the criterias.";
     }
 }
 
 if (isset($_GET['filter']) && isset($_POST['priceTo']) && isset($_POST['priceFrom'])){
     session_start();
     //var_dump($_SESSION);
-    loadStore($_POST['priceFrom'], $_POST['priceTo']);
+    $orderBy = isset($_POST['orderBy']) ? $_POST['orderBy'] : null;
+    $orderSense = isset($_POST['orderSense']) ? $_POST['orderSense'] : null;
+    loadStore($_POST['priceFrom'], $_POST['priceTo'],$orderBy,$orderSense);
 }
 
 ?>
