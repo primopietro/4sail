@@ -9,6 +9,7 @@ function loadStore($priceFrom, $priceTo){
     $anItemList = array();
     //If no category is selected, show all products
 
+    
     if($_SESSION['currentCategory'] ==0  || $_SESSION['currentCategory'] ==7 && $priceFrom == null && $priceTo == null){
         //echo $priceFrom . "no cat no price filt" . "<br>";
         $anItemList = $anItem->getListOfAllDBObjects();
