@@ -25,7 +25,7 @@ $anItem->setItem_title($title);
 $anItem->setItem_price($price);
 $anItem->setItem_desc($desc);
 $anItem->setItem_keywords($key);
-$anItem->setUser_id($userId);
+$anItem->setUser_id($_SESSION['current_user']['user_id']);
 $anItem->setPoints($points);
 
 
@@ -78,8 +78,9 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
         }
     }
 
-    $anItemList = $anItem->getListOfAllDBObjects();
-    $aTempitem = end($anItemList);
+    $anItemList = $anItem->getListOfAllDBObjectsNoSort();
+    
+    $aTempitem = current($anItemList);
     
     
     $anImage->setName($ImageName);

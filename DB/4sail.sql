@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2017 at 08:22 PM
+-- Generation Time: Nov 30, 2017 at 02:00 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -36,13 +36,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`cat_id`, `cat_title`) VALUES
-(1, '?lectronique'),
-(2, 'V?tements pour homme'),
-(3, 'V?tements pour femme'),
-(4, 'Articles de sport'),
-(5, 'Meubles'),
-(6, 'Automobile'),
-(7, 'Autres');
+(1, 'Electronics'),
+(2, 'Men\'s clothes'),
+(3, 'Women\'s clothes'),
+(4, 'Sport '),
+(5, 'Fourniture'),
+(6, 'Vehicles'),
+(7, 'All');
 
 -- --------------------------------------------------------
 
@@ -55,6 +55,21 @@ CREATE TABLE `image` (
   `item_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`image_id`, `item_id`, `name`) VALUES
+(6, 56, '11537626.jpg'),
+(7, 57, '10749364.jpg'),
+(8, 58, 'hmprod.jpg'),
+(9, 59, 'hmgoepprod.jpg'),
+(10, 60, 'hmgoepprod2.jpg'),
+(11, 61, 'hmgoepprod3.jpg'),
+(12, 62, '1411690270039.gif'),
+(13, 63, 'avcx.jpg'),
+(14, 64, '1963-vw-beetle-for-sale-americanlisted_30184071.jpg');
 
 -- --------------------------------------------------------
 
@@ -78,45 +93,15 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `item_cat`, `item_title`, `item_price`, `item_desc`, `item_keywords`, `user_id`, `points`) VALUES
-(1, 1, 'Samsung Dous 2', 5000, 'Samsung Dous 2 sgh ', 'samsung mobile electronics', 1, 0),
-(2, 1, 'iPhone 5s', 25000, 'iphone 5s', 'mobile iphone apple', 1, 0),
-(3, 1, 'iPad', 30000, 'ipad apple brand', 'apple ipad tablet', 1, 0),
-(4, 1, 'iPhone 6s', 32000, 'Apple iPhone ', 'iphone apple mobile', 1, 0),
-(5, 1, 'iPad 2', 10000, 'samsung ipad', 'ipad tablet samsung', 1, 0),
-(6, 1, 'Hp Laptop r series', 35000, 'Hp Red and Black combination Laptop', 'hp laptop ', 1, 0),
-(7, 1, 'Laptop Pavillion', 50000, 'Laptop Hp Pavillion', 'Laptop Hp Pavillion', 1, 0),
-(8, 1, 'Sony', 40000, 'Sony Mobile', 'sony mobile', 1, 0),
-(9, 1, 'iPhone New', 12000, 'iphone', 'iphone apple mobile', 1, 0),
-(10, 2, 'Red Ladies dress', 1000, 'red dress for girls', 'red dress ', 1, 0),
-(11, 2, 'Blue Heave dress', 1200, 'Blue dress', 'blue dress cloths', 1, 0),
-(12, 2, 'Ladies Casual Cloths', 1500, 'ladies casual summer two colors pleted', 'girl dress cloths casual', 1, 0),
-(13, 2, 'SpringAutumnDress', 1200, 'girls dress', 'girl dress', 1, 0),
-(14, 2, 'Casual Dress', 1400, 'girl dress', 'ladies cloths girl', 1, 0),
-(15, 2, 'Formal Look', 1500, 'girl dress', 'ladies wears dress girl', 2, 0),
-(16, 3, 'Sweter for men', 600, '2012-Winter-Sweater-for-Men-for-better-outlook', 'black sweter cloth winter', 2, 0),
-(17, 3, 'Gents formal', 1000, 'gents formal look', 'gents wear cloths', 2, 0),
-(19, 3, 'Formal Coat', 3000, 'ad', 'coat blazer gents', 2, 0),
-(20, 3, 'Mens Sweeter', 1600, 'jg', 'sweeter gents ', 2, 0),
-(21, 3, 'T shirt', 800, 'ssds', 'formal t shirt black', 2, 0),
-(22, 4, 'Yellow T shirt ', 1300, 'yello t shirt with pant', 'kids yellow t shirt', 2, 0),
-(23, 4, 'Girls cloths', 1900, 'sadsf', 'formal kids wear dress', 2, 0),
-(24, 4, 'Blue T shirt', 700, 'g', 'kids dress', 2, 0),
-(25, 4, 'Yellow girls dress', 750, 'as', 'yellow kids dress', 2, 0),
-(26, 4, 'Skyblue dress', 650, 'nbk', 'skyblue kids dress', 2, 0),
-(27, 4, 'Formal look', 690, 'sd', 'formal kids dress', 2, 0),
-(32, 5, 'Book Shelf', 2500, 'book shelf', 'book shelf furniture', 2, 0),
-(33, 6, 'Refrigerator', 35000, 'Refrigerator', 'refrigerator samsung', 1, 0),
-(34, 6, 'Emergency Light', 1000, 'Emergency Light', 'emergency light', 2, 0),
-(35, 6, 'Vaccum Cleaner', 6000, 'Vaccum Cleaner', 'Vaccum Cleaner', 2, 0),
-(36, 6, 'Iron', 1500, 'gj', 'iron', 2, 0),
-(37, 6, 'LED TV', 20000, 'LED TV', 'led tv lg', 2, 0),
-(38, 6, 'Microwave Oven', 3500, 'Microwave Oven', 'Microwave Oven', 2, 0),
-(39, 6, 'Mixer Grinder', 2500, 'Mixer Grinder', 'Mixer Grinder', 2, 0),
-(40, 2, 'Formal girls dress', 3000, 'Formal girls dress', 'ladies', 2, 0),
-(45, 1, 'Samsung Galaxy Note 3', 10000, '0', 'samsung galaxy Note 3 neo', 2, 0),
-(46, 1, 'Samsung Galaxy Note 3', 10000, '', 'samsung galxaxy note 3 neo', 2, 0),
-(47, 1, 'wef', 10, 'eqwf', 'wef', 1, 55),
-(48, 1, 'wef', 10, 'eqwf', 'wef', 1, 55);
+(56, 1, 'Lenovo 15.6&quot; Laptop', 350, 'Black (Intel Pentium 4405U/500GB HDD/4GB RAM/Windows 10) - English', 'Intel Pentium 4405U 500GB HDD', 1, 20),
+(57, 1, 'Apple MacBook Air 13.3', 1200, '(Intel Core i5 1.8 GHz/ 128GB SSD/ 8GB RAM) - English', 'sdf', 1, 0),
+(58, 2, 'Cashmere scarf ', 69, 'PREMIUM QUALITY. Ribbed scarf knitted in soft cashmere. Size 30x180 cm.', 'no need', 1, 2),
+(59, 1, '2-pack Patterned Socks ', 40, 'ERDEM x H&amp;M. Jacquard-knit socks in a soft wool blend. One floral pair and one checked pair.', 'Viscose 45%; Polyamide 34%; Wool 19%; Elastane 2%', 1, 0),
+(60, 3, 'Beaded Clutch Bag ', 35, 'Clutch bag in thick faux leather with a beaded strap at front. Flap with magnetic fastener, metal chain shoulder strap, and one inner compartment with zip. Lined. Size 1 1/2 x 5 1/2 x 8 1/4 in.', 'bag', 1, 2),
+(61, 3, 'Jersey leggings ', 13, 'Leggings in jersey with an elasticated waist.', 'Machine wash cold', 1, 0),
+(62, 7, 'PURE EVIL', 666, 'THE DEVIL', 'HELL A SICK', 1, 666),
+(63, 4, '2017/18 Chelsea FC Stadium Home', 110, 'The 2017/18 Chelsea FC Stadium Home ', 'Mens Football Shirt', 1, 0),
+(64, 6, '1963 Vw Beetle', 3200, 'For sale is my 1963 vw beetle. It has a 1400cc engine, the engine is recently rebuilt with new jugs. The car is very reliable and runs great it has a 4 speed transmission', 'sick car duder', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -131,19 +116,20 @@ CREATE TABLE `message` (
   `object` varchar(25) NOT NULL,
   `messaged` varchar(500) NOT NULL,
   `date_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_viewed` timestamp NULL DEFAULT NULL
+  `date_viewed` timestamp NULL DEFAULT NULL,
+  `isResponse` tinyint(1) NOT NULL DEFAULT '0',
+  `response_id` int(11) DEFAULT NULL,
+  `fk_item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`) VALUES
-(1, 1, 1, 'yolo', 'test', '2017-11-29 20:20:29', NULL),
-(2, 1, 2, 'This is a message', 'testerinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterino.', '2017-11-29 20:20:29', NULL),
-(3, 1, 2, 'yolo', 'swag', '2017-11-29 20:20:29', NULL),
-(4, 1, 1, 'xD', 'a', '2017-11-29 20:20:56', NULL),
-(5, 1, 1, 'test2', 'a', '2017-11-29 20:21:14', NULL);
+INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`, `isResponse`, `response_id`, `fk_item_id`) VALUES
+(14, 1, 1, 'Sick laptop!', 'Hey i want to buy your laptop, contact me on my email.', '2017-11-30 01:58:02', NULL, 0, NULL, 56),
+(15, 1, 1, 'Interested in buying', 'Can I test drive it?', '2017-11-30 01:58:40', NULL, 0, NULL, 64),
+(16, 1, 1, 'MacOS &gt; Linux', 'True hackers only code on MAC.', '2017-11-30 01:59:06', '2017-11-30 01:59:56', 0, NULL, 57);
 
 -- --------------------------------------------------------
 
@@ -205,8 +191,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `points`) VALUES
-(1, 'Test', 'User', 'test@test.com', '25f9e794323b453885f5181f1b624d0b', '8389080183', '123 Test Street', 0),
-(2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2);
+(1, 'Test', 'User', 'test@test.com', '25f9e794323b453885f5181f1b624d0b', '8389080183', '123 Test Street', 1275),
+(2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2000);
 
 --
 -- Indexes for dumped tables
@@ -240,7 +226,8 @@ ALTER TABLE `item`
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`),
   ADD KEY `message_fk_user_from` (`fk_user_from`),
-  ADD KEY `message_fk_user_to` (`fk_user_to`);
+  ADD KEY `message_fk_user_to` (`fk_user_to`),
+  ADD KEY `message_RID` (`response_id`);
 
 --
 -- Indexes for table `referral`
@@ -286,17 +273,17 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `item_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `referral`
 --
