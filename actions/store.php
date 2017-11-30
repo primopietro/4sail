@@ -28,6 +28,9 @@ function loadStore($priceFrom, $priceTo){
         $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory']);
     }
     //for each item in list
+    if(sizeof($anItemList)>0){
+        
+   
     foreach($anItemList as $aLocalItem) {
         $aCategory = new Category();
         $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
@@ -118,6 +121,9 @@ function loadStore($priceFrom, $priceTo){
                                         </div>';
         echo $component;*/
     }
+     }else{
+         echo "<h3 style='margin-bottom:90px;'>No items to be displayed</h3>";
+     }
 }
 
 if (isset($_GET['filter']) && isset($_POST['priceTo']) && isset($_POST['priceFrom'])){
