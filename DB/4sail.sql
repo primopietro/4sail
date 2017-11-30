@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2017 at 01:57 AM
+-- Generation Time: Nov 30, 2017 at 02:00 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -121,6 +121,15 @@ CREATE TABLE `message` (
   `response_id` int(11) DEFAULT NULL,
   `fk_item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`, `isResponse`, `response_id`, `fk_item_id`) VALUES
+(14, 1, 1, 'Sick laptop!', 'Hey i want to buy your laptop, contact me on my email.', '2017-11-30 01:58:02', NULL, 0, NULL, 56),
+(15, 1, 1, 'Interested in buying', 'Can I test drive it?', '2017-11-30 01:58:40', NULL, 0, NULL, 64),
+(16, 1, 1, 'MacOS &gt; Linux', 'True hackers only code on MAC.', '2017-11-30 01:59:06', '2017-11-30 01:59:56', 0, NULL, 57);
 
 -- --------------------------------------------------------
 
@@ -274,7 +283,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `referral`
 --
