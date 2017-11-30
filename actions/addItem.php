@@ -78,8 +78,9 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
         }
     }
 
-    $anItemList = $anItem->getListOfAllDBObjects();
-    $aTempitem = end($anItemList);
+    $anItemList = $anItem->getListOfAllDBObjectsNoSort();
+    
+    $aTempitem = current($anItemList);
     
     
     $anImage->setName($ImageName);

@@ -41,6 +41,7 @@ function loadStore($priceFrom, $priceTo){
                                     $anImage = new Image();
                                     $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aLocalItem["item_id"] );
                                     $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
+                                   
                                     if(sizeof($anImage)>0){
                                         $imgString = '<img src="images/'.current($anImage)['name'].'" alt="" class="img-responsive">';
                                     }
@@ -72,7 +73,7 @@ function loadStore($priceFrom, $priceTo){
                                                         </ul>';
 
         if(isset($_SESSION['current_user'])){
-            $component .= '<a id="contactSeller" idToSend="'.$aLocalItem["user_id"].'">Contact</a>';
+            $component .= '<a id="contactSeller" idToSend="'.$aLocalItem["user_id"].'"  iditemtosend="'.$aLocalItem["item_id"].'">Contact</a>';
         }
 
         $component .= '</div>

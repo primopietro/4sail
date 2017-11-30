@@ -103,7 +103,10 @@ class BaseModel{
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
         
         if ($conn->query ( $sql ) === TRUE) {
-            echo "success";
+            if($this->table_name != "message"){
+                echo "success";
+            }
+            
         } else {
             echo "fail";
         }
@@ -191,6 +194,37 @@ class BaseModel{
         }
         $result = $conn->query ( $sql );
         //echo $sql . "<br>";
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
+    public  function getListOfAllDBObjectsNoSort() {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ( $this);
+        
+        $sql = "SELECT * FROM `" . $this->table_name . "` ";
+        
+        if($this->table_name == "item"){
+            $sql .= ' order by item_id DESC';
+        }
+        $result = $conn->query ( $sql );
+        echo $sql . "<br>";
         if ($result->num_rows > 0) {
             $localObjects = array ();
             while ( $row = $result->fetch_assoc () ) {

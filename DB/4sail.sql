@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2017 at 08:22 PM
+-- Generation Time: Nov 29, 2017 at 08:26 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -131,19 +131,21 @@ CREATE TABLE `message` (
   `object` varchar(25) NOT NULL,
   `messaged` varchar(500) NOT NULL,
   `date_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_viewed` timestamp NULL DEFAULT NULL
+  `date_viewed` timestamp NULL DEFAULT NULL,
+  `isResponse` tinyint(1) NOT NULL DEFAULT '0',
+  `response_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`) VALUES
-(1, 1, 1, 'yolo', 'test', '2017-11-29 20:20:29', NULL),
-(2, 1, 2, 'This is a message', 'testerinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterino.', '2017-11-29 20:20:29', NULL),
-(3, 1, 2, 'yolo', 'swag', '2017-11-29 20:20:29', NULL),
-(4, 1, 1, 'xD', 'a', '2017-11-29 20:20:56', NULL),
-(5, 1, 1, 'test2', 'a', '2017-11-29 20:21:14', NULL);
+INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`, `isResponse`, `response_id`) VALUES
+(1, 1, 1, 'yolo', 'test', '2017-11-29 20:20:29', NULL, 0, NULL),
+(2, 1, 2, 'This is a message', 'testerinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterinotesterino.', '2017-11-29 20:20:29', NULL, 0, NULL),
+(3, 1, 2, 'yolo', 'swag', '2017-11-29 20:20:29', NULL, 0, NULL),
+(4, 1, 1, 'xD', 'a', '2017-11-29 20:20:56', NULL, 0, NULL),
+(5, 1, 1, 'test2', 'a', '2017-11-29 20:21:14', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -240,7 +242,8 @@ ALTER TABLE `item`
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`),
   ADD KEY `message_fk_user_from` (`fk_user_from`),
-  ADD KEY `message_fk_user_to` (`fk_user_to`);
+  ADD KEY `message_fk_user_to` (`fk_user_to`),
+  ADD KEY `message_RID` (`response_id`);
 
 --
 -- Indexes for table `referral`

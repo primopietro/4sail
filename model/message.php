@@ -12,6 +12,10 @@ class Message extends BaseModel {
 	protected $date_sent = "";
 	protected $date_viewed = "";
 	
+	protected $fk_item_id =0;
+	protected $isResponse = "";
+	protected $response_id = "";
+	
 
     /**
      * message_id
@@ -137,6 +141,182 @@ class Message extends BaseModel {
      */
     public function setDate_viewed($date_viewed){
         $this->date_viewed = $date_viewed;
+        return $this;
+    }
+
+
+    /**
+     * isResponse
+     * @return unkown
+     */
+    public function getIsResponse(){
+        return $this->isResponse;
+    }
+
+    /**
+     * isResponse
+     * @param unkown $isResponse
+     * @return Message
+     */
+    public function setIsResponse($isResponse){
+        $this->isResponse = $isResponse;
+        return $this;
+    }
+
+    /**
+     * response_id
+     * @return unkown
+     */
+    public function getResponse_id(){
+        return $this->response_id;
+    }
+
+    /**
+     * response_id
+     * @param unkown $response_id
+     * @return Message
+     */
+    public function setResponse_id($response_id){
+        $this->response_id = $response_id;
+        return $this;
+    }
+    
+    public function getNBUnseenMessagesForUser($userID){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $query = "SELECT COUNT(message_id) as msgCounter
+            FROM message m 
+            WHERE m.fk_user_to = ". $userID . " AND m.isResponse = 0 AND m.date_viewed IS NULL";
+        $result = $conn->query ( $query );
+        
+      
+        
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                
+                $localObjects = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects['msgCounter'];
+        }
+        $conn->close ();
+        return 0;
+    }
+
+    public function getMessageListForUser($userID) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ( $this);
+        
+        $sql = "SELECT * FROM `" . $this->table_name . "`";
+        
+        
+        $sql .= " WHERE fk_user_to =  ".$userID." AND isResponse =0  ";
+        
+        $sql .= ' order by   COALESCE(date_viewed, 0) ASC, message_id DESC  ';
+        
+        
+        
+        $result = $conn->query ( $sql );
+        
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
+    public function addMessageToDB() {
+        $internalAttributes = get_object_vars ( $this );
+        
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $definition = "INSERT INTO `" . $this->table_name . "`";
+        
+        $attributes = " ( ";
+        $values = " VALUES (";
+        $lastElement = end ( $internalAttributes );
+        $counter =0;
+        
+        foreach ( $internalAttributes as $rowName => $value ) {
+            if ($rowName != "table_name" && $rowName != "primary_key") {
+                
+                $attributes .= "`" . $rowName . "`";
+                if ($value == null) {
+                    if($rowName  == 'date_sent'){
+                        $values .= "CURRENT_TIMESTAMP";
+                    }else if($rowName  == 'isResponse'){
+                        $values .= "0";
+                    }
+                    else {
+                        $values .= "NULL";
+                    }
+                   
+                } else {
+                    $values .= "'" . $value . "'";
+                }
+                
+                if ((sizeof($internalAttributes)-1) > $counter) {
+                    $attributes .= ",";
+                    $values .= ",";
+                }
+            }
+            $counter++;
+        }
+        
+        $attributes .= " ) ";
+        $values .= " ) ";
+        
+        $sql = $definition . $attributes . $values;
+        
+        $id = 0;
+        
+        if (! $result = $conn->query ( $sql )) {
+            echo $sql;
+            echo " fail";
+            exit ();
+        } else {
+            echo "success";
+            $id = mysqli_insert_id($conn);
+        }
+        
+        $conn->close ();
+        
+        return $id;
+    }
+
+    /**
+     * fk_item_id
+     * @return unkown
+     */
+    public function getFk_item_id(){
+        return $this->fk_item_id;
+    }
+
+    /**
+     * fk_item_id
+     * @param unkown $fk_item_id
+     * @return Message
+     */
+    public function setFk_item_id($fk_item_id){
+        $this->fk_item_id = $fk_item_id;
         return $this;
     }
 
