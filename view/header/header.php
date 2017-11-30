@@ -44,7 +44,7 @@ if(isset( $_SESSION['currentItem'])){
                         	    }
                         	    
                         	    echo '<i style="font-size:18px;margin-right:15px;" class=" fa fa-comments-o" aria-hidden="true"></i></a></li>';
-                        		echo' <li>Points : '.$_SESSION['current_user']['points'].'</li>';
+                        		echo' <li><a href="#">Points : '.$_SESSION['current_user']['points'].'</a></li>';
                         	    echo' <li><a href="http://localhost/4sail/addItem.php">Sell an item</a></li>';
                         	    echo' <li><a href="http://localhost/4sail/actions/logout.php">Logout</a></li>';
                         	}
@@ -69,7 +69,7 @@ if(isset( $_SESSION['currentItem'])){
                                             <?php 
                                             require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
                                             $aCategory = new Category();
-                                            $aCategoryList = $aCategory->getListOfAllDBObjects();
+                                            $aCategoryList = $aCategory->getListOfAllDBObjects(null,null);
                                          
                                             foreach($aCategoryList as $aLocalCategory){
                                                 $aLI =  '<li><a ';
