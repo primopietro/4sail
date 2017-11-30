@@ -142,7 +142,7 @@ class BaseModel{
         
         $conn->close ();
     }
-    public function getListOfAllDBObjectsWhere($argument,$operation, $value,$orderBy, $orderSense) {
+    public function getListOfAllDBObjectsWhere($argument,$operation, $value,$orderBy, $orderSense, $search, $keyword) {
     	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
     	
     	$internalAttributes = get_object_vars ( $this);
@@ -151,6 +151,9 @@ class BaseModel{
     	
     
     	$sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
+        if($search == 'active'){
+            $sql .= "AND item_keywords LIKE '%".$keyword ."%' OR item_title LIKE '%".$keyword."%'";
+        }
 
         if($this->table_name == "item" && $orderBy == null && $orderSense == null){
             $sql .= ' order by points DESC, item_id DESC';

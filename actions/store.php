@@ -15,17 +15,17 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense){
     }
     elseif ($_SESSION['currentCategory'] ==0  ||$_SESSION['currentCategory'] ==7 && $priceFrom !== null && $priceTo !== null){
         //echo "no cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,null,null);
     }
     //Else if category and price range, show filtered products
     elseif($priceFrom !== null && $priceTo !== null){
         //echo "cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,null,null);
     }
     //Else show product for a certain category
     else{
         //echo "cat" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory']);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory'],null,null,null,null);
     }
     //for each item in list
     if (sizeof($anItemList) > 0) {
@@ -40,7 +40,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense){
             }
 
             $anImage = new Image();
-            $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ', $aLocalItem["item_id"],null,null);
+            $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ', $aLocalItem["item_id"],null,null,null,null);
             $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
             if (sizeof($anImage) > 0) {
                 $imgString = '<img src="images/' . current($anImage)['name'] . '" alt="" class="img-responsive">';
@@ -73,7 +73,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense){
                                                         </ul>';
 
             if (isset($_SESSION['current_user'])) {
-                $component .= '<a id="contactSeller" idToSend="' . $aLocalItem["user_id"] . '">Contact</a>';
+                $component .= '<a class="name xt-semibold" id="contactSeller" idToSend="' . $aLocalItem["user_id"] . '">Contact Seller</a>';
             }
 
             $component .= '</div>

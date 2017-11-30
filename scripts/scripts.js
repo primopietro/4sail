@@ -63,15 +63,22 @@ $(document).mouseup(function(e) {
     }
 });
 
-//Filter prices w00p w00p
+//Filter price
 $(document).on("click","#filter",function(){
 	filter();
 })
 
-//Filter prices w00p w00p
+//Filter Order
 $(document).on("change","#order",function(){
     filter();
 })
+
+//Search
+$(document).on("click",".btn-search",function(){
+    filter();
+})
+
+
 
 function filter() {
     var pricerangetext = $("#amount").val();
