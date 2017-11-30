@@ -86,12 +86,12 @@ if(isset( $_SESSION['currentItem'])){
                         
                         <div class="col-md-8 col-sm-10 col-xs-12 xt-header-search">
                             <div class="form-group xt-form search-bar  col-md-8 col-sm-8 col-xs-7 padding-right-o">
-                                <input type="text" class="form-control" placeholder="Search 4 sails" />
+                                <input id="search" type="text" class="form-control" placeholder="Search 4 sails" />
                             </div>
                             <div class="form-group xt-form xt-search-cat col-md-4 col-sm-4 col-xs-5 padding-left-o ">
-                                <div class="xt-select xt-search-opt">
+                               <!-- <div class="xt-select xt-search-opt">
                                     <select class="xt-dropdown-search select-beast">
-                                     <?php 
+                                     <?php /*
                                             require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
                                             $aCategory = new Category();
                                             $aCategoryList = $aCategory->getListOfAllDBObjects();
@@ -100,10 +100,10 @@ if(isset( $_SESSION['currentItem'])){
                                                 $aLI =  '  <option>'.$aLocalCategory["cat_title"].'</option>';
                                                 echo $aLI;
                                              }
-                                       ?>
+                                       */?>
                                       
                                     </select>
-                                </div>
+                                </div>-->
                                 <div class="xt-search-opt xt-search-btn">
                                     <button type="button" class="btn btn-primary btn-search"><i class="fa fa-search"></i></button>
                                 </div>

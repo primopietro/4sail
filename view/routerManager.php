@@ -62,7 +62,9 @@ else if ($routes[3] != null && $routes[1] != null  ) {
   
     $categoryID = htmlspecialchars($routes[1]);
     $itemID = htmlspecialchars($routes[2]);
-    $_SESSION['currentCategory'] = $categoryID;
+    if ($categoryID !== 'assets') {
+        $_SESSION['currentCategory'] = $categoryID;
+    }
     $_SESSION['currentItem'] = $itemID;
     require_once 'static/header.php';
     require_once 'view/header/header.php';

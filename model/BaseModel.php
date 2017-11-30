@@ -147,14 +147,18 @@ class BaseModel{
     	
     	$internalAttributes = get_object_vars ( $this);
     	
-    	$sql = "SELECT * FROM `" . $this->table_name . "`"; 
-    	
-    
+    	$sql = "SELECT * FROM `" . $this->table_name . "`";
+
+
     	$sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
-        if($search == 'active'){
-            $sql .= "AND item_keywords LIKE '%".$keyword ."%' OR item_title LIKE '%".$keyword."%'";
+
+    	//search things
+        if($search == 'active' && $keyword !==null){
+            echo '<div>Results for "'.$keyword.'".</div>';
+            $sql .= "AND (item_keywords LIKE '%".$keyword ."%' OR item_title LIKE '%".$keyword."%')";
         }
 
+        //order things
         if($this->table_name == "item" && $orderBy == null && $orderSense == null){
             $sql .= ' order by points DESC, item_id DESC';
         }
@@ -164,8 +168,8 @@ class BaseModel{
         elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'ASC'){
             $sql .= ' order by points DESC, item_price ASC';
         }
-    	//echo $sql . "<br>";
-    	
+
+        //echo $sql . "<br>";
     	$result = $conn->query ( $sql );
     	
     	if ($result->num_rows > 0) {

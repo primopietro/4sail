@@ -4,28 +4,30 @@ require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
 
-function loadStore($priceFrom, $priceTo, $orderBy, $orderSense){
+function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keyword){
     $anItem = new Item();
     $anItemList = array();
-    //If no category is selected, show all products
 
-    if(!is_numeric($priceFrom) && !is_numeric($priceTo)){
-        //echo $priceFrom . "no cat no price filt" . "<br>";
+    //echo $priceFrom . " " . $priceTo . " " . $_SESSION['currentCategory'] . " ";
+
+    //If no category is selected, show all products
+    if($priceFrom ===null && $_SESSION['currentCategory'] == 0 || $_SESSION['currentCategory'] ==7 && $priceTo === null){
+        //echo "no cat no price filt" . "<br>";
         $anItemList = $anItem->getListOfAllDBObjects($orderBy,$orderSense);
     }
     elseif ($_SESSION['currentCategory'] ==0  ||$_SESSION['currentCategory'] ==7 && $priceFrom !== null && $priceTo !== null){
         //echo "no cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,null,null);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
     }
     //Else if category and price range, show filtered products
     elseif($priceFrom !== null && $priceTo !== null){
         //echo "cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,null,null);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
     }
     //Else show product for a certain category
     else{
         //echo "cat" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory'],null,null,null,null);
+        $anItemList = $anItem->getListOfAllDBObjectsWhere('item_cat',' = ',$_SESSION['currentCategory'],null,null,$search,$keyword);
     }
     //for each item in list
     if (sizeof($anItemList) > 0) {
@@ -96,7 +98,9 @@ if (isset($_GET['filter']) && isset($_POST['priceTo']) && isset($_POST['priceFro
     //var_dump($_SESSION);
     $orderBy = isset($_POST['orderBy']) ? $_POST['orderBy'] : null;
     $orderSense = isset($_POST['orderSense']) ? $_POST['orderSense'] : null;
-    loadStore($_POST['priceFrom'], $_POST['priceTo'],$orderBy,$orderSense);
+    $search = isset($_POST['search']) ? $_POST['search'] : null;
+    $keyword  = isset($_POST['keyword']) ? $_POST['keyword'] : null;
+    loadStore($_POST['priceFrom'], $_POST['priceTo'],$orderBy,$orderSense, $search, $keyword);
 }
 
 ?>

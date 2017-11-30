@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                                    <div class="xt-each-feature">
-                                       <?php loadStore(null,null,null,null) ?>
+                                       <?php loadStore(null,null,null,null,null,null) ?>
                                    </div>
                                 <div class="clearfix"></div>
                                 <div class="col-md-12 xt-bottom-hr">

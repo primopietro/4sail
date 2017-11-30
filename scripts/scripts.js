@@ -81,11 +81,14 @@ $(document).on("click",".btn-search",function(){
 
 
 function filter() {
+
+	//price filter
     var pricerangetext = $("#amount").val();
     var pricewithoutsymbol = pricerangetext.replace('$', '');
     var pricewithoutsymbol2 = pricewithoutsymbol.replace('$', '');
     var pricerange = pricewithoutsymbol2.split(' - ');
 
+    //order by
     var orderSense = $("#order").val();
     var orderBy = null;
     switch(orderSense) {
@@ -102,7 +105,16 @@ function filter() {
             orderSense = null;
     }
 
-    var data = {priceFrom : pricerange[0], priceTo : pricerange[1], orderBy : orderBy, orderSense : orderSense };
+    //search
+	var keyword = $("#search").val();
+	if (keyword !== ''){
+        var search = 'active';
+	}else{
+		var search = null;
+	}
+
+
+    var data = {priceFrom : pricerange[0], priceTo : pricerange[1], orderBy : orderBy, orderSense : orderSense, search : search, keyword : keyword};
 
     $.ajax({
         url: ajaxPath + 'actions/store.php?filter=1',
