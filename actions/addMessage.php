@@ -8,9 +8,9 @@ $aMessage = new Message();
 
 //get item element
 $object = htmlspecialchars ( $_POST['object'] );
-$messaged = htmlspecialchars ($_POST ['messaged'] );
-$fk_user_to = htmlspecialchars ($_POST ['fk_user_to'] );
-$item_id = htmlspecialchars ($_POST ['item_id'] );
+$messaged = htmlspecialchars ($_POST['messaged'] );
+$fk_user_to = htmlspecialchars ($_POST['fk_user_to'] );
+$item_id = htmlspecialchars ($_POST['item_id'] );
 
 //add item to bd
 

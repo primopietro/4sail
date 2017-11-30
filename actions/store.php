@@ -34,7 +34,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
         foreach ($anItemList as $aLocalItem) {
             $aCategory = new Category();
             $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
-            $component = '<div class="col-md-4 col-sm-4">
+            $component = '<div class="col-md-4 col-sm-4 vignetteFix">
                                         <div class="xt-feature">
                                             <div class="product-img ';
             if ($aLocalItem["points"] > 0) {
@@ -75,7 +75,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                                         </ul>';
             
             if (isset($_SESSION['current_user'])) {
-                $component .= '<a class="name xt-semibold" id="contactSeller" idToSend="' . $aLocalItem["user_id"] . '">Contact Seller</a>';
+                $component .= '<a class="name xt-semibold" id="contactSeller" iditemtosend="'.$aLocalItem["item_id"] .'" idToSend="' . $aLocalItem["user_id"] . '">Contact Seller</a>';
             }
             
             $component .= '</div>

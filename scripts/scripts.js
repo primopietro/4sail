@@ -37,7 +37,7 @@ $(document).on("click","#contactSeller",function(){
 	var allPage = $(".allpage");
 	var id_user = $(this).attr("idtosend");
 	var id_item = $(this).attr("iditemtosend");
-	
+	alert(id_item);
 	var fill = '';
 	
 	fill += "<h4 class='h4Margin'>Send message</h4>" +

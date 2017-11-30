@@ -118,6 +118,10 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
     mix-blend-mode: hard-light;
     display: block;
 }
+
+.vignetteFix{
+	max-height:350px;
+}
 @media screen and (min-width: 1200px) {
    
     .product-img {

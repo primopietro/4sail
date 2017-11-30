@@ -155,7 +155,7 @@ class BaseModel{
         
         
         $sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
-       
+       //echo $sql;
     	$result = $conn->query ( $sql );
     	
     	if ($result->num_rows > 0) {
@@ -335,6 +335,7 @@ class BaseModel{
      
         
         $sql = "SELECT * FROM `" . $this->table_name . "` WHERE " . $this->primary_key . " = '" .$primary_key ."'";
+        //echo $sql." ";
         $result = $conn->query ( $sql );
         
         if ($result->num_rows > 0) {
