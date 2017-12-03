@@ -8,6 +8,9 @@ if(isset( $_SESSION['currentItem'])){
 }
 ?>
            <div class='allpage'></div>
+           <div class='none divLogin'></div>
+           <div class='none divSignUp'></div>
+           <div class='none divUserConsult'></div>
 <!--
         |========================
         |  HEADER
@@ -27,8 +30,8 @@ if(isset( $_SESSION['currentItem'])){
                         <ul>
                         	<?php
                         	if(!isset($_SESSION['current_user'])){
-                        	    echo' <li><a href="actions/login.php">Sign up</a></li>';
-                        	    echo' <li><a href="actions/login.php">Login</a></li>';
+                        	    echo' <li><a id="btnSignUp">Sign up</a></li>';
+                        	    echo' <li><a id="btnLogin">Login</a></li>';
                         	}else{
 
                         	    
@@ -46,7 +49,8 @@ if(isset( $_SESSION['currentItem'])){
                         	    
                         	    echo '<i style="font-size:18px;margin-right:15px;" class=" fa fa-comments-o" aria-hidden="true"></i></a></li>';
                         		echo' <li><a href="#">Points : '.$_SESSION['current_user']['points'].'</a></li>';
-                        	    echo' <li><a href="http://localhost/4sail/addItem.php">Sell an item</a></li>';
+                        		echo' <li><a href="http://localhost/4sail/addItem.php">Sell an item</a></li>';
+                        		echo' <li><a id="userConsult">'.$_SESSION['current_user']['first_name']. ' ' . $_SESSION['current_user']['last_name'] . '</a></li>';
                         	    echo' <li><a href="http://localhost/4sail/actions/logout.php">Logout</a></li>';
 
                         	}

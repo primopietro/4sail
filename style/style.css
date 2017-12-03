@@ -52,8 +52,41 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	position: fixed;
 	left: 45%;
 	top: 20%;
-	z-index: 1001;
+	z-index: 1002;
 	overflow-y:scroll;
+}
+
+.divLogin{
+	width: 450px;
+	height: 325px;
+	border: 1px solid #000;
+	background: white;
+	position: fixed;
+	left: 40%;
+	top: 20%;
+	z-index: 1002;
+}
+
+.divSignUp{
+	width: 450px;
+	height: 775px;
+	border: 1px solid #000;
+	background: white;
+	position: fixed;
+	left: 40%;
+	top: 10%;
+	z-index: 1002;
+}
+
+.divUserConsult{
+	width: 450px;
+	height: 650px;
+	border: 1px solid #000;
+	background: white;
+	position: fixed;
+	left: 40%;
+	top: 10%;
+	z-index: 1002;
 }
 
 .allpage{
@@ -61,7 +94,7 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
+    z-index: 1001;
     position: fixed;
     top: 0;
 }
@@ -71,6 +104,7 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 }
 
 .divInput{
+	width:100%;
 	padding-left:15px;
 	padding-right:15px;
 	padding-top:15px;
@@ -86,14 +120,47 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
     height: 260px;
 }
 
+.emailPasswordInput{
+    width: 300px;
+    margin: auto;
+    display: block;
+}
+
+.h4Login{
+	text-align: center;
+}
+
+.btnLogin{
+	display: block;
+	width: 300px;
+	margin: auto!important;
+	margin-top: 35px!important;
+}
+
+.btnSignUp{
+	display: block;
+	width: 300px;
+	margin: auto!important;
+	margin-top: 20px!important;
+}
+
+.btnConfirmProfile{
+	display: block;
+	width: 300px;
+	margin: auto!important;
+	margin-top: 20px!important;
+}
+
 .divButton{
 	text-align: right;
 	padding-right:15px;
+	padding-left: 15px;
 }
 
 .h4Margin{
 	margin-left: 15px;
 }
+
 .margin-small{
 	margin: 5px;
 }
@@ -101,11 +168,13 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 .divToDisplay *{
 	 font-family: 'Open Sans', sans-serif !important;
 }
+
 .text4SMessenger{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     min-height: 115px;
-    }
+}
+
 .title4SMessenger{
 	text-align: center;
     font-family: 'Open Sans', sans-serif;
@@ -122,6 +191,33 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 .vignetteFix{
 	max-height:350px;
 }
+
+#error{
+    display: block;
+    height: 11px;
+    margin-left: 73px;
+    color: red;
+}
+
+#errorEmail{
+    display: block;
+    height: 11px;
+    margin-left: 73px;
+    color: red;
+}
+
+#errorPassword{
+    display: block;
+    height: 11px;
+    margin-left: 73px;
+    color: red;
+}
+
+#space{
+	display: block;
+    height: 11px;
+}
+
 @media screen and (min-width: 1200px) {
    
     .product-img {

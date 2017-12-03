@@ -155,7 +155,7 @@ class BaseModel{
         
         
         $sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
-       //echo $sql;
+       	//echo $sql;
     	$result = $conn->query ( $sql );
     	
     	if ($result->num_rows > 0) {
@@ -354,6 +354,36 @@ class BaseModel{
         $conn->close ();
         return null;
     }
+    
+    function getObjectFromDBWhere($argument,$operation, $value) {
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$internalAttributes = get_object_vars ( $this );
+    	
+    	
+    	$sql = "SELECT * FROM " . $this->table_name;
+    	
+    	$sql .= " WHERE ".$argument. " ".$operation." ".$value." ";
+    	//echo $sql;
+    	$result = $conn->query ( $sql );
+    	
+    	if ($result->num_rows > 0) {
+    		$anObject = Array ();
+    		while ( $row = $result->fetch_assoc () ) {
+    			$anObject ["primary_key"] = $this->primary_key;
+    			$anObject ["table_name"] = $this->table_name;
+    			foreach ( $row as $aRowName => $aValue ) {
+    				$anObject [$aRowName] = $aValue;
+    				$this->$aRowName = $aValue;
+    			}
+    		}
+    		$conn->close ();
+    		return $anObject;
+    	}
+    	$conn->close ();
+    	return null;
+    }
+    
     function getObjectAsArrayWithMetadata() {
         return get_object_vars ( $this );
     }

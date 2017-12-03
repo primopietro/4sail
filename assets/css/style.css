@@ -72,6 +72,7 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 body {
+  width:100%;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-style: none;
@@ -376,7 +377,7 @@ a:focus {
   -moz-osx-font-smoothing: grayscale;
 }
 .btn:last-child {
-  margin-right: 0px !important;
+  margin-right: 0px;
 }
 .btn .icon {
   position: relative;
