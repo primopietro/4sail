@@ -112,10 +112,10 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                     <p><?php echo $anItem["item_desc"]?></p>
                                     
                                     <div class="product-add-cart">
-                                        <?php echo '<a href="'. $anItem["link"] .'/'. $anItem["item_price"] .'" target="_blank"  class="btn btn-fill">Buy now</a>'?>
+                                        <?php echo '<a href="'. $anItem["link"] .'/'. $anItem["item_price"] .'" target="_blank"  class="btn btn-fill">Pay now</a>'?>
                                         <?php
                                         if(isset($_SESSION['current_user'])) {
-                                            echo '<a href="#" id="share" class="btn btn-fill">get Share link</a>';
+                                            echo '<a href="#" id="share" class="btn btn-fill">Referral link</a>';
                                         }
                                         ?>
                                         <div><input id="reflink" class="input-lg none"><a href="#" id="copy" class="label copy none">Copy to clipboard</a></div>

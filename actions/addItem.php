@@ -16,6 +16,7 @@ $price = htmlspecialchars ($_POST ['item_price'] );
 $desc = htmlspecialchars ($_POST ['item_desc'] );
 $key = htmlspecialchars ($_POST ['item_keywords'] );
 $points = htmlspecialchars ($_POST ['item_points'] );
+$link= htmlspecialchars ($_POST ['link'] );
 $userId ="1";
 
 
@@ -26,6 +27,7 @@ $anItem->setItem_price($price);
 $anItem->setItem_desc($desc);
 $anItem->setItem_keywords($key);
 $anItem->setUser_id($_SESSION['current_user']['user_id']);
+$anItem->setLink('https://www.'.$link);
 $anItem->setPoints($points);
 
 

@@ -226,6 +226,12 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	color : #000000;
 }
 
+a.label:hover {
+	color: #555555;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 @media screen and (min-width: 1200px) {
    
     .product-img {

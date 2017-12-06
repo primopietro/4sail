@@ -69,7 +69,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                                         <span class="new-price xt-semibold">' . $aLocalItem["item_price"] . '$</span>
                                                     </div>
                                                     <div class="add-cart">
-                                                        <a href="'. $aLocalItem["link"] .'/'. $aLocalItem["item_price"] .'" target="_blank" class="btn btn-fill">Buy now</a>
+                                                        <a href="'. $aLocalItem["link"] .'/'. $aLocalItem["item_price"] .'" target="_blank" class="btn btn-fill">Pay now</a>
                                                         <ul class="reaction">
                                                             <li><a href="./' . $aCategory["cat_id"] . '/' . $aLocalItem["item_id"] . '"><i class="fa fa-search"></i></a></li>
                                                         </ul>';

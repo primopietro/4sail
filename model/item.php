@@ -13,7 +13,7 @@ class Item extends BaseModel {
 	protected $item_keywords ="";
 	protected $user_id = 0;
 	protected $points = 0;
-
+    protected $link = "";
 
 
 
@@ -33,6 +33,24 @@ class Item extends BaseModel {
      */
     public function setItem_id($item_id){
         $this->item_id = $item_id;
+        return $this;
+    }
+
+    /**
+     * link
+     * @return unkown
+     */
+    public function getLink(){
+        return $this->link;
+    }
+
+    /**
+     * link
+     * @param unkown $link
+     * @return Item
+     */
+    public function setLink($link){
+        $this->link = $link;
         return $this;
     }
 
