@@ -50,8 +50,9 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	border: 1px solid #000;
 	background: white;
 	position: fixed;
-	left: 45%;
-	top: 20%;
+	left: 50%;
+	top: 50%;
+    transform: translate(-50%, -50%);
 	z-index: 1002;
 	overflow-y:scroll;
 }
@@ -62,8 +63,9 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	border: 1px solid #000;
 	background: white;
 	position: fixed;
-	left: 40%;
-	top: 20%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 	z-index: 1002;
 }
 
@@ -73,8 +75,9 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	border: 1px solid #000;
 	background: white;
 	position: fixed;
-	left: 40%;
-	top: 10%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 	z-index: 1002;
 }
 
@@ -84,8 +87,9 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	border: 1px solid #000;
 	background: white;
 	position: fixed;
-	left: 40%;
-	top: 10%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 	z-index: 1002;
 }
 
@@ -216,6 +220,10 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 #space{
 	display: block;
     height: 11px;
+}
+
+.copy{
+	color : #000000;
 }
 
 @media screen and (min-width: 1200px) {

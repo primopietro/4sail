@@ -300,6 +300,7 @@ $(document).on("click",".btnConfirmProfile",function(){
 	
 });
 
+//MODAL HANDLES CLICKS OUTSIDE
 $(document).mousedown(function(e) {
 	var container = null;
 	
@@ -325,6 +326,30 @@ $(document).mousedown(function(e) {
 	    }
     }
 });
+
+//Create referral links
+$(document).on("click","#share",function(){
+	var div = $('#reflink');
+	var infos = $('#infos').val();
+	infos = infos.split(' ');
+	var iId = infos[0];
+	var sId = infos[1];
+	var data = {sellerId : sId, itemId : iId};
+
+    $.ajax({
+        url: ajaxPath + 'actions/refToken.php',
+        type: 'POST',
+        data: data,
+        success: function(data)
+        {
+            div.val(window.location.href+'?ref='+data);
+            div.show();
+            $('#copy').show();
+
+        }
+    });
+});
+
 
 //Filter price
 $(document).on("click","#filter",function(){

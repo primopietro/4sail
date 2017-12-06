@@ -7,7 +7,7 @@
         |  PRODUCT SUB PAGE
         |========================
         -->
-        <div class='none divToDisplay'></div>
+
         <div class="xt-product-subpage">    
             <div class="container">
                 <div class="row">

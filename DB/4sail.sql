@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2017 at 02:00 AM
+-- Generation Time: Dec 06, 2017 at 08:22 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -85,23 +85,24 @@ CREATE TABLE `item` (
   `item_desc` text NOT NULL,
   `item_keywords` text NOT NULL,
   `user_id` int(25) NOT NULL,
-  `points` int(11) NOT NULL DEFAULT '0'
+  `points` int(11) NOT NULL DEFAULT '0',
+  `link` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`item_id`, `item_cat`, `item_title`, `item_price`, `item_desc`, `item_keywords`, `user_id`, `points`) VALUES
-(56, 1, 'Lenovo 15.6&quot; Laptop', 350, 'Black (Intel Pentium 4405U/500GB HDD/4GB RAM/Windows 10) - English', 'Intel Pentium 4405U 500GB HDD', 1, 20),
-(57, 1, 'Apple MacBook Air 13.3', 1200, '(Intel Core i5 1.8 GHz/ 128GB SSD/ 8GB RAM) - English', 'sdf', 1, 0),
-(58, 2, 'Cashmere scarf ', 69, 'PREMIUM QUALITY. Ribbed scarf knitted in soft cashmere. Size 30x180 cm.', 'no need', 1, 2),
-(59, 1, '2-pack Patterned Socks ', 40, 'ERDEM x H&amp;M. Jacquard-knit socks in a soft wool blend. One floral pair and one checked pair.', 'Viscose 45%; Polyamide 34%; Wool 19%; Elastane 2%', 1, 0),
-(60, 3, 'Beaded Clutch Bag ', 35, 'Clutch bag in thick faux leather with a beaded strap at front. Flap with magnetic fastener, metal chain shoulder strap, and one inner compartment with zip. Lined. Size 1 1/2 x 5 1/2 x 8 1/4 in.', 'bag', 1, 2),
-(61, 3, 'Jersey leggings ', 13, 'Leggings in jersey with an elasticated waist.', 'Machine wash cold', 1, 0),
-(62, 7, 'PURE EVIL', 666, 'THE DEVIL', 'HELL A SICK', 1, 666),
-(63, 4, '2017/18 Chelsea FC Stadium Home', 110, 'The 2017/18 Chelsea FC Stadium Home ', 'Mens Football Shirt', 1, 0),
-(64, 6, '1963 Vw Beetle', 3200, 'For sale is my 1963 vw beetle. It has a 1400cc engine, the engine is recently rebuilt with new jugs. The car is very reliable and runs great it has a 4 speed transmission', 'sick car duder', 1, 15);
+INSERT INTO `item` (`item_id`, `item_cat`, `item_title`, `item_price`, `item_desc`, `item_keywords`, `user_id`, `points`, `link`) VALUES
+(56, 1, 'Lenovo 15.6&quot; Laptop', 350, 'Black (Intel Pentium 4405U/500GB HDD/4GB RAM/Windows 10) - English', 'Intel Pentium 4405U 500GB HDD', 1, 20, NULL),
+(57, 1, 'Apple MacBook Air 13.3', 1200, '(Intel Core i5 1.8 GHz/ 128GB SSD/ 8GB RAM) - English', 'sdf', 1, 0, NULL),
+(58, 2, 'Cashmere scarf ', 69, 'PREMIUM QUALITY. Ribbed scarf knitted in soft cashmere. Size 30x180 cm.', 'no need', 1, 2, NULL),
+(59, 1, '2-pack Patterned Socks ', 40, 'ERDEM x H&amp;M. Jacquard-knit socks in a soft wool blend. One floral pair and one checked pair.', 'Viscose 45%; Polyamide 34%; Wool 19%; Elastane 2%', 1, 0, NULL),
+(60, 3, 'Beaded Clutch Bag ', 35, 'Clutch bag in thick faux leather with a beaded strap at front. Flap with magnetic fastener, metal chain shoulder strap, and one inner compartment with zip. Lined. Size 1 1/2 x 5 1/2 x 8 1/4 in.', 'bag', 1, 2, NULL),
+(61, 3, 'Jersey leggings ', 13, 'Leggings in jersey with an elasticated waist.', 'Machine wash cold', 1, 0, NULL),
+(62, 7, 'PURE EVIL', 666, 'THE DEVIL', 'HELL A SICK', 1, 666, 'https://www.paypal.me/montambeaultalex/'),
+(63, 4, '2017/18 Chelsea FC Stadium Home', 110, 'The 2017/18 Chelsea FC Stadium Home ', 'Mens Football Shirt', 1, 0, NULL),
+(64, 6, '1963 Vw Beetle', 3200, 'For sale is my 1963 vw beetle. It has a 1400cc engine, the engine is recently rebuilt with new jugs. The car is very reliable and runs great it has a 4 speed transmission', 'sick car duder', 1, 15, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,9 +128,12 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`, `isResponse`, `response_id`, `fk_item_id`) VALUES
-(14, 1, 1, 'Sick laptop!', 'Hey i want to buy your laptop, contact me on my email.', '2017-11-30 01:58:02', NULL, 0, NULL, 56),
-(15, 1, 1, 'Interested in buying', 'Can I test drive it?', '2017-11-30 01:58:40', NULL, 0, NULL, 64),
-(16, 1, 1, 'MacOS &gt; Linux', 'True hackers only code on MAC.', '2017-11-30 01:59:06', '2017-11-30 01:59:56', 0, NULL, 57);
+(14, 1, 1, 'Sick laptop!', 'Hey i want to buy your laptop, contact me on my email.', '2017-11-30 01:58:02', '2017-11-30 03:44:30', 0, NULL, 56),
+(15, 1, 1, 'Interested in buying', 'Can I test drive it?', '2017-11-30 01:58:40', '2017-11-30 03:47:54', 0, NULL, 64),
+(16, 1, 1, 'MacOS &gt; Linux', 'True hackers only code on MAC.', '2017-11-30 01:59:06', '2017-11-30 03:47:00', 0, NULL, 57),
+(17, 1, 1, 'wussup', 'great thing', '2017-11-30 03:44:45', '2017-11-30 03:54:32', 0, NULL, 0),
+(18, 1, 1, 'supp', 'asdsd', '2017-11-30 04:02:00', '2017-11-30 04:02:02', 0, NULL, 62),
+(19, 3, 1, 'JSJSJSJSJSJ', 'ajajsdasd', '2017-12-05 16:04:45', NULL, 0, NULL, 60);
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,8 @@ CREATE TABLE `referral` (
   `id` int(10) NOT NULL,
   `item_id` int(10) NOT NULL,
   `ref_user_id` int(25) NOT NULL,
-  `sell_user_id` int(10) DEFAULT NULL
+  `sell_user_id` int(10) DEFAULT NULL,
+  `ref_link` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -192,7 +197,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `points`) VALUES
 (1, 'Test', 'User', 'test@test.com', '25f9e794323b453885f5181f1b624d0b', '8389080183', '123 Test Street', 1275),
-(2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2000);
+(2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2000),
+(3, 'al', 'm', 'test@test.com', 'assword', '1234567899', '123 rue chose', 1000);
 
 --
 -- Indexes for dumped tables
@@ -283,12 +289,12 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `referral`
 --
 ALTER TABLE `referral`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `status`
 --
@@ -303,7 +309,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --

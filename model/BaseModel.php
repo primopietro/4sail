@@ -43,10 +43,10 @@ class BaseModel{
         
         if (! $result = $conn->query ( $sql )) {
         	echo $sql;
-            echo " fail";
+            //echo " fail";
             exit ();
         } else {
-            echo "success";
+            //echo "success";
             $id = mysqli_insert_id($conn);
         }
         

@@ -68,3 +68,4 @@ if(isset( $_SESSION['currentItem'])){
 
     </head>
     <body>
+    <div class='none divToDisplay'></div>

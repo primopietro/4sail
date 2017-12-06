@@ -4,7 +4,7 @@ class Referral extends BaseModel {
 	protected $table_name = 'referral';
 	protected $primary_key = "id";
 	protected $id = 0;
-	
+	protected $ref_link = '';
 	protected $item_id= 0;
 	protected $ref_user_id = 0;
 	protected $sell_user_id = 0;
@@ -30,6 +30,25 @@ class Referral extends BaseModel {
         $this->id = $id;
         return $this;
     }
+
+    /**
+     * ref_link
+     * @return unkown
+     */
+    public function getRef_link(){
+        return $this->ref_link;
+    }
+
+    /**
+     * id
+     * @param unkown $id
+     * @return Referral
+     */
+    public function setRef_link($ref_link){
+        $this->ref_link = $ref_link;
+        return $this;
+    }
+
 
     /**
      * item_id
