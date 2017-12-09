@@ -23,6 +23,7 @@ $aUser->setPassword($password);
 $aUser->setPhone($phone);
 $aUser->setAddress($address);
 $aUser->setPoints($_SESSION['current_user']['points']);
+$aUser->setRating($_SESSION['current_user']['rating']);
 
 
 $aUser->updateDBObject();

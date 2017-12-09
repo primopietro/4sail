@@ -13,6 +13,7 @@ class User extends BaseModel {
 	protected $phone= 0;
 	protected $address= "";
 	protected $points= 0;
+	protected $rating = 0;
 
 
     /**
@@ -158,5 +159,24 @@ class User extends BaseModel {
         $this->points = $points;
         return $this;
     }
+    
+    /**
+     * rating
+     * @return unkown
+     */
+    public function getRating(){
+    	return $this->rating;
+    }
+    
+    /**
+     * rating
+     * @param unkown $rating
+     * @return User
+     */
+    public function setRating($rating){
+    	$this->rating = $rating;
+    	return $this;
+    }
+    
 
 }

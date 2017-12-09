@@ -15,6 +15,7 @@ $phone = htmlspecialchars ($_POST['phone'] );
 $address = htmlspecialchars ($_POST['address'] );
 
 $points = 1000;
+$rating = '0';
 
 //add item to bd
 
@@ -25,7 +26,9 @@ $aUser->setPassword($password);
 $aUser->setPhone($phone);
 $aUser->setAddress($address);
 $aUser->setPoints($points);
+$aUser->setRating($rating);
 
+//echo "rating:" . $aUser->getRating();
 
 $aUser->addDBObject();
 

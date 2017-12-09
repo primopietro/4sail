@@ -46,7 +46,7 @@ class BaseModel{
             //echo " fail";
             exit ();
         } else {
-            //echo "success";
+            echo "success";
             $id = mysqli_insert_id($conn);
         }
         
@@ -103,7 +103,7 @@ class BaseModel{
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
         
         if ($conn->query ( $sql ) === TRUE) {
-            if($this->table_name != "message"){
+            if($this->table_name != "user"){
                 echo "success";
             }
             

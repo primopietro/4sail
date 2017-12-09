@@ -113,9 +113,94 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                     
                                     <div class="product-add-cart">
                                         <?php echo '<a href="'. $anItem["link"] .'/'. $anItem["item_price"] .'" target="_blank"  class="btn btn-fill">Pay now</a>'?>
+                                        
                                         <?php
                                         if(isset($_SESSION['current_user'])) {
                                             echo '<a href="#" id="share" class="btn btn-fill">Referral link</a>';
+                                            
+                                            require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/user.php';
+                                            
+                                            $aUser = new User();
+                                            $theUser = $aUser->getObjectFromDB($anItem["user_id"]);
+                                            
+                                            echo "<label class='none' id='path' thepath='".$anItem["item_cat"]. "/".$anItem["item_id"]."'></label>";
+                                            
+                                            
+                                            require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/ratings.php';
+                                            $aRating = new Ratings();
+                                            
+                                            $querryToCheck = " id_rater = '" . $_SESSION['current_user']['user_id'] . "' AND id_rated = '" . $anItem["user_id"] . "'";
+                                            $checkRating = $aRating->getObjectFromDBWhere("", "", $querryToCheck);
+                                            
+                                            if($checkRating != null){
+                                            	echo "<div id='rating'><label id='theUser' user_id='".$theUser['user_id']."'>".$theUser['first_name']. " " .$theUser['last_name']." rating: ".round($theUser['rating'], 2)." stars</label><br>
+												<section class='rating-widget'>
+												  <!-- Rating Stars Box -->
+												  <div class='rating-stars'>
+												    <ul id='stars'>
+												      <li class='star";
+		                              					if($checkRating['rating'] >= 1){
+		                                            		echo " selected ";
+		                                            	}
+														echo "' title='Poor' data-value='1'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star";
+														if($checkRating['rating'] >= 2){
+															echo " selected ";
+														}
+												      	echo "' title='Fair' data-value='2'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star";
+												      	if($checkRating['rating'] >= 3){
+												      		echo " selected ";
+												      	}
+												      echo"' title='Good' data-value='3'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star";
+												      if($checkRating['rating'] >= 4){
+												      	echo " selected ";
+												      }
+												      echo "' title='Excellent' data-value='4'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star";
+												      if($checkRating['rating'] == 5){
+												      	echo " selected ";
+												      }
+												      echo"' title='WOW!!!' data-value='5'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												    </ul>
+												  </div>
+												</div>";
+                                            } else{
+                                            	echo "<div id='rating'><label id='theUser' user_id='".$theUser['user_id']."'>".$theUser['first_name']. " " .$theUser['last_name']." rating: ".round($theUser['rating'], 2)." stars</label><br>
+												<section class='rating-widget'>
+												  <!-- Rating Stars Box -->
+												  <div class='rating-stars'>
+												    <ul id='stars'>
+												      <li class='star' title='Poor' data-value='1'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star' title='Fair' data-value='2'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star' title='Good' data-value='3'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star' title='Excellent' data-value='4'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												      <li class='star' title='WOW!!!' data-value='5'>
+												        <i class='fa fa-star fa-fw'></i>
+												      </li>
+												    </ul>
+												  </div>
+												</div>";
+                                            }
                                         }
                                         ?>
                                         <div><input id="reflink" class="input-lg none"><a href="#" id="copy" class="label copy none">Copy to clipboard</a></div>
