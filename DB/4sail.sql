@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2017 at 08:22 PM
+-- Generation Time: Dec 09, 2017 at 11:44 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `4sail`
 --
+CREATE DATABASE IF NOT EXISTS `4sail` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `4sail`;
 
 -- --------------------------------------------------------
 
@@ -138,6 +140,28 @@ INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `me
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `id_rating` int(11) NOT NULL,
+  `id_rater` int(11) NOT NULL,
+  `id_rated` int(11) NOT NULL,
+  `rating` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`id_rating`, `id_rater`, `id_rated`, `rating`) VALUES
+(7, 2, 1, 5),
+(8, 3, 1, 3),
+(9, 9, 1, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `referral`
 --
 
@@ -188,17 +212,19 @@ CREATE TABLE `user` (
   `password` varchar(300) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `address` varchar(300) NOT NULL,
-  `points` int(100) NOT NULL
+  `points` int(100) NOT NULL,
+  `rating` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `points`) VALUES
-(1, 'Test', 'User', 'test@test.com', '25f9e794323b453885f5181f1b624d0b', '8389080183', '123 Test Street', 1275),
-(2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2000),
-(3, 'al', 'm', 'test@test.com', 'assword', '1234567899', '123 rue chose', 1000);
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `points`, `rating`) VALUES
+(1, 'Test', 'User', 'test@test.com', '25f9e794323b453885f5181f1b624d0b', '8389080183', '123 Test Street', 1275, 3.3333333333333),
+(2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2000, 0),
+(3, 'al', 'm', 'test@test.com', 'password', '1234567899', '123 rue chose', 1000, 0),
+(9, 'test', 'test', 'test@testerino.com', 'test', '123', '12', 1000, 0);
 
 --
 -- Indexes for dumped tables
@@ -234,6 +260,14 @@ ALTER TABLE `message`
   ADD KEY `message_fk_user_from` (`fk_user_from`),
   ADD KEY `message_fk_user_to` (`fk_user_to`),
   ADD KEY `message_RID` (`response_id`);
+
+--
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`id_rating`),
+  ADD KEY `r_id_rater` (`id_rater`),
+  ADD KEY `r_id_rated` (`id_rated`);
 
 --
 -- Indexes for table `referral`
@@ -291,6 +325,11 @@ ALTER TABLE `item`
 ALTER TABLE `message`
   MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
 -- AUTO_INCREMENT for table `referral`
 --
 ALTER TABLE `referral`
@@ -309,7 +348,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
@@ -333,6 +372,13 @@ ALTER TABLE `item`
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`fk_user_from`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`fk_user_to`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`id_rater`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`id_rated`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `referral`
