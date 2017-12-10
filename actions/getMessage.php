@@ -47,7 +47,7 @@ if(isset($_GET['idMessage'])){
 	
 	$now = new DateTime(null, new DateTimeZone('America/New_York'));
 	
-	$aMessage->updateObjectDynamically('date_viewed', date_format($now,"Y/m/d H:i:s"), $messageID);
+	$aMessage->updateObjectDynamicallyNoEcho('date_viewed', date_format($now,"Y/m/d H:i:s"), $messageID);
 }
 
 

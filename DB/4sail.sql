@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2017 at 11:44 PM
+-- Generation Time: Dec 10, 2017 at 05:10 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `4sail`
 --
-CREATE DATABASE IF NOT EXISTS `4sail` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `4sail`;
 
 -- --------------------------------------------------------
 
@@ -130,12 +128,12 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`, `isResponse`, `response_id`, `fk_item_id`) VALUES
-(14, 1, 1, 'Sick laptop!', 'Hey i want to buy your laptop, contact me on my email.', '2017-11-30 01:58:02', '2017-11-30 03:44:30', 0, NULL, 56),
-(15, 1, 1, 'Interested in buying', 'Can I test drive it?', '2017-11-30 01:58:40', '2017-11-30 03:47:54', 0, NULL, 64),
+(14, 1, 1, 'Sick laptop!', 'Hey i want to buy your laptop, contact me on my email.', '2017-11-30 01:58:02', '2017-12-10 16:33:08', 0, NULL, 56),
+(15, 1, 1, 'Interested in buying', 'Can I test drive it?', '2017-11-30 01:58:40', '2017-12-10 16:36:43', 0, NULL, 64),
 (16, 1, 1, 'MacOS &gt; Linux', 'True hackers only code on MAC.', '2017-11-30 01:59:06', '2017-11-30 03:47:00', 0, NULL, 57),
 (17, 1, 1, 'wussup', 'great thing', '2017-11-30 03:44:45', '2017-11-30 03:54:32', 0, NULL, 0),
 (18, 1, 1, 'supp', 'asdsd', '2017-11-30 04:02:00', '2017-11-30 04:02:02', 0, NULL, 62),
-(19, 3, 1, 'JSJSJSJSJSJ', 'ajajsdasd', '2017-12-05 16:04:45', NULL, 0, NULL, 60);
+(19, 3, 1, 'JSJSJSJSJSJ', 'ajajsdasd', '2017-12-05 16:04:45', '2017-12-10 16:34:17', 0, NULL, 60);
 
 -- --------------------------------------------------------
 
@@ -157,7 +155,8 @@ CREATE TABLE `ratings` (
 INSERT INTO `ratings` (`id_rating`, `id_rater`, `id_rated`, `rating`) VALUES
 (7, 2, 1, 5),
 (8, 3, 1, 3),
-(9, 9, 1, 2);
+(9, 9, 1, 2),
+(10, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -172,6 +171,13 @@ CREATE TABLE `referral` (
   `sell_user_id` int(10) DEFAULT NULL,
   `ref_link` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `referral`
+--
+
+INSERT INTO `referral` (`id`, `item_id`, `ref_user_id`, `sell_user_id`, `ref_link`) VALUES
+(17, 63, 1, 1, '0qmxXAdntX18JMGQukebF2bo8bznXJsg');
 
 -- --------------------------------------------------------
 
@@ -221,10 +227,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `points`, `rating`) VALUES
-(1, 'Test', 'User', 'test@test.com', '25f9e794323b453885f5181f1b624d0b', '8389080183', '123 Test Street', 1275, 3.3333333333333),
+(1, 'Test', 'User', '1', '1', '8389080183', '123 Test Street', 1275, 3.25),
 (2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2000, 0),
 (3, 'al', 'm', 'test@test.com', 'password', '1234567899', '123 rue chose', 1000, 0),
-(9, 'test', 'test', 'test@testerino.com', 'test', '123', '12', 1000, 0);
+(9, 'test', 'test', 'test@testerino.com', 'test', '123', '12', 1000, 0),
+(12, 'admin', 'admin', 'admin', 'admin', '000', 'admin', 1000, 5);
 
 --
 -- Indexes for dumped tables
@@ -328,12 +335,12 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `id_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `referral`
 --
 ALTER TABLE `referral`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `status`
 --
@@ -348,7 +355,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

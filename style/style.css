@@ -43,7 +43,10 @@ box-shadow: 19px 15px 18px -17px rgba(0,0,0,0.37) !important;
 	display: block;
 	
 }
-
+.err{
+	display:none;
+}
+   
 .divToDisplay{
 	width: 380px;
 	height: 475px;

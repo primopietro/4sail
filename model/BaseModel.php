@@ -93,6 +93,22 @@ class BaseModel{
         
         $conn->close ();
     }
+    function updateObjectDynamicallyNoEcho($aField, $aValue, $anID) {
+        $sql = "UPDATE `" . $this->table_name . "`
+		SET `$aField` = '$aValue'
+		WHERE `" . $this->table_name . "`.`" . $this->primary_key . "` = '$anID' ";
+        
+        //echo "<br>" . $sql;
+        
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        if ($conn->query ( $sql ) === TRUE) {
+           
+            
+        } 
+        
+        $conn->close ();
+    }
     function updateObjectDynamically($aField, $aValue, $anID) {
         $sql = "UPDATE `" . $this->table_name . "`
 		SET `$aField` = '$aValue'
