@@ -387,6 +387,7 @@ ALTER TABLE `ratings`
   ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`id_rater`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`id_rated`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+
 --
 -- Constraints for table `referral`
 --
