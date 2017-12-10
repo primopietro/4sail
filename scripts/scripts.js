@@ -533,3 +533,28 @@ $(document).on("click",".4sMessage",function(){
 	        }
 	    });
 });
+
+/***************delete item***************/
+$(document).on("click",".delete",function(){
+
+	
+	 if(confirm("'Are you sure you want to delete this item?")){
+	// Variable to store your files
+	 var idItem = $(this).attr("value");
+	
+	
+	
+	var dataToSend = "idItem=" + idItem ;
+	
+	  $.ajax({
+	        url: ajaxPath + 'actions/deleteItem.php',
+	        type: 'POST',
+	        data: dataToSend,
+	        success: function(data)
+	        {
+	        	location.reload();
+	        }
+	    });
+
+	 }
+});

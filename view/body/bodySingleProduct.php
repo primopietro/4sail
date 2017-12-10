@@ -1,4 +1,7 @@
   <?php  
+  if(!isset($_SESSION['current_user'])){
+      $_SESSION['current_user']['user_id']=null;
+  }
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
@@ -113,7 +116,9 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                     
                                     <div class="product-add-cart">
                                         <?php echo '<a href="'. $anItem["link"] .'/'. $anItem["item_price"] .'" target="_blank"  class="btn btn-fill">Pay now</a>'?>
-                                        
+                                         <?php if($anItem["user_id"]==$_SESSION['current_user']['user_id']){
+                                         echo '<a   id="delete" value="'. $anItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
+                                              }?>
                                         <?php
                                         if(isset($_SESSION['current_user'])) {
                                             echo '<a href="#" id="share" class="btn btn-fill">Referral link</a>';
