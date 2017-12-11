@@ -2,6 +2,8 @@ var ajaxPath = 'http://localhost/4sail/';
 
 /***************STAR SYSTEM***************/
 $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+
 	$('#stars li').on('mouseover', function(){
 	    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
 	   
@@ -60,7 +62,39 @@ $(document).ready(function(){
 	  });
 });
 
+/***************PAYMENT MSG ALERT***************/
+$(document).on("click","#pay",function(){
+    // Variable to store your files
+	var itemTitle = $("#title").text();
+    var object = "!!! PAYMENT ALERT !!!";
+    var messaged = "Did you receive my Paypal payment for "+itemTitle+" ? If so, please mark item as sold.";
+    var fk_user_to = $("#theUser").attr("user_id");
+    var infos = $("#infos").val();
+    var item_curUser = infos.split(" ");
+    var fk_item_id = item_curUser[0];
+    var currentU = item_curUser[1];
 
+
+
+    var dataToSend = "";
+
+    dataToSend += "object=" + object + "&messaged=" + messaged + "&fk_user_to=" + fk_user_to +"&item_id="+fk_item_id;
+
+    if(object != "" && messaged != ""){
+        $.ajax({
+            url: ajaxPath + 'actions/addMessage.php',
+            type: 'POST',
+            data: dataToSend,
+            success: function(data)
+            {
+
+            }
+        });
+    }else{
+
+    }
+
+});
 
 /***************SEND MESSAGE***************/
 $(document).on("click",".addMessage",function(){
@@ -390,7 +424,8 @@ $(document).mousedown(function(e) {
 });
 
 //Create referral links
-$(document).on("click","#share",function(){
+$(document).on("click","#share",function(e){
+    e.preventDefault();
 	var div = $('#reflink');
 	var infos = $('#infos').val();
 	infos = infos.split(' ');

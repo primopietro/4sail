@@ -5,6 +5,7 @@
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
+  require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/referral.php";
   $aCategory = new Category();
 $addedString = "";
 if(isset( $_SESSION['currentItem'])){
@@ -12,6 +13,12 @@ if(isset( $_SESSION['currentItem'])){
         $addedString = "../";
     }
 }
+$referral = new Referral();
+$getRef = false;
+  if(isset($_GET['ref'])){
+      $getRef =true;
+      $referral = $referral->getRefByToken($_GET['ref']);
+  }
 
 $anItem = new Item();
 
@@ -110,18 +117,26 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                             </div>
                             <div class="col-md-7">
                                 <div class="each-product-info">
-                                    <h3><?php echo $anItem["item_title"]?></h3>
+                                    <h3 id="title"><?php echo $anItem["item_title"]?></h3>
                                     <span class="single-price"><b>Current Price:</b> $<?php echo $anItem["item_price"]?></span>
                                     <p><?php echo $anItem["item_desc"]?></p>
                                     
                                     <div class="product-add-cart">
-                                        <?php echo '<a href="'. $anItem["link"] .'/'. $anItem["item_price"] .'" target="_blank"  class="btn btn-fill">Pay now</a>'?>
+                                        <?php if($anItem["link"] != '') {
+                                            if ($getRef == true){
+                                                echo '<a href="' . $anItem["link"] . '/' . $anItem["item_price"] . '" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill btn-ref">Pay now</a>';
+                                            }else {
+                                                echo '<a href="' . $anItem["link"] . '/' . $anItem["item_price"] . '" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill ">Pay now</a>';
+                                            }
+                                        }?>
                                          <?php if($anItem["user_id"]==$_SESSION['current_user']['user_id']){
                                          echo '<a   id="delete" value="'. $anItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
                                               }?>
                                         <?php
                                         if(isset($_SESSION['current_user'])) {
-                                            echo '<a href="#" id="share" class="btn btn-fill">Referral link</a>';
+                                            if($anItem["link"] != '') {
+                                                echo '<a href="" id="share" class="btn btn-fill">Referral link</a>';
+                                            }
                                             
                                             require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/user.php';
                                             

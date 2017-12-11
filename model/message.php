@@ -289,7 +289,7 @@ class Message extends BaseModel {
         $id = 0;
         
         if (! $result = $conn->query ( $sql )) {
-            echo $sql;
+            //echo $sql;
             echo " fail";
             exit ();
         } else {

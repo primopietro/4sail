@@ -42,11 +42,11 @@ class BaseModel{
         $id = 0;
         
         if (! $result = $conn->query ( $sql )) {
-        	echo $sql;
+        	//echo $sql;
             //echo " fail";
             exit ();
         } else {
-            echo "success";
+            //echo "success";
             $id = mysqli_insert_id($conn);
         }
         
@@ -85,9 +85,9 @@ class BaseModel{
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
         
         if ($conn->query ( $sql ) === TRUE) {
-            echo "success";
+            //echo "success";
         } else {
-            echo $sql . "<br>";
+           //echo $sql . "<br>";
             echo "fail";
         }
         
@@ -120,7 +120,7 @@ class BaseModel{
         
         if ($conn->query ( $sql ) === TRUE) {
             if($this->table_name != "user"){
-                echo "success";
+                //echo "success";
             }
             
         } else {
@@ -324,7 +324,7 @@ class BaseModel{
             $sql .= ' order by item_id DESC';
         }
         $result = $conn->query ( $sql );
-        echo $sql . "<br>";
+        //echo $sql . "<br>";
         if ($result->num_rows > 0) {
             $localObjects = array ();
             while ( $row = $result->fetch_assoc () ) {

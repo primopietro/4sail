@@ -302,3 +302,7 @@ a.label:hover {
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
 }
+
+.btn.btn-ref {
+	box-shadow: 0px 0px 15px #333;
+}
