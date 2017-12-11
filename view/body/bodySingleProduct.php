@@ -1,7 +1,5 @@
   <?php  
-  if(!isset($_SESSION['current_user'])){
-      $_SESSION['current_user']['user_id']=null;
-  }
+
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
@@ -129,9 +127,11 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                                 echo '<a href="' . $anItem["link"] . '/' . $anItem["item_price"] . '" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill ">Pay now</a>';
                                             }
                                         }?>
-                                         <?php if($anItem["user_id"]==$_SESSION['current_user']['user_id']){
-                                         echo '<a   id="delete" value="'. $anItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
-                                              }?>
+                                         <?php  if(isset($_SESSION['current_user'])){
+                                                            if($aLocalItem["user_id"]==$_SESSION['current_user']['user_id']){
+                                                                $component .= '<a   id="delete" value="'. $aLocalItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
+                                                            }
+                                                        }?>
                                         <?php
                                         if(isset($_SESSION['current_user'])) {
                                             if($anItem["link"] != '') {
