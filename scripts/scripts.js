@@ -1,11 +1,27 @@
 var ajaxPath = 'http://localhost/4sail/';
 
+
 /***************STAR SYSTEM***************/
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 
+    var client = new ZeroClipboard($("#copy"));
 
+    client.on( "ready", function( readyEvent ) {
+        alert( "ZeroClipboard SWF is ready!" );
+        client.on( 'copy', function(event) {
+        	alert("suce");
+            event.clipboardData.setData('text/plain', event.target.innerHTML);
+        } );
+
+        client.on( "aftercopy", function( event ) {
+            // `this` === `client`
+            // `event.target` === the element that was clicked
+            //event.target.style.display = "none";
+            alert("Copied text to clipboard: " + event.data["text/plain"] );
+        } );
+    } );
 
 
 
@@ -451,6 +467,11 @@ $(document).on("click","#share",function(e){
 
         }
     });
+});
+
+//Copy to clipboard
+$(document).on("click","#copy",function(){
+
 });
 
 

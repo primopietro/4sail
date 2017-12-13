@@ -128,8 +128,8 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                             }
                                         }?>
                                          <?php  if(isset($_SESSION['current_user'])){
-                                                            if($aLocalItem["user_id"]==$_SESSION['current_user']['user_id']){
-                                                                $component .= '<a   id="delete" value="'. $aLocalItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
+                                                            if($anItem["user_id"]==$_SESSION['current_user']['user_id']){
+                                                                echo '<a   id="delete" value="'. $anItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
                                                             }
                                                         }?>
                                         <?php
@@ -223,7 +223,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                             }
                                         }
                                         ?>
-                                        <div><input id="reflink" class="input-lg none"><a href="#" id="copy" class="label copy none">Copy to clipboard</a></div>
+                                        <div><input id="reflink" class="input-lg none"><a href="#" id="copy" data-clipboard-target="reflink" class="label copy none">Copy to clipboard</a></div>
                                       </div>
                                     <div class="product-additional-info">
                                         <ul>

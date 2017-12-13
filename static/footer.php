@@ -45,10 +45,11 @@ if(isset( $_SESSION['currentItem'])){
         <!-- init -->
         <script src="<?php echo $addedString; ?>assets/js/init.js"></script>
 		<script src="<?php echo $addedString; ?>scripts/scripts.js"></script>
-
+        <!--fileinput with previews yay -->
         <script src="<?php echo $addedString; ?>assets/js/fileinput.js"></script>
         <script src="<?php echo $addedString; ?>themes/gly/theme.js"></script>
-
+        <!-- copy to clipboard yay -->
+        <script src="<?php echo $addedString; ?>assets/js/ZeroClipboard.js"></script>
 
     </body>
 </html>
