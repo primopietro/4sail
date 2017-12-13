@@ -13,7 +13,9 @@ if(isset( $_SESSION['currentItem'])){
         |      Script
         |========================
         -->
-        
+
+
+
         <!-- jquery -->
         <script src="<?php echo $addedString; ?>assets/plugins/js/jquery-1.11.3.min.js"></script>
         <!-- Bootstrap -->
@@ -43,5 +45,10 @@ if(isset( $_SESSION['currentItem'])){
         <!-- init -->
         <script src="<?php echo $addedString; ?>assets/js/init.js"></script>
 		<script src="<?php echo $addedString; ?>scripts/scripts.js"></script>
+
+        <script src="<?php echo $addedString; ?>assets/js/fileinput.js"></script>
+        <script src="<?php echo $addedString; ?>themes/gly/theme.js"></script>
+
+
     </body>
 </html>

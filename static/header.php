@@ -16,7 +16,12 @@ if(isset( $_SESSION['currentItem'])){
     <head>
         <!-- TITLE OF SITE -->
         <title> 4Sail </title>
-        
+
+        <!-- FILE INPUT -->
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+
+
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="description" content="app landing page template" />
@@ -65,6 +70,7 @@ if(isset( $_SESSION['currentItem'])){
             <script src="js/plagin-js/html5shiv.js"></script>
             <script src="js/plagin-js/respond.min.js"></script>
         <![endif]-->
+
 
     </head>
     <body>

@@ -37,7 +37,10 @@ require_once 'view/menu/menu.php';
     	<input class="form-control" placeholder="Points" type="number" name="item_points" min="0" max="<?php
         echo    $_SESSION['current_user']['points'];
         ?>" required><br>
-    	<input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+        <div class="file-loading">
+            <input id="input-fa" class="file" name="fileToUpload" id="fileToUpload" type="file" data-show-upload="false" data-show-cancel="false">
+        </div>
+
     	<button id="addObj" class="btn btn-fill" style='margin-top:10px;margin-bottom:10px;' type="submit">Add</button>
     </form>
 </div>

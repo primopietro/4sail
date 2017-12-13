@@ -1,8 +1,14 @@
 var ajaxPath = 'http://localhost/4sail/';
 
 /***************STAR SYSTEM***************/
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
+
+
+
+
+
 
 	$('#stars li').on('mouseover', function(){
 	    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on

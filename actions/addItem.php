@@ -28,6 +28,7 @@ $anItem->setItem_desc($desc);
 $anItem->setItem_keywords($key);
 $anItem->setUser_id($_SESSION['current_user']['user_id']);
 $anItem->setLink('https://www.'.$link);
+$anItem->setSold('0');
 $anItem->setPoints($points);
 
 
@@ -81,10 +82,10 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
     }
 
     $anItemList = $anItem->getListOfAllDBObjectsNoSort();
-    
+
     $aTempitem = current($anItemList);
-    
-    
+
+
     $anImage->setName($ImageName);
     $anImage->setItem_id($aTempitem["item_id"]);
     $anImage->addDBObject();

@@ -14,6 +14,7 @@ class Item extends BaseModel {
 	protected $user_id = 0;
 	protected $points = 0;
     protected $link = "";
+    protected $sold = false;
 
 
 
@@ -33,6 +34,24 @@ class Item extends BaseModel {
      */
     public function setItem_id($item_id){
         $this->item_id = $item_id;
+        return $this;
+    }
+
+    /**
+     * sold
+     * @return unkown
+     */
+    public function getSold(){
+        return $this->sold;
+    }
+
+    /**
+     * item_id
+     * @param unkown $sold
+     * @return sold
+     */
+    public function setSold($sold){
+        $this->sold = $sold;
         return $this;
     }
 
