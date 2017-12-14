@@ -58,7 +58,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
 							            </div>';
 							            }
 											
-                                        $component .= '<div  ';
+                                        $component .= '<div class="product-img ';
             if ($aLocalItem["points"] > 0) {
                 $component .= " no0points ";
             }

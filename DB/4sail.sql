@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2017 at 05:10 PM
+-- Generation Time: Dec 14, 2017 at 05:20 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `4sail`
 --
+CREATE DATABASE IF NOT EXISTS `4sail` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `4sail`;
 
 -- --------------------------------------------------------
 
@@ -67,7 +69,6 @@ INSERT INTO `image` (`image_id`, `item_id`, `name`) VALUES
 (9, 59, 'hmgoepprod.jpg'),
 (10, 60, 'hmgoepprod2.jpg'),
 (11, 61, 'hmgoepprod3.jpg'),
-(12, 62, '1411690270039.gif'),
 (13, 63, 'avcx.jpg'),
 (14, 64, '1963-vw-beetle-for-sale-americanlisted_30184071.jpg');
 
@@ -86,23 +87,23 @@ CREATE TABLE `item` (
   `item_keywords` text NOT NULL,
   `user_id` int(25) NOT NULL,
   `points` int(11) NOT NULL DEFAULT '0',
-  `link` varchar(100) DEFAULT NULL
+  `link` varchar(100) DEFAULT NULL,
+  `sold` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`item_id`, `item_cat`, `item_title`, `item_price`, `item_desc`, `item_keywords`, `user_id`, `points`, `link`) VALUES
-(56, 1, 'Lenovo 15.6&quot; Laptop', 350, 'Black (Intel Pentium 4405U/500GB HDD/4GB RAM/Windows 10) - English', 'Intel Pentium 4405U 500GB HDD', 1, 20, NULL),
-(57, 1, 'Apple MacBook Air 13.3', 1200, '(Intel Core i5 1.8 GHz/ 128GB SSD/ 8GB RAM) - English', 'sdf', 1, 0, NULL),
-(58, 2, 'Cashmere scarf ', 69, 'PREMIUM QUALITY. Ribbed scarf knitted in soft cashmere. Size 30x180 cm.', 'no need', 1, 2, NULL),
-(59, 1, '2-pack Patterned Socks ', 40, 'ERDEM x H&amp;M. Jacquard-knit socks in a soft wool blend. One floral pair and one checked pair.', 'Viscose 45%; Polyamide 34%; Wool 19%; Elastane 2%', 1, 0, NULL),
-(60, 3, 'Beaded Clutch Bag ', 35, 'Clutch bag in thick faux leather with a beaded strap at front. Flap with magnetic fastener, metal chain shoulder strap, and one inner compartment with zip. Lined. Size 1 1/2 x 5 1/2 x 8 1/4 in.', 'bag', 1, 2, NULL),
-(61, 3, 'Jersey leggings ', 13, 'Leggings in jersey with an elasticated waist.', 'Machine wash cold', 1, 0, NULL),
-(62, 7, 'PURE EVIL', 666, 'THE DEVIL', 'HELL A SICK', 1, 666, 'https://www.paypal.me/montambeaultalex/'),
-(63, 4, '2017/18 Chelsea FC Stadium Home', 110, 'The 2017/18 Chelsea FC Stadium Home ', 'Mens Football Shirt', 1, 0, NULL),
-(64, 6, '1963 Vw Beetle', 3200, 'For sale is my 1963 vw beetle. It has a 1400cc engine, the engine is recently rebuilt with new jugs. The car is very reliable and runs great it has a 4 speed transmission', 'sick car duder', 1, 15, NULL);
+INSERT INTO `item` (`item_id`, `item_cat`, `item_title`, `item_price`, `item_desc`, `item_keywords`, `user_id`, `points`, `link`, `sold`) VALUES
+(56, 1, 'Lenovo 15.6&quot; Laptop', 350, 'Black (Intel Pentium 4405U/500GB HDD/4GB RAM/Windows 10) - English', 'Intel Pentium 4405U 500GB HDD', 1, 20, 'https://www.paypal.me/montambeaultalex', 1),
+(57, 1, 'Apple MacBook Air 13.3', 1200, '(Intel Core i5 1.8 GHz/ 128GB SSD/ 8GB RAM) - English', 'sdf', 1, 0, NULL, 0),
+(58, 2, 'Cashmere scarf ', 69, 'PREMIUM QUALITY. Ribbed scarf knitted in soft cashmere. Size 30x180 cm.', 'no need', 1, 2, NULL, 0),
+(59, 1, '2-pack Patterned Socks ', 40, 'ERDEM x H&amp;M. Jacquard-knit socks in a soft wool blend. One floral pair and one checked pair.', 'Viscose 45%; Polyamide 34%; Wool 19%; Elastane 2%', 1, 0, NULL, 0),
+(60, 3, 'Beaded Clutch Bag ', 35, 'Clutch bag in thick faux leather with a beaded strap at front. Flap with magnetic fastener, metal chain shoulder strap, and one inner compartment with zip. Lined. Size 1 1/2 x 5 1/2 x 8 1/4 in.', 'bag', 1, 2, NULL, 0),
+(61, 3, 'Jersey leggings ', 13, 'Leggings in jersey with an elasticated waist.', 'Machine wash cold', 1, 0, NULL, 0),
+(63, 4, '2017/18 Chelsea FC Stadium Home', 110, 'The 2017/18 Chelsea FC Stadium Home ', 'Mens Football Shirt', 1, 0, NULL, 1),
+(64, 6, '1963 Vw Beetle', 3200, 'For sale is my 1963 vw beetle. It has a 1400cc engine, the engine is recently rebuilt with new jugs. The car is very reliable and runs great it has a 4 speed transmission', 'sick car duder', 1, 15, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -128,12 +129,10 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message_id`, `fk_user_from`, `fk_user_to`, `object`, `messaged`, `date_sent`, `date_viewed`, `isResponse`, `response_id`, `fk_item_id`) VALUES
-(14, 1, 1, 'Sick laptop!', 'Hey i want to buy your laptop, contact me on my email.', '2017-11-30 01:58:02', '2017-12-10 16:33:08', 0, NULL, 56),
-(15, 1, 1, 'Interested in buying', 'Can I test drive it?', '2017-11-30 01:58:40', '2017-12-10 16:36:43', 0, NULL, 64),
-(16, 1, 1, 'MacOS &gt; Linux', 'True hackers only code on MAC.', '2017-11-30 01:59:06', '2017-11-30 03:47:00', 0, NULL, 57),
-(17, 1, 1, 'wussup', 'great thing', '2017-11-30 03:44:45', '2017-11-30 03:54:32', 0, NULL, 0),
-(18, 1, 1, 'supp', 'asdsd', '2017-11-30 04:02:00', '2017-11-30 04:02:02', 0, NULL, 62),
-(19, 3, 1, 'JSJSJSJSJSJ', 'ajajsdasd', '2017-12-05 16:04:45', '2017-12-10 16:34:17', 0, NULL, 60);
+(44, 1, 1, '!!! PAYMENT ALERT !!!', 'Did you receive my Paypal payment for Lenovo 15.6&quot; Laptop ? If so, please mark item as sold.', '2017-12-14 15:04:37', '2017-12-14 15:06:52', 0, NULL, 56),
+(45, 1, 1, '!!! PAYMENT ALERT !!!', 'Did you receive my Paypal payment for Lenovo 15.6&quot; Laptop ? If so, please mark item as sold.', '2017-12-14 15:05:51', '2017-12-14 15:06:44', 1, 44, 56),
+(46, 1, 1, '!!! PAYMENT ALERT !!!', 'Did you receive my Paypal payment for Lenovo 15.6&quot; Laptop ? If so, please mark item as sold.', '2017-12-14 15:08:37', '2017-12-14 15:08:48', 0, 45, 56),
+(47, 1, 1, '!!! POINTS AWARDED !!!', 'Your referral link for the item : Lenovo 15.6&quot; Laptop has led to a successful purchase. 2 points were added to your account.', '2017-12-14 15:09:11', '2017-12-14 15:09:23', 0, 45, 56);
 
 -- --------------------------------------------------------
 
@@ -156,7 +155,7 @@ INSERT INTO `ratings` (`id_rating`, `id_rater`, `id_rated`, `rating`) VALUES
 (7, 2, 1, 5),
 (8, 3, 1, 3),
 (9, 9, 1, 2),
-(10, 1, 1, 3);
+(10, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -177,32 +176,10 @@ CREATE TABLE `referral` (
 --
 
 INSERT INTO `referral` (`id`, `item_id`, `ref_user_id`, `sell_user_id`, `ref_link`) VALUES
-(17, 63, 1, 1, '0qmxXAdntX18JMGQukebF2bo8bznXJsg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `status`
---
-
-CREATE TABLE `status` (
-  `status_id` int(11) NOT NULL,
-  `status_name` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transaction`
---
-
-CREATE TABLE `transaction` (
-  `trans_id` int(11) NOT NULL,
-  `buy_user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `sell_user_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(42, 56, 1, 1, 'KfSc4kR7jokdvCV2TSy5aDfTHaL5RZ67'),
+(43, 56, 1, 1, 'GlaT8OaeZ1K5jrrStjstupH9yHJxuRGO'),
+(44, 56, 1, 1, '3ZKh8397aN2u80sIix3WRl0w0lchr1xw'),
+(45, 56, 1, 1, 'gUvVgfYiUdSVUD53xG8YxtlDDPODYMg4');
 
 -- --------------------------------------------------------
 
@@ -227,11 +204,35 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `points`, `rating`) VALUES
-(1, 'Test', 'User', '1', '1', '8389080183', '123 Test Street', 1275, 3.25),
-(2, 'bob', 'zoretic', 'bob.zoret@gmail.com', '123456', '8195829971', '1838 rue dunant', 2000, 0),
+(1, 'Test', 'User', '1', '1', '8389080183', '123 Test Street', 1000, 3),
+(2, 'bob', 'zoretic', '2', '2', '8195829971', '1838 rue dunant', 2000, 0),
 (3, 'al', 'm', 'test@test.com', 'password', '1234567899', '123 rue chose', 1000, 0),
 (9, 'test', 'test', 'test@testerino.com', 'test', '123', '12', 1000, 0),
 (12, 'admin', 'admin', 'admin', 'admin', '000', 'admin', 1000, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `watch_list`
+--
+
+CREATE TABLE `watch_list` (
+  `id_watch_list` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `watch_list`
+--
+
+INSERT INTO `watch_list` (`id_watch_list`, `user_id`, `item_id`) VALUES
+(17, 2, 60),
+(18, 1, 60),
+(19, 1, 58),
+(20, 1, 61),
+(21, 1, 57),
+(22, 1, 59);
 
 --
 -- Indexes for dumped tables
@@ -286,26 +287,18 @@ ALTER TABLE `referral`
   ADD KEY `sell_user_id` (`sell_user_id`);
 
 --
--- Indexes for table `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`status_id`);
-
---
--- Indexes for table `transaction`
---
-ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`trans_id`),
-  ADD KEY `buy_user_id` (`buy_user_id`,`product_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `sell_user_id` (`sell_user_id`),
-  ADD KEY `p_status` (`status_id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `watch_list`
+--
+ALTER TABLE `watch_list`
+  ADD PRIMARY KEY (`id_watch_list`),
+  ADD KEY `wl_user` (`user_id`),
+  ADD KEY `wl_item` (`item_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -320,17 +313,17 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `item_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `ratings`
 --
@@ -340,22 +333,17 @@ ALTER TABLE `ratings`
 -- AUTO_INCREMENT for table `referral`
 --
 ALTER TABLE `referral`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `status`
---
-ALTER TABLE `status`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `watch_list`
+--
+ALTER TABLE `watch_list`
+  MODIFY `id_watch_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Constraints for dumped tables
 --
@@ -378,7 +366,8 @@ ALTER TABLE `item`
 --
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`fk_user_from`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`fk_user_to`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`fk_user_to`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`response_id`) REFERENCES `referral` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ratings`
@@ -386,7 +375,6 @@ ALTER TABLE `message`
 ALTER TABLE `ratings`
   ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`id_rater`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`id_rated`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 
 --
 -- Constraints for table `referral`
@@ -397,13 +385,11 @@ ALTER TABLE `referral`
   ADD CONSTRAINT `referral_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `transaction`
+-- Constraints for table `watch_list`
 --
-ALTER TABLE `transaction`
-  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`buy_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`sell_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_ibfk_4` FOREIGN KEY (`product_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `watch_list`
+  ADD CONSTRAINT `watch_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `watch_list_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
