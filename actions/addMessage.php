@@ -12,6 +12,7 @@ $messaged = htmlspecialchars ($_POST['messaged'] );
 $fk_user_to = htmlspecialchars ($_POST['fk_user_to'] );
 $item_id = htmlspecialchars ($_POST['item_id'] );
 
+
 //add item to bd
 
 $aMessage->setObject($object);
@@ -20,7 +21,13 @@ $aMessage->setFk_user_to($fk_user_to);
 $aMessage->setFk_item_id($item_id);
 $aMessage->setFk_user_from($_SESSION['current_user']['user_id']);
 
-
-$aMessage->addMessageToDB();
-
+if (isset($_POST['idref']) && $_POST['idref']!='')
+{
+    $refId = htmlspecialchars ($_POST['idref'] );
+    $lastId = $aMessage->addMessageToDB();
+    $aMessage->updateObjectDynamically('isResponse','1',$lastId);
+    $aMessage->updateObjectDynamically('response_id',$refId,$lastId);
+}else {
+    $aMessage->addMessageToDB();
+}
 ?>

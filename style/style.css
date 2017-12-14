@@ -5,9 +5,9 @@
 
 
 .newMessage{
-	background-color: #ffa5a5;
-    color: white;
-}
+	 background-color: #ffa5a5;
+	 color: white;
+ }
 .newMessage:first-child,.regularMessage:first-child{
 	border-top:1px solid grey;
 }
@@ -16,6 +16,40 @@
 	border-bottom:1px solid grey;
 	cursor:pointer;
 }
+
+.newItem{
+	background-color: #ffa5a5;
+	color: white;
+}
+.newItem:first-child,.regularItem:first-child{
+	border-top:1px solid grey;
+}
+.newItem,.regularItem{
+	padding:5px 5px;
+	border-bottom:1px solid grey;
+	max-height:37px;
+	overflow: hidden;
+}
+
+
+.item-preview {
+	display: inline-block;
+	float: left;
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	-webkit-border-radius: 30px;
+	-webkit-background-clip: padding-box;
+	-moz-border-radius: 30px;
+	-moz-background-clip: padding;
+	border-radius: 30px;
+	background-clip: padding-box;
+	margin-right:5px;
+	float: left;
+	background-size: cover;
+	background-position: center center;
+}
+
 .activeMenu{
 	color: #f26667 !important;
 }

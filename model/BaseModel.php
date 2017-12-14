@@ -43,7 +43,7 @@ class BaseModel{
         
         if (! $result = $conn->query ( $sql )) {
         	echo $sql;
-            echo " fail";
+            //echo " fail";
             exit ();
         } else {
             echo "success";
@@ -114,7 +114,7 @@ class BaseModel{
 		SET `$aField` = '$aValue'
 		WHERE `" . $this->table_name . "`.`" . $this->primary_key . "` = '$anID' ";
         
-        //echo "<br>" . $sql;
+        echo $sql;
         
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
         
@@ -209,18 +209,18 @@ class BaseModel{
     	//search things
         if($search == 'active' && $keyword !==null){
             echo '<div>Results for "'.$keyword.'".</div>';
-            $sql .= "AND (item_keywords LIKE '%".$keyword ."%' OR item_title LIKE '%".$keyword."%')";
+            $sql .= "AND sold !=1 AND (item_keywords LIKE '%".$keyword ."%' OR item_title LIKE '%".$keyword."%')";
         }
 
         //order things
         if($this->table_name == "item" && $orderBy == null && $orderSense == null){
-            $sql .= ' order by points DESC, item_id DESC';
+            $sql .= 'AND sold !=1  order by points DESC, item_id DESC';
         }
         elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'DESC'){
-            $sql .= ' order by points DESC, item_price DESC';
+            $sql .= 'AND sold !=1  order by points DESC, item_price DESC';
         }
         elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'ASC'){
-            $sql .= ' order by points DESC, item_price ASC';
+            $sql .= 'AND sold !=1  order by points DESC, item_price ASC';
         }
 
         //echo $sql . "<br>";
@@ -284,13 +284,13 @@ class BaseModel{
         $sql = "SELECT * FROM `" . $this->table_name . "` ";
         
         if($this->table_name == "item" && $orderBy == null || $orderBy == 'none' && $orderSense == null){
-        	$sql .= ' order by points DESC, item_id DESC';
+        	$sql .= 'WHERE sold !=1 order by points DESC, item_id DESC';
         }
         elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'desc'){
-            $sql .= ' order by points DESC, item_price DESC';
+            $sql .= 'WHERE sold !=1 order by points DESC, item_price DESC';
         }
         elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'asc'){
-            $sql .= ' order by points DESC, item_price ASC';
+            $sql .= 'WHERE sold !=1 order by points DESC, item_price ASC';
         }
         $result = $conn->query ( $sql );
         //echo $sql . "<br>";

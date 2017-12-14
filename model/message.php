@@ -216,7 +216,7 @@ class Message extends BaseModel {
         $sql = "SELECT * FROM `" . $this->table_name . "`";
         
         
-        $sql .= " WHERE fk_user_to =  ".$userID." AND isResponse =0  ";
+        $sql .= " WHERE fk_user_to =  ".$userID." ";
         
         $sql .= ' order by   COALESCE(date_viewed, 0) ASC, message_id DESC  ';
         
@@ -293,7 +293,7 @@ class Message extends BaseModel {
             echo " fail";
             exit ();
         } else {
-            echo "success";
+            //echo "success";
             $id = mysqli_insert_id($conn);
         }
         

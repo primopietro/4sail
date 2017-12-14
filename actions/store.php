@@ -54,7 +54,9 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                             <div class="product-info">
                                                 <div class="product-title">
                                                     <span class="category xt-uppercase">' . $aCategory["cat_title"] . '</span>
-                                                    <span class="name xt-semibold">' . $aLocalItem["item_title"] . '</span>
+                                                    <span id="title" class="name xt-semibold">' . $aLocalItem["item_title"] . '</span>
+                                                    <span id="theUser" user_id="' . $aLocalItem["user_id"] . '" class="hidden"></span>
+                                                    <input id="infos" value="'. $aLocalItem["item_id"] .' '. $aLocalItem["user_id"] .'" class="hidden">
                                                 </div>
                                                 <div class="price-tag pull-right">
                                                     <span class="new-price xt-semibold">' . $aLocalItem["item_price"] . '$</span>
@@ -70,7 +72,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                                     </div>
                                                     <div class="add-cart">';
                                                         if($aLocalItem["link"] != '') {
-                                                            $component .= '<a href="'. $aLocalItem["link"] .'/'. $aLocalItem["item_price"] .'" data-toggle="tooltip" title="Always contact the seller first!" target="_blank" class="btn btn-fill">Pay now</a>';
+                                                            $component .= '<a href="'. $aLocalItem["link"] .'/'. $aLocalItem["item_price"] .'" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill">Pay now</a>';
                                                         }
                                                         if(isset($_SESSION['current_user'])){
                                                             if($aLocalItem["user_id"]==$_SESSION['current_user']['user_id']){

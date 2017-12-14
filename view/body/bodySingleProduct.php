@@ -122,7 +122,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                     <div class="product-add-cart">
                                         <?php if($anItem["link"] != '') {
                                             if ($getRef == true){
-                                                echo '<a href="' . $anItem["link"] . '/' . $anItem["item_price"] . '" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill btn-ref">Pay now</a>';
+                                                echo '<a href="' . $anItem["link"] . '/' . $anItem["item_price"] . '" refId="'. $referral['id'] .'" data-toggle="tooltip" title="Always contact the seller first!" id="payRef" target="_blank" class="btn btn-fill btn-ref">Pay now</a>';
                                             }else {
                                                 echo '<a href="' . $anItem["link"] . '/' . $anItem["item_price"] . '" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill ">Pay now</a>';
                                             }
@@ -257,7 +257,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                         </ul>
                                         <?php
 
-                                            echo '<input id="infos" value="'. $anItem["item_id"] .' '. $anItem["user_id"] .'" class="none">';
+                                            echo '<input id="infos" value="'. $anItem["item_id"] .' '. $anItem["user_id"] .'" class="hidden">';
 
                                             ?>
                                     </div>

@@ -38,7 +38,12 @@ if(isset($_GET['idMessage'])){
 	
 	$finalString.= "<h4 class=' title4SMessenger' style='margin-top: 10px; margin-left:15px;margin-right:15px;'> Sent by ".$aUserDisplayed['first_name'].", ".$aUserDisplayed['last_name']."</h4>";
 	$finalString .="<h4 class=' margin-small object4SMessenger'>".$aMessageToBeDisplayed['object']." - </h4>";
-	$finalString .="<div class=' text4SMessenger'>".$aMessageToBeDisplayed['messaged']."</div>";
+	$finalString .="<div class=' text4SMessenger'>".$aMessageToBeDisplayed['messaged']." ";
+	if ($aMessageToBeDisplayed['isResponse']==1)
+    {
+        $finalString .= "<button id='marksoldTo' idMessage='".$aMessageToBeDisplayed['message_id']."' idRef='". $aMessageToBeDisplayed['response_id'] ."' idItem='". current($anImage)['item_id'] ."' class='btn-sm' style='float:right;'>MARK SOLD</button>" ;
+    }
+    $finalString .="</div>";
 	$finalString.= "<h5 class='margin-small'> Phone :".$aUserDisplayed['phone']."</h3>";
 	$finalString.= "<h5 class='margin-small'> Email :".$aUserDisplayed['email']."</h3>";
 	$finalString.= "<h5 class='margin-small'> Sent at : ".$aMessageToBeDisplayed['date_sent']. "</h5>";
