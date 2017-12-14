@@ -242,7 +242,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                                 if(sizeof($aListOfKeywords)>0){
                                                     $counter = 0;
                                                     foreach($aListOfKeywords as $aKeyword){
-                                                        echo '<a href="">'.$aKeyword.'</a>';
+                                                        echo '<a class="tagItem">'.$aKeyword.'</a>';
                                                         
                                                         $counter++;
                                                         if($counter < sizeOf($aListOfKeywords)){

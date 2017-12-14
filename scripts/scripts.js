@@ -482,7 +482,7 @@ $(document).on("click",".btnConfirmProfile",function(){
 	        data: dataToSend,
 	        success: function(data)
 	        {
-	        	
+	        
         		span.html('');
 
         		div.html('');
@@ -503,6 +503,20 @@ $(document).on("click",".btnConfirmProfile",function(){
 
 
 });
+//Implementation search for tag
+$(document).on("click",".tagItem",function(){
+	var tagName = $(this).html();
+	window.history.pushState("", "", '/4sail/');
+	$("body").load(ajaxPath,function(){
+		$("#search").val(tagName);
+		setTimeout(function(){ 
+			filter(); 
+		}, 1000);
+		
+	});
+	
+});
+
 
 //MODAL HANDLES CLICKS OUTSIDE
 $(document).mousedown(function(e) {
