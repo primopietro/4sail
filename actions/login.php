@@ -18,9 +18,9 @@ if($aUser != null){
 	    $_SESSION['isAdmin'] = true; 
 	}
 	
-	//echo "success";
+	echo "success";
 	
 }else{
-	//echo "fail";
+	echo "fail";
 }
 ?>
