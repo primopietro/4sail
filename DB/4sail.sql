@@ -3,7 +3,6 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
 -- Generation Time: Dec 14, 2017 at 05:20 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
@@ -106,7 +105,6 @@ INSERT INTO `item` (`item_id`, `item_cat`, `item_title`, `item_price`, `item_des
 (63, 4, '2017/18 Chelsea FC Stadium Home', 110, 'The 2017/18 Chelsea FC Stadium Home ', 'Mens Football Shirt', 1, 0, NULL, 1),
 (64, 6, '1963 Vw Beetle', 3200, 'For sale is my 1963 vw beetle. It has a 1400cc engine, the engine is recently rebuilt with new jugs. The car is very reliable and runs great it has a 4 speed transmission', 'sick car duder', 1, 15, NULL, 1);
 
-
 -- --------------------------------------------------------
 
 --
@@ -182,6 +180,7 @@ INSERT INTO `referral` (`id`, `item_id`, `ref_user_id`, `sell_user_id`, `ref_lin
 (43, 56, 1, 1, 'GlaT8OaeZ1K5jrrStjstupH9yHJxuRGO'),
 (44, 56, 1, 1, '3ZKh8397aN2u80sIix3WRl0w0lchr1xw'),
 (45, 56, 1, 1, 'gUvVgfYiUdSVUD53xG8YxtlDDPODYMg4');
+
 -- --------------------------------------------------------
 
 --
@@ -325,7 +324,6 @@ ALTER TABLE `item`
 --
 ALTER TABLE `message`
   MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
 --
 -- AUTO_INCREMENT for table `ratings`
 --
@@ -385,7 +383,6 @@ ALTER TABLE `referral`
   ADD CONSTRAINT `referral_ibfk_1` FOREIGN KEY (`ref_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `referral_ibfk_2` FOREIGN KEY (`sell_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `referral_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 
 --
 -- Constraints for table `watch_list`
