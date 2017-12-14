@@ -134,7 +134,18 @@ if(isset( $_SESSION['currentItem'])){
                                     </select>
                                 </div>-->
                                 <div class="xt-search-opt xt-search-btn">
-                                    <button type="button" class="btn btn-primary btn-search"><i class="fa fa-search"></i></button>
+                                <?php 
+                                if(isset( $_SESSION['currentItem'])){
+                                    if( $_SESSION['currentItem'] != 0){
+                                       echo '<button type="button" class="btn btn-primary btn-search" id="seachCustom"><i class="fa fa-search"></i></button>';
+                                    }else{
+                                        echo '<button type="button" class="btn btn-primary btn-search"><i class="fa fa-search"></i></button>';
+                                    }
+                                }else{
+                                    echo '<button type="button" class="btn btn-primary btn-search"><i class="fa fa-search"></i></button>';
+                                }
+                                ?>
+                                    
                                 </div>
                             </div>
                         </div>

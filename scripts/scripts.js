@@ -511,12 +511,25 @@ $(document).on("click",".tagItem",function(){
 		$("#search").val(tagName);
 		setTimeout(function(){ 
 			filter(); 
-		}, 1000);
+		}, 100);
 		
 	});
 	
 });
 
+//Implementation search for tag
+$(document).on("click","#seachCustom",function(){
+	var searchName = $("#search").val();
+	window.history.pushState("", "", '/4sail/');
+	$("body").load(ajaxPath,function(){
+		$("#search").val(searchName);
+		setTimeout(function(){ 
+			filter(); 
+		}, 500);
+		
+	});
+	
+});
 
 //MODAL HANDLES CLICKS OUTSIDE
 $(document).mousedown(function(e) {
