@@ -482,18 +482,18 @@ $(document).on("click",".btnConfirmProfile",function(){
 	        data: dataToSend,
 	        success: function(data)
 	        {
-	        	if(data == "success"){
-	        		span.html('');
+	        	
+        		span.html('');
 
-	        		div.html('');
-		        	div.hide();
-		        	allPage.hide();
+        		div.html('');
+	        	div.hide();
+	        	allPage.hide();
 
-		        	alert("Successful account update.");
+	        	alert("Successful account update.");
 
-		        	var completPath = ajaxPath + "index.php";
-		        	$(location).attr('href', completPath);
-	        	}
+	        	var completPath = ajaxPath + "index.php";
+	        	$(location).attr('href', completPath);
+	        	
 	        }
 	    });
 	} else{
