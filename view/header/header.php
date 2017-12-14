@@ -11,6 +11,7 @@ if(isset( $_SESSION['currentItem'])){
            <div class='none divLogin'></div>
            <div class='none divSignUp'></div>
            <div class='none divUserConsult'></div>
+           <div class='none divWatchListConsult'></div>
 <!--
         |========================
         |  HEADER
@@ -19,14 +20,14 @@ if(isset( $_SESSION['currentItem'])){
            <header id="xt-home" class="xt-header">
             <div class="header-top">
                 <div class="container">
-                    <div class="xt-language col-md-6 col-sm-6 col-xs-12">
+                    <div class="xt-language col-md-4 col-sm-4 col-xs-12">
                         <div class="each-nav">
                             <a class="navbar-brand" href="http://localhost/4sail/" style='padding-top: 15px;font-size: 42px;font-weight: 900;'>4Sail</a>
                           
                         </div>
                     </div>
                     
-                    <div class="user-nav pull-right col-md-6 col-sm-6 col-xs-12">
+                    <div class="user-nav pull-right col-md-8 col-sm-8 col-xs-12">
                         <ul>
                         	<?php
                         	if(!isset($_SESSION['current_user'])){
@@ -48,16 +49,17 @@ if(isset( $_SESSION['currentItem'])){
                         	    }
                         	    
                         	    echo '<i style="font-size:18px;margin-right:15px;" class=" fa fa-comments-o" aria-hidden="true"></i></a></li>';
-                        		echo' <li><a href="#">Points : '.$_SESSION['current_user']['points'].'</a></li>';
                         		echo' <li><a href="http://localhost/4sail/addItem.php">Sell an item</a></li>';
-                                echo' <li><a id="myItems">My Items</a></li>';
+                        		echo' <li><a id="myItems">My Items</a></li>';
+                        		echo' <li><a id="watch_listConsult">Watch list</a></li>';
                         		if($_SESSION['isAdmin']){
                         		    echo' <li><a href="http://localhost/4sail/admin.php">ADMIN</a></li>';
                         		    
                         		}else{
                         		    echo' <li><a id="userConsult">'.$_SESSION['current_user']['first_name']. ' ' . $_SESSION['current_user']['last_name'] . '</a></li>';
-                        		    
                         		}
+                        		
+                        		echo' <li><a href="#">Points : '.$_SESSION['current_user']['points'].'</a></li>';
                         		  echo' <li><a href="http://localhost/4sail/actions/logout.php">Logout</a></li>';
 
                         	}

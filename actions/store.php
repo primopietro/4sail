@@ -3,10 +3,12 @@
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/watch_list.php';
 
 function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keyword){
     $anItem = new Item();
     $anItemList = array();
+    $aWatchList = new WatchList();
     
     //echo $priceFrom . " " . $priceTo . " " . $_SESSION['currentCategory'] . " ";
     
@@ -30,13 +32,33 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
         $anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_cat',' = ',$_SESSION['currentCategory'],null,null,$search,$keyword);
     }
     //for each item in list
+    
     if (sizeof($anItemList) > 0) {
         foreach ($anItemList as $aLocalItem) {
             $aCategory = new Category();
             $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
+            
             $component = '<div class="col-md-4 col-sm-4 vignetteFix">
-                                        <div class="xt-feature">
-                                            <div class="product-img ';
+                                        <div class="xt-feature">';
+							            if(isset($_SESSION['current_user'])){
+							            	$title = "Add to 'Watch list'";
+							            	$querryToCheck = " user_id = '" . $_SESSION['current_user']['user_id']. "' AND item_id = '" . $aLocalItem["item_id"] . "'";
+							            	$checkWatchList = $aWatchList->getObjectFromDBWhere("", "", $querryToCheck);
+							            	$component .= '<div class="rating-stars watch_listDiv">
+							            	<ul id="watch_listUl">
+								            	<li class="star';
+								            	if($checkWatchList != null){
+									            	$component .= ' selected';
+									            	$title = "Remove from 'Watch list'";
+									            }
+									            $component .= '" title="'.$title.'" data-value="1" idItem="'.$aLocalItem["item_id"].'">
+									            <i class="fa fa-star fa-fw"></i>
+									            </li>
+									            </ul>
+							            </div>';
+							            }
+											
+                                        $component .= '<div class="product-img ';
             if ($aLocalItem["points"] > 0) {
                 $component .= " no0points ";
             }
@@ -50,7 +72,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
             
             $component .= '">
                                                 ' . $imgString . '
-                                               </div>
+											</div>
                                             <div class="product-info">
                                                 <div class="product-title">
                                                     <span class="category xt-uppercase">' . $aCategory["cat_title"] . '</span>
