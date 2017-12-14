@@ -13,7 +13,12 @@ class BaseModel{
      
         $attributes = " ( ";
         $values = " VALUES (";
-        $lastElement = end ( $internalAttributes );
+        $nbAttributes = sizeOf ( $internalAttributes );
+        $preparedStatementVariables ="";
+        $valuesToBeInserted = array();
+        for($j=0;$j<$nbAttributes -3 ;++$j){
+            $preparedStatementVariables.="s";
+        }
         $counter =0;
         
         foreach ( $internalAttributes as $rowName => $value ) {
@@ -23,7 +28,9 @@ class BaseModel{
                 if ($value == null) {
                     $values .= "NULL";
                 } else {
-                    $values .= "'" . $value . "'";
+                    $valuesToBeInserted[]= &$internalAttributes[$rowName];
+                    $values .= "?";
+                    //$values .= "'" . $value . "'";
                 }
                 
                 if ((sizeof($internalAttributes)-1) > $counter) {
@@ -40,8 +47,11 @@ class BaseModel{
         $sql = $definition . $attributes . $values;
     
         $id = 0;
+        $stmt=$conn->prepare($sql);
+        call_user_func_array(array($stmt, "bind_param"),array_merge(array($preparedStatementVariables), $valuesToBeInserted));
         
-        if (! $result = $conn->query ( $sql )) {
+        if (!$stmt->execute()) {
+            print_r($valuesToBeInserted);
         	echo $sql;
             //echo " fail";
             exit ();
