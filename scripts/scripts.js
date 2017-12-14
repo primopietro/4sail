@@ -29,8 +29,7 @@ $(document).ready(function(){
 	      $(this).removeClass('hover');
 	    });
 	  });
-
-
+	
 	  /* 2. Action to perform on click */
 	  $('#stars li').on('click', function(){
 	    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
@@ -65,9 +64,76 @@ $(document).ready(function(){
 	        }
 	    });
 
-
 	  });
+	  
+	  
+	  /***************WATCHLIST STAR SYSTEM***************/
+	  $('#watch_listUl li').on('mouseover', function(){
+	    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+	    // Now highlight all the stars that's not after the current hovered star
+	    $(this).parent().children('li.star').each(function(e){
+	      if (e < onStar) {
+	        $(this).addClass('hover');
+	      }
+	      else {
+	        $(this).removeClass('hover');
+	      }
+	    });
+
+	  }).on('mouseout', function(){
+	    $(this).parent().children('li.star').each(function(e){
+	      $(this).removeClass('hover');
+	    });
+	  });
+	  
+	  $('#watch_listUl li').on('click', function(){
+		    var msg = "The item has been added to your 'Watch list'";
+
+		    var item_id = $(this).attr("idItem");
+
+		    var dataToSend = "item_id=" + item_id;
+
+		    $.ajax({
+		        url: ajaxPath + 'actions/addWatchList.php',
+		        type: 'POST',
+		        data: dataToSend,
+		        success: function(data)
+		        {
+		        	if(data == "exist"){
+		        		alert("The item has been removed from your 'Watch list'");
+		        	} else{
+			        	alert(msg);
+		        	}
+		        	
+		        	$(location).attr('href', ajaxPath);
+		        }
+		    });
+		  });
 });
+
+/***************WATCHLIST CONSULT***************/
+$(document).on("click","#watch_listConsult",function(){
+	var div = $(".divWatchListConsult");
+    var allPage = $(".allpage");
+
+    var fill = '';
+
+	$.ajax({
+        url: ajaxPath + 'actions/getWatchList.php',
+        type: 'POST',
+        success: function(data)
+        {
+        	fill += data;
+        	div.append(fill);
+        	div.show();
+        	allPage.show();
+        }
+    });
+
+});
+
+
 
 /***************PAYMENT MSG ALERT***************/
 $(document).on("click","#pay",function(){
@@ -450,6 +516,8 @@ $(document).mousedown(function(e) {
 		container = $(".divSignUp");
 	} else if($('.divUserConsult').css('display') == 'block'){
 		container = $(".divUserConsult");
+	} else if($('.divWatchListConsult').css('display') == 'block'){
+		container = $(".divWatchListConsult");
 	}
 
 
