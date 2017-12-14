@@ -46,7 +46,7 @@ class BaseModel{
             //echo " fail";
             exit ();
         } else {
-            echo "success";
+            //echo "success";
             $id = mysqli_insert_id($conn);
         }
         

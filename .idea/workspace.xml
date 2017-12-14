@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="124a888b-9a44-4d4f-8fd9-d8ccc01c4d63" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/marksoldItem.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/marksoldItemTo.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/actions/getRequestList.php" afterPath="$PROJECT_DIR$/actions/getItemList.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/addMessage.php" afterPath="$PROJECT_DIR$/actions/addMessage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/getMessage.php" afterPath="$PROJECT_DIR$/actions/getMessage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/login.php" afterPath="$PROJECT_DIR$/actions/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/logout.php" afterPath="$PROJECT_DIR$/actions/logout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/store.php" afterPath="$PROJECT_DIR$/actions/store.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/BaseModel.php" afterPath="$PROJECT_DIR$/model/BaseModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/item.php" afterPath="$PROJECT_DIR$/model/item.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/message.php" afterPath="$PROJECT_DIR$/model/message.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/scripts.js" afterPath="$PROJECT_DIR$/scripts/scripts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/footer.php" afterPath="$PROJECT_DIR$/static/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/style.css" afterPath="$PROJECT_DIR$/style/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/body/bodySingleProduct.php" afterPath="$PROJECT_DIR$/view/body/bodySingleProduct.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/header/header.php" afterPath="$PROJECT_DIR$/view/header/header.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,8 +54,8 @@
           <file leaf-file-name="login.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/actions/login.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+                <state relative-caret-position="85">
+                  <caret line="5" column="44" lean-forward="true" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
@@ -150,17 +134,17 @@
                 <state relative-caret-position="403">
                   <caret line="382" column="10" lean-forward="false" selection-start-line="382" selection-start-column="10" selection-end-line="382" selection-end-column="10" />
                   <folding>
-                    <marker date="1513224315838" expanded="true" signature="348:387" ph="INSERT INTO `${$this-&gt;table_name}`... " />
-                    <marker date="1513224315838" expanded="true" signature="4048:4156" ph="DELETE FROM " />
-                    <marker date="1513224315838" expanded="true" signature="4500:4584" ph="DELETE FROM " />
-                    <marker date="1513224315838" expanded="true" signature="5093:5134" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-                    <marker date="1513224315838" expanded="true" signature="6110:6151" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-                    <marker date="1513224315838" expanded="true" signature="7850:7891" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-                    <marker date="1513224315838" expanded="true" signature="8983:9024" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-                    <marker date="1513224315838" expanded="true" signature="10529:10570" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-                    <marker date="1513224315838" expanded="true" signature="11629:11726" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-                    <marker date="1513224315838" expanded="true" signature="12594:12608" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-                    <marker date="1513224315838" expanded="true" signature="14473:14535" ph="SELECT * FRO... " />
+                    <marker date="1513224620846" expanded="true" signature="348:387" ph="INSERT INTO `${$this-&gt;table_name}`... " />
+                    <marker date="1513224620846" expanded="true" signature="4050:4158" ph="DELETE FROM " />
+                    <marker date="1513224620846" expanded="true" signature="4502:4586" ph="DELETE FROM " />
+                    <marker date="1513224620846" expanded="true" signature="5095:5136" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+                    <marker date="1513224620846" expanded="true" signature="6112:6153" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+                    <marker date="1513224620846" expanded="true" signature="7852:7893" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+                    <marker date="1513224620846" expanded="true" signature="8985:9026" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+                    <marker date="1513224620846" expanded="true" signature="10531:10572" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+                    <marker date="1513224620846" expanded="true" signature="11631:11728" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+                    <marker date="1513224620846" expanded="true" signature="12596:12610" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+                    <marker date="1513224620846" expanded="true" signature="14475:14537" ph="SELECT * FRO... " />
                   </folding>
                 </state>
               </provider>
@@ -198,7 +182,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>resize-full</find>
       <find>fullscreen</find>
       <find>btn-seconda</find>
       <find>aLocal</find>
@@ -228,6 +211,7 @@
       <find>payRef</find>
       <find>marksoldTo</find>
       <find>btnLogin</find>
+      <find>success</find>
     </findStrings>
     <replaceStrings>
       <replace>Link</replace>
@@ -396,12 +380,12 @@
       <workItem from="1512149390008" duration="48000" />
       <workItem from="1512488991194" duration="1339000" />
       <workItem from="1512584194067" duration="10618000" />
-      <workItem from="1512942094099" duration="37764000" />
+      <workItem from="1512942094099" duration="37980000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83842000" />
+    <option name="totallyTimeSpent" value="84058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -907,17 +891,17 @@
         <state relative-caret-position="403">
           <caret line="382" column="10" lean-forward="false" selection-start-line="382" selection-start-column="10" selection-end-line="382" selection-end-column="10" />
           <folding>
-            <marker date="1513224315838" expanded="true" signature="348:387" ph="INSERT INTO `${$this-&gt;table_name}`... " />
-            <marker date="1513224315838" expanded="true" signature="4048:4156" ph="DELETE FROM " />
-            <marker date="1513224315838" expanded="true" signature="4500:4584" ph="DELETE FROM " />
-            <marker date="1513224315838" expanded="true" signature="5093:5134" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-            <marker date="1513224315838" expanded="true" signature="6110:6151" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-            <marker date="1513224315838" expanded="true" signature="7850:7891" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-            <marker date="1513224315838" expanded="true" signature="8983:9024" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-            <marker date="1513224315838" expanded="true" signature="10529:10570" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-            <marker date="1513224315838" expanded="true" signature="11629:11726" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-            <marker date="1513224315838" expanded="true" signature="12594:12608" ph="SELECT * FRO... ${$this-&gt;table_name}" />
-            <marker date="1513224315838" expanded="true" signature="14473:14535" ph="SELECT * FRO... " />
+            <marker date="1513224620846" expanded="true" signature="348:387" ph="INSERT INTO `${$this-&gt;table_name}`... " />
+            <marker date="1513224620846" expanded="true" signature="4050:4158" ph="DELETE FROM " />
+            <marker date="1513224620846" expanded="true" signature="4502:4586" ph="DELETE FROM " />
+            <marker date="1513224620846" expanded="true" signature="5095:5136" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+            <marker date="1513224620846" expanded="true" signature="6112:6153" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+            <marker date="1513224620846" expanded="true" signature="7852:7893" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+            <marker date="1513224620846" expanded="true" signature="8985:9026" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+            <marker date="1513224620846" expanded="true" signature="10531:10572" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+            <marker date="1513224620846" expanded="true" signature="11631:11728" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+            <marker date="1513224620846" expanded="true" signature="12596:12610" ph="SELECT * FRO... ${$this-&gt;table_name}" />
+            <marker date="1513224620846" expanded="true" signature="14475:14537" ph="SELECT * FRO... " />
           </folding>
         </state>
       </provider>
@@ -948,8 +932,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/actions/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        <state relative-caret-position="85">
+          <caret line="5" column="44" lean-forward="true" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
           <folding />
         </state>
       </provider>
