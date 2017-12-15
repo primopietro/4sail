@@ -24,9 +24,7 @@ if(isset( $_SESSION['currentItem'])){
                                          <i class="fa flaticon-credit-card"></i>
                                     </div>
                                     <div class="col-md-10">
-                                        <h4>Safe Payment</h4>
-                                        <p>Pay with the world’s most popular and secure
-                                        payment methods.</p>
+                                        <p>Powered by Paypal.Me, peer-to-peer transfers for the digital age.</p>
                                     </div>
                                 </div>
                             </div>
@@ -35,12 +33,10 @@ if(isset( $_SESSION['currentItem'])){
                             <div class="footer-widget-2">
                                 <div class="row">
                                     <div class="col-md-2 f-icon">
-                                         <i class="fa flaticon-shipped"></i>
+                                         <i class="fa flaticon-shopping-cart"></i>
                                     </div>
                                     <div class="col-md-10">
-                                        <h4>Worldwide delivery</h4>
-                                        <p>With sites in 5 languages, we shop to over 100
-                                        countries and regions.</p>
+                                        <p>We do not ship items. Sellers do.</p>
                                     </div>
                                 </div>
                             </div>
@@ -52,9 +48,7 @@ if(isset( $_SESSION['currentItem'])){
                                          <i class="fa flaticon-question"></i>
                                     </div>
                                     <div class="col-md-10">
-                                        <h4>24/7 help center</h4>
-                                        <p>Round-the-clock assistance for a smooth
-                                        shopping experience.</p>
+                                        <p>Call +1999-999-9999 for any inquiries regarding this website.</p>
                                     </div>
                                 </div>
                             </div>
