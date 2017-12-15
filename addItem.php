@@ -38,7 +38,7 @@ require_once 'view/menu/menu.php';
         echo    $_SESSION['current_user']['points'];
         ?>" required><br>
         <div class="file-loading">
-            <input id="input-fa" class="file" name="fileToUpload" id="fileToUpload" type="file" data-show-upload="false" data-show-cancel="false">
+            <input id="input-fa" class="file" name="fileToUpload" id="fileToUpload" type="file" data-show-upload="false" data-show-cancel="false" data-upload-url="">
         </div>
 
     	<button id="addObj" class="btn btn-fill" style='margin-top:10px;margin-bottom:10px;' type="submit">Add</button>

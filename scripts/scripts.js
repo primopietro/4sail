@@ -6,10 +6,7 @@ var ajaxPath = 'http://localhost/4sail/';
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 
-
-
-
-
+    $("#fileToUpload").fileinput({allowedFileExtensions: ["jpg", "png", "gif"]});
 
 	$('#stars li').on('mouseover', function(){
 	    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
@@ -752,7 +749,7 @@ $(document).on("click",".delete",function(){
 	        data: dataToSend,
 	        success: function(data)
 	        {
-	        	location.reload();
+                $(location).attr('href', ajaxPath);
 	        }
 	    });
 
