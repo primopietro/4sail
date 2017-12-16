@@ -756,6 +756,8 @@ $(document).on("click",".delete",function(){
 	 }
 });
 
+
+
 /***************mark sold item***************/
 $(document).on("click","#marksold",function(){
 

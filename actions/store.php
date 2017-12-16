@@ -98,7 +98,8 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                                         }
                                                         if(isset($_SESSION['current_user'])){
                                                             if($aLocalItem["user_id"]==$_SESSION['current_user']['user_id']){
-                                                                $component .= '<a   id="delete" value="'. $aLocalItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
+                                                                $component .= '<a   value="'. $aLocalItem["item_id"] .'" class="btn btn-fill delete" >Delete</a>';
+                                                                $component .= '<a  href="./updateItem.php?itemID='.$aLocalItem["item_id"] .'" class="btn btn-fill " >Update</a>';
                                                             }
                                                         }
                                                         $component .='<ul class="reaction">
