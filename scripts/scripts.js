@@ -583,7 +583,10 @@ $(document).on("click","#share",function(e){
 
 //Copy to clipboard
 $(document).on("click","#copy",function(){
-
+	
+	var copyText = document.getElementById("reflink");
+	  copyText.select();
+	  document.execCommand("Copy");
 });
 
 

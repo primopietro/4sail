@@ -223,7 +223,7 @@ $aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
                                             }
                                         }
                                         ?>
-                                        <div><input id="reflink" class="input-lg none"><a href="#" id="copy" data-clipboard-target="reflink" class="label copy none">Copy to clipboard</a></div>
+                                        <div><input id="reflink" class="input-lg none"><a href="javascript:void(0)" id="copy" data-clipboard-target="reflink" class="label copy none">Copy to clipboard</a></div>
                                       </div>
                                     <div class="product-additional-info">
                                         <ul>
