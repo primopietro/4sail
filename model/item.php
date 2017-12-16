@@ -15,6 +15,7 @@ class Item extends BaseModel {
 	protected $points = 0;
     protected $link = "";
     protected $sold = false;
+    protected $date_created = "";
 
 
 
@@ -235,4 +236,23 @@ class Item extends BaseModel {
         $conn->close ();
         return null;
     }
+
+    /**
+     * date_created
+     * @return unkown
+     */
+    public function getDate_created(){
+        return $this->date_created;
+    }
+
+    /**
+     * date_created
+     * @param unkown $date_created
+     * @return Item
+     */
+    public function setDate_created($date_created){
+        $this->date_created = $date_created;
+        return $this;
+    }
+
 }

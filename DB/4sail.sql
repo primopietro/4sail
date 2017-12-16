@@ -86,6 +86,7 @@ CREATE TABLE `item` (
   `item_desc` text NOT NULL,
   `item_keywords` text NOT NULL,
   `user_id` int(25) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `points` int(11) NOT NULL DEFAULT '0',
   `link` varchar(100) DEFAULT NULL,
   `sold` tinyint(1) NOT NULL
