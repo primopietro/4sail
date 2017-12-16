@@ -54,7 +54,7 @@ else if($pointsDifference < $pointsBefore){
 //If both are the same
 else{
     //Do nothing
-    $newPoints = $pointsBefore;
+    $newPoints = $_SESSION['current_user']['points'] ;
 }
 
 $_SESSION['current_user']['points'] = $newPoints;
