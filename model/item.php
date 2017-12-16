@@ -13,7 +13,7 @@ class Item extends BaseModel {
 	protected $item_keywords ="";
 	protected $user_id = 0;
 	protected $points = 0;
-    protected $link = "";
+    protected $link = NULL;
     protected $sold = false;
     protected $date_created = "";
 
@@ -253,6 +253,49 @@ class Item extends BaseModel {
     public function setDate_created($date_created){
         $this->date_created = $date_created;
         return $this;
+    }
+    
+    function addItem(){
+    	$internalAttributes = get_object_vars ( $this );
+    	
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("INSERT INTO item (item_id, item_cat, item_title, item_price, item_desc, item_keywords, user_id, date_created, points, link, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	$stmt->bind_param("iisissisisi", $user_id, $item_cat, $item_title, $item_price, $item_desc, $item_keywords, $user_id, $date_created, $points, $link, $sold);
+    	
+    	$item_id = NULL;
+    	echo "item_id : " . $item_id . "<br>";
+    	$item_cat = $this->item_cat;
+    	echo "item_id : " . $item_cat. "<br>";
+    	$item_title = $this->item_title;
+    	echo "item_id : " . $item_title. "<br>";
+    	$item_price = $this->item_price;
+    	echo "item_id : " . $item_price. "<br>";
+    	$item_desc = $this->item_desc;
+    	echo "item_id : " . $item_desc. "<br>";
+    	$item_keywords = $this->item_keywords;
+    	echo "item_id : " . $item_keywords. "<br>";
+    	$user_id = $this->user_id;
+    	echo "item_id : " . $user_id . "<br>";
+    	$date_created = $this->date_created;
+    	echo "item_id : " . $date_created. "<br>";
+    	$points = $this->points;
+    	echo "item_id : " . $points. "<br>";
+    	$link = $this->link;
+    	echo "item_id : " . $link. "<br>";
+    	$sold = $this->sold;
+    	echo "sold : " . $sold. "<br>";
+    	
+    	$stmt->execute();
+    	$id = mysqli_insert_id($conn);
+    	if($id != 0){
+    		echo "success";
+    	}
+    	
+    	$stmt->close ();
+    	$conn->close ();
+    	
+    	return $id;
     }
 
 }

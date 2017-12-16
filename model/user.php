@@ -178,5 +178,35 @@ class User extends BaseModel {
     	return $this;
     }
     
+    function addAccount(){
+    	$internalAttributes = get_object_vars ( $this );
+    	
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("INSERT INTO user (user_id, first_name, last_name, email, password, phone, address, points, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	$stmt->bind_param("issssssid", $user_id, $first_name, $last_name, $email, $password, $phone, $address, $points, $rating);
+    	
+    	$user_id = NULL;
+    	$first_name = $this->first_name;
+    	$last_name = $this->last_name;
+    	$email = $this->email;
+    	$password = $this->password;
+    	$phone = $this->phone;
+    	$address = $this->address;
+    	$points = $this->points;
+    	$rating = $this->rating;
+    	
+    	$stmt->execute();          
+    	$id = mysqli_insert_id($conn);
+    	if($id != 0){
+    		echo "success";
+    	}
+    	
+    	$stmt->close (); 
+    	$conn->close ();
+    	
+    	return $id;
+    }
+    
 
 }
