@@ -98,9 +98,9 @@ $(document).ready(function(){
 		        success: function(data)
 		        {
 		        	if(data == "exist"){
-		        		alert("The item has been removed from your 'Watch list'");
+		        		//alert("The item has been removed from your 'Watch list'");
 		        	} else{
-			        	alert(msg);
+			        	//alert(msg);
 		        	}
 		        	
 		        	$(location).attr('href', ajaxPath);

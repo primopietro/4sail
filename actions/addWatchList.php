@@ -18,7 +18,7 @@ if($checkWatchList == null){
 	$aWatchList->setUser_id($user_id);
 	$aWatchList->setItem_id($item_id);
 	
-	$aWatchList->addDBObject();
+	$aWatchList->addWatchList();
 } else{
 	$aWatchList->deleteFromDBWhere("","",$querryToCheck);
 	echo "exist";

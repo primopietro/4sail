@@ -11,7 +11,7 @@ $anItem = new Item();
 $aCategory = new Category();
 $anImage = new Image();
 
-$myWatchList = $aWatchList->getListOfAllDBObjectsWhere("user_id", "=", $_SESSION['current_user']['user_id']);
+$myWatchList = $aWatchList->getListOfAllWatchListWhere($_SESSION['current_user']['user_id']);
 
 $finalString = "";
 

@@ -24,7 +24,7 @@ if($boolRating == 0){
 	$aRating->setId_rated($id_rated);
 	$aRating->setRating($rating);
 	
-	$aRating->addDBObject();
+	$aRating->addRating();
 } else{
 	$aRating->updateObjectDynamically("rating", $rating, $checkRating['id_rating']);
 }

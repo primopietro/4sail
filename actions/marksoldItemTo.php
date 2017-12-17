@@ -33,7 +33,10 @@ $aMessage->setFk_user_to($aReferral['ref_user_id']);
 $aMessage->setFk_item_id($idItem);
 $aMessage->setFk_user_from($aReferral['sell_user_id']);
 
-$lastId = $aMessage->addMessageToDB();
+date_default_timezone_set('UTC');
+$aMessage->setDate_sent(date('Y-m-d h:i:s'));
+
+$lastId = $aMessage->addMessage();
 
 $aMessage->updateObjectDynamically('response_id',$idRef,$lastId);
 

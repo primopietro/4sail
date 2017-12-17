@@ -243,7 +243,9 @@ class Message extends BaseModel {
         $conn->close ();
         return null;
     }
-    public function addMessageToDB() {
+    
+    //NOT USED ANYMORE
+    /*public function addMessageToDB() {
         $internalAttributes = get_object_vars ( $this );
         
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
@@ -300,7 +302,7 @@ class Message extends BaseModel {
         $conn->close ();
         
         return $id;
-    }
+    }*/
 
     /**
      * fk_item_id
@@ -318,6 +320,40 @@ class Message extends BaseModel {
     public function setFk_item_id($fk_item_id){
         $this->fk_item_id = $fk_item_id;
         return $this;
+    }
+    
+    function addMessage(){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("INSERT INTO message (message_id, fk_user_from, fk_user_to, object, messaged, date_sent, date_viewed, isResponse, response_id, fk_item_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	$stmt->bind_param("iiissssiii", $message_id, $fk_user_from, $fk_user_to, $object, $messaged, $date_sent, $date_viewed, $isResponse, $response_id, $fk_item_id);
+    	
+    	$message_id = NULL;
+    	$fk_user_from = $this->fk_user_from;
+    	$fk_user_to = $this->fk_user_to;
+    	$object = $this->object;
+    	$messaged = $this->messaged;
+    	$date_sent = $this->date_sent;
+    	$date_viewed = NULL;
+    	$isResponse = 0;
+    	$response_id = NULL;
+    	$fk_item_id = $this->fk_item_id;
+    	
+    	$stmt->execute();
+    	$id = mysqli_insert_id($conn);
+    	
+    	/*echo "<pre>";
+    	print_r($stmt);
+    	echo "</pre>";*/
+    	
+    	if($id != 0){
+    		echo "success";
+    	}
+    	
+    	$stmt->close ();
+    	$conn->close ();
+    	
+    	return $id;
     }
 
 }

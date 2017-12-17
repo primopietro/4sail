@@ -18,8 +18,6 @@ $key = htmlspecialchars ($_POST ['item_keywords'] );
 $points = htmlspecialchars ($_POST ['item_points'] );
 $link= htmlspecialchars ($_POST ['link'] );
 
-
-
 //add item to bd
 $anItem->setItem_cat($cat);
 $anItem->setItem_title($title);
@@ -91,7 +89,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
     $anImage->setName($ImageName);
     $anImage->setItem_id($aTempitem["item_id"]);
-    $anImage->addDBObject();
+    $anImage->addImage();
  
     header("Location: ../index.php");
 ?>

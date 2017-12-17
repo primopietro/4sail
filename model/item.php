@@ -255,8 +255,6 @@ class Item extends BaseModel {
     }
     
     function addItem(){
-    	$internalAttributes = get_object_vars ( $this );
-    	
     	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
     	
     	$stmt = $conn->prepare("INSERT INTO item (item_id, item_cat, item_title, item_price, item_desc, item_keywords, user_id, date_created, points, link, sold) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -277,9 +275,6 @@ class Item extends BaseModel {
     	$stmt->execute();
     	$id = mysqli_insert_id($conn);
     	
-    	echo "<pre>";
-    	print_r($stmt);
-    	echo "</pre>";
     	if($id != 0){
     		echo "success";
     	}

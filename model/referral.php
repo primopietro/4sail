@@ -130,5 +130,34 @@ class Referral extends BaseModel {
         $conn->close ();
         return null;
     }
+    
+    function addRef(){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("INSERT INTO referral (id, item_id, ref_user_id, sell_user_id, ref_link) VALUES (?, ?, ?, ?, ?)");
+    	$stmt->bind_param("iiiis", $id, $item_id, $ref_user_id, $sell_user_id, $ref_link);
+    	
+    	$id = NULL;
+    	$item_id= $this->item_id;
+    	$ref_user_id = $this->ref_user_id;
+    	$sell_user_id = $this->sell_user_id;
+    	$ref_link = $this->ref_link;
+    	
+    	$stmt->execute();
+    	$id_insert = mysqli_insert_id($conn);
+    	
+    	/*echo "<pre>";
+    	 print_r($stmt);
+    	 echo "</pre>";*/
+    	
+    	if($id_insert!= 0){
+    		echo "success";
+    	}
+    	
+    	$stmt->close ();
+    	$conn->close ();
+    	
+    	return $id_insert;
+    }
 
 }

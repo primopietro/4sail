@@ -62,5 +62,67 @@ class WatchList extends BaseModel {
         $this->item_id = $item_id;
         return $this;
     }
+    
+    function addWatchList(){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("INSERT INTO watch_list (id_watch_list, user_id, item_id) VALUES (?, ?, ?)");
+    	$stmt->bind_param("iii", $id_watch_list, $user_id, $item_id);
+    	
+    	$id_watch_list = NULL;
+    	$user_id = $this->user_id;
+    	$item_id = $this->item_id;
+    	
+    	$stmt->execute();
+    	$id = mysqli_insert_id($conn);
+    	
+    	/*echo "<pre>";
+    	print_r($stmt);
+    	echo "</pre>";*/
+    	
+    	if($id != 0){
+    		echo "success";
+    	}
+    	
+    	$stmt->close ();
+    	$conn->close ();
+    	
+    	return $id;
+    }
+    
+    function getListOfAllWatchListWhere($user_id){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$internalAttributes = get_object_vars ( $this);
+    	
+    	$stmt = $conn->prepare("SELECT wl.*, i.sold FROM watch_list wl
+								JOIN item i ON i.item_id = wl.item_id 
+								WHERE i.sold = ? AND wl.user_id = ?");
+    	$stmt->bind_param("ii", $sold, $user_id);
+    	
+    	$sold = 0;
+    	
+    	$stmt->execute();
+    	
+    	$stmt->bind_result($id_watch_list, $user_id, $item_id, $item_sold);
+    	
+    	$localObjects = array ();
+    	while($stmt->fetch()){
+    		$anObject = Array ();
+    		$anObject ["primary_key"] = $this->primary_key;
+    		$anObject ["table_name"] = $this->table_name;
+    		
+    		$anObject["id_watch_list"] = $id_watch_list;
+    		$anObject["user_id"] = $user_id;
+    		$anObject["item_id"] = $item_id;
+    		$anObject["item_sold"] = $item_sold;
+    		
+    		$localObjects [$id_watch_list] = $anObject;
+    	}
+    	/*echo "<pre>";
+    	print_r($localObjects);
+    	echo "</pre>";*/
+    	return $localObjects;
+    }
 
 }

@@ -82,5 +82,33 @@ class Ratings extends BaseModel {
         $this->rating = $rating;
         return $this;
     }
+    
+    function addRating(){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("INSERT INTO ratings (id_rating, id_rater, id_rated, rating) VALUES (?, ?, ?, ?)");
+    	$stmt->bind_param("iiii", $id_rating, $id_rater, $id_rated, $rating);
+    	
+    	$id_rating = NULL;
+    	$id_rater = $this->id_rater;
+    	$id_rated = $this->id_rated;
+    	$rating = $this->rating;
+    	
+    	$stmt->execute();
+    	$id = mysqli_insert_id($conn);
+    	
+    	/*echo "<pre>";
+    	print_r($stmt);
+    	echo "</pre>";*/
+    	
+    	if($id != 0){
+    		echo "success";
+    	}
+    	
+    	$stmt->close ();
+    	$conn->close ();
+    	
+    	return $id;
+    }
 
 }
