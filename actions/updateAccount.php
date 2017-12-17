@@ -26,7 +26,8 @@ $aUser->setPoints($_SESSION['current_user']['points']);
 $aUser->setRating($_SESSION['current_user']['rating']);
 
 
-/*$aUser->updateDBObject();*/
-$aUser->updateAccount();
+$aUser->updateDBObject();
+/*for prepare statement*/
+/*$aUser->updateAccount();*/
 $_SESSION['current_user'] = $aUser->getObjectFromDB($_SESSION['current_user']['user_id']);
 ?>

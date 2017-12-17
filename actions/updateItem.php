@@ -29,7 +29,9 @@ $pointsBefore = $anItemBefore['points'];
 
 $pointsDifference = $pointsBefore - $pointsAfter;
 
-$anItem->setItem_id($itemID);
+
+/*for prepare statement*/
+/*$anItem->setItem_id($itemID);
 $anItem->setItem_cat($cat);
 $anItem->setItem_title($title);
 $anItem->setItem_price($price);
@@ -37,15 +39,16 @@ $anItem->setItem_desc($desc);
 $anItem->setItem_keywords($key);
 $anItem->setLink('https://www.'.$link);
 $anItem->setPoints($pointsAfter);
-$anItem->updateItem();
+$anItem->updateItem();*/
 
-/*$anItem->updateObjectDynamicallyNoEcho("item_cat", $cat, $itemID);
+
+$anItem->updateObjectDynamicallyNoEcho("item_cat", $cat, $itemID);
 $anItem->updateObjectDynamicallyNoEcho("item_title", $title, $itemID);
 $anItem->updateObjectDynamicallyNoEcho("item_price", $price, $itemID);
 $anItem->updateObjectDynamicallyNoEcho("item_desc", $desc, $itemID);
 $anItem->updateObjectDynamicallyNoEcho("item_keywords", $key, $itemID);
 $anItem->updateObjectDynamicallyNoEcho("link", 'https://www.'.$link, $itemID);
-$anItem->updateObjectDynamicallyNoEcho("points", $pointsAfter, $itemID);*/
+$anItem->updateObjectDynamicallyNoEcho("points", $pointsAfter, $itemID);
 
 
 $aUser = new User();
