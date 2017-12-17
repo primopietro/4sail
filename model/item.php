@@ -284,5 +284,35 @@ class Item extends BaseModel {
     	
     	return $id;
     }
+    
+    function updateItem(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+         
+        
+        $stmt = $conn->prepare("UPDATE item SET item_cat = ?, item_title = ?, item_price = ?, item_desc = ?, item_keywords = ?, points = ?, link = ?, sold = ? WHERE item_id = ?");
+        $stmt->bind_param("iisisiisisisi", $item_cat, $item_title, $item_price, $item_desc, $item_keywords, $points, $link, $sold,$item_id);
+        
+        $item_id =  $this->item_id;
+        $item_cat = $this->item_cat;
+        $item_title = $this->item_title;
+        $item_price = $this->item_price;
+        $item_desc = $this->item_desc;
+        $item_keywords = $this->item_keywords;
+        $points = $this->points;
+        $link = $this->link;
+        $sold = $this->sold;
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
 
 }

@@ -208,5 +208,33 @@ class User extends BaseModel {
     	return $id;
     }
     
+    function updateAccount(){
+        $internalAttributes = get_object_vars ( $this );
+        
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $stmt = $conn->prepare("UPDATE 'user' SET first_name = ?, last_name = ?, email = ?, password = ?, phone = ?, address = ? WHERE user_id = ?");
+        $stmt->bind_param("iisisiisiiisissisi", $first_name, $last_name, $email, $password, $phone, $address,$user_id);
+        
+        $user_id = $this->user_id;;
+        $first_name = $this->first_name;
+        $last_name = $this->last_name;
+        $email = $this->email;
+        $password = $this->password;
+        $phone = $this->phone;
+        $address = $this->address;
+       
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
 
 }
