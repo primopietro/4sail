@@ -30,7 +30,7 @@ if (isset($_POST['idref']) && $_POST['idref']!='')
    $lastId = $aMessage->addMessage();
     $aMessage->setMessage_id($lastId);
     $aMessage->setIsResponse(1);
-     $aMessage->setResponse_id($refId)
+     $aMessage->setResponse_id($refId);
      $aMessage->updateIsReponse();
       $aMessage->updateResponseId();
     /*$aMessage->updateObjectDynamically('isResponse','1',$lastId);

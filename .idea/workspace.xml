@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="124a888b-9a44-4d4f-8fd9-d8ccc01c4d63" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/download.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/euphorik_coul.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/img_fjords.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/updateItem.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/updateItem.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DB/4sail.sql" afterPath="$PROJECT_DIR$/DB/4sail.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/addAccount.php" afterPath="$PROJECT_DIR$/actions/addAccount.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/addItem.php" afterPath="$PROJECT_DIR$/actions/addItem.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/addMessage.php" afterPath="$PROJECT_DIR$/actions/addMessage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/addRating.php" afterPath="$PROJECT_DIR$/actions/addRating.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/addWatchList.php" afterPath="$PROJECT_DIR$/actions/addWatchList.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/getWatchList.php" afterPath="$PROJECT_DIR$/actions/getWatchList.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/marksoldItem.php" afterPath="$PROJECT_DIR$/actions/marksoldItem.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/marksoldItemTo.php" afterPath="$PROJECT_DIR$/actions/marksoldItemTo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/refToken.php" afterPath="$PROJECT_DIR$/actions/refToken.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/store.php" afterPath="$PROJECT_DIR$/actions/store.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/updateAccount.php" afterPath="$PROJECT_DIR$/actions/updateAccount.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/image.php" afterPath="$PROJECT_DIR$/model/image.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/item.php" afterPath="$PROJECT_DIR$/model/item.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/message.php" afterPath="$PROJECT_DIR$/model/message.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ratings.php" afterPath="$PROJECT_DIR$/model/ratings.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/referral.php" afterPath="$PROJECT_DIR$/model/referral.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/user.php" afterPath="$PROJECT_DIR$/model/user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/watch_list.php" afterPath="$PROJECT_DIR$/model/watch_list.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/scripts.js" afterPath="$PROJECT_DIR$/scripts/scripts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/body/bodySingleProduct.php" afterPath="$PROJECT_DIR$/view/body/bodySingleProduct.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -82,7 +57,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="footer.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/view/footer/footer.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="704">
@@ -135,11 +110,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="addMessage.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="addMessage.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/actions/addMessage.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="476">
-                  <caret line="28" column="2" lean-forward="false" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
+                <state relative-caret-position="544">
+                  <caret line="32" column="39" lean-forward="false" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -181,11 +156,31 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="marksoldItem.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="marksoldItem.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/actions/marksoldItem.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="221">
                   <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="addItem.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/actions/addItem.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="55">
+                  <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="addAccount.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/actions/addAccount.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -265,7 +260,6 @@
         <option value="$PROJECT_DIR$/actions/getItemList.php" />
         <option value="$PROJECT_DIR$/actions/store.php" />
         <option value="$PROJECT_DIR$/view/body/bodySingleProduct.php" />
-        <option value="$PROJECT_DIR$/actions/addMessage.php" />
         <option value="$PROJECT_DIR$/model/message.php" />
         <option value="$PROJECT_DIR$/actions/getMessage.php" />
         <option value="$PROJECT_DIR$/actions/marksoldItemTo.php" />
@@ -276,6 +270,7 @@
         <option value="$PROJECT_DIR$/scripts/scripts.js" />
         <option value="$PROJECT_DIR$/view/footer/footer.php" />
         <option value="$PROJECT_DIR$/actions/marksoldItem.php" />
+        <option value="$PROJECT_DIR$/actions/addMessage.php" />
       </list>
     </option>
   </component>
@@ -404,12 +399,12 @@
       <workItem from="1512584194067" duration="10618000" />
       <workItem from="1512942094099" duration="40416000" />
       <workItem from="1513613440285" duration="690000" />
-      <workItem from="1513641247090" duration="49000" />
+      <workItem from="1513641247090" duration="313000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87233000" />
+    <option name="totallyTimeSpent" value="87497000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -445,13 +440,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/view/header/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/BaseModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -624,14 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actions/addItem.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-251">
-          <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/fileinput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -778,14 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actions/addMessage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="2" lean-forward="false" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actions/marksoldItemTo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -881,6 +853,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="704">
           <caret line="65" column="27" lean-forward="false" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/addAccount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/addItem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/addMessage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="39" lean-forward="false" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
           <folding />
         </state>
       </provider>
