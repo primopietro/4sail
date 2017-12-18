@@ -30,6 +30,6 @@ $aUser->setRating($rating);
 
 //echo "rating:" . $aUser->getRating();
 
-$aUser->addDBObject();
+$aUser->addAccount();
 
 ?>

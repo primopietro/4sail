@@ -98,9 +98,9 @@ $(document).ready(function(){
 		        success: function(data)
 		        {
 		        	if(data == "exist"){
-		        		alert("The item has been removed from your 'Watch list'");
+		        		//alert("The item has been removed from your 'Watch list'");
 		        	} else{
-			        	alert(msg);
+			        	//alert(msg);
 		        	}
 		        	
 		        	$(location).attr('href', ajaxPath);
@@ -583,7 +583,10 @@ $(document).on("click","#share",function(e){
 
 //Copy to clipboard
 $(document).on("click","#copy",function(){
-
+	
+	var copyText = document.getElementById("reflink");
+	  copyText.select();
+	  document.execCommand("Copy");
 });
 
 
@@ -755,6 +758,8 @@ $(document).on("click",".delete",function(){
 
 	 }
 });
+
+
 
 /***************mark sold item***************/
 $(document).on("click","#marksold",function(){

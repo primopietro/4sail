@@ -15,7 +15,7 @@ $aRef->setItem_id($itemId);
 $aRef->setRef_user_id($referrerId);
 $aRef->setSell_user_id($sellerId);
 $aRef->setRef_link(getToken());
-$aRef = $aRef->addDBObject();
+$aRef = $aRef->addRef();
 
 if($aRef != null){
     $aSecondRef->getObjectFromDB($aRef);

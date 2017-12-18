@@ -178,5 +178,120 @@ class User extends BaseModel {
     	return $this;
     }
     
+    function addAccount(){
+    	$internalAttributes = get_object_vars ( $this );
+    	
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("INSERT INTO user (user_id, first_name, last_name, email, password, phone, address, points, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	
+    	$stmt->bind_param("issssssid", $user_id, $first_name, $last_name, $email, $password, $phone, $address, $points, $rating);
+    	
+    	$user_id = NULL;
+    	$first_name = $this->first_name;
+    	$last_name = $this->last_name;
+    	$email = $this->email;
+    	$password = $this->password;
+    	$phone = $this->phone;
+    	$address = $this->address;
+    	$points = $this->points;
+    	$rating = $this->rating;
+    	
+    	$stmt->execute();          
+    	$id = mysqli_insert_id($conn);
+    	if($id != 0){
+    		echo "success";
+    	}
+    	
+    	$stmt->close (); 
+    	$conn->close ();
+    	
+    	return $id;
+    }
+    
+    function updateAccount(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $internalAttributes = get_object_vars ( $this );
+        
+        $stmt = $conn->prepare("UPDATE `user` SET `first_name` = ?, `last_name` = ?, `email` = ?, `password` = ?, `phone` = ?, `address` = ?, `points` = ?, `rating` = ?  WHERE `user_id` = ?");
+        
+      
+        $stmt->bind_param("ssssssidi", $first_name, $last_name, $email, $password, $phone, $address, $points, $rating, $user_id);
+       
+        $user_id = $this->user_id;;
+        $first_name = $this->first_name;
+        $last_name = $this->last_name;
+        $email = $this->email;
+        $password = $this->password;
+        $phone = $this->phone;
+        $address = $this->address;
+        $points = $this->points;
+        $rating = $this->rating;
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
+    
+    function updatePoints(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $internalAttributes = get_object_vars ( $this );
+        
+        $stmt = $conn->prepare("UPDATE `user` SET  `points` = ?  WHERE `user_id` = ?");
+        
+        
+        $stmt->bind_param("ii",$points, $user_id);
+        
+        $user_id = $this->user_id;;
+       
+        $points = $this->points;
+        
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
+    
+    function updateRating(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $internalAttributes = get_object_vars ( $this );
+        
+        $stmt = $conn->prepare("UPDATE `user` SET  `rating` = ?  WHERE `user_id` = ?");
+        
+        
+        $stmt->bind_param("ii",$rating, $user_id);
+        
+         $user_id = $this->user_id;;
+        
+         $rating = $this->rating;
+        
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
+    
+    
 
 }

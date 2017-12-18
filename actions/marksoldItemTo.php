@@ -33,13 +33,25 @@ $aMessage->setFk_user_to($aReferral['ref_user_id']);
 $aMessage->setFk_item_id($idItem);
 $aMessage->setFk_user_from($aReferral['sell_user_id']);
 
-$lastId = $aMessage->addMessageToDB();
+date_default_timezone_set('UTC');
+$aMessage->setDate_sent(date('Y-m-d h:i:s'));
 
-$aMessage->updateObjectDynamically('response_id',$idRef,$lastId);
+$lastId = $aMessage->addMessage();
+
+$lastId = $aMessage->addMessage();
+ $aMessage->setMessage_id($idMsgToDelete);
+ $aMessage->setIsResponse(0);
+ $aMessage->setResponse_id($idRef)
+ $aMessage->updateIsReponse();
+ $aMessage->updateResponseId();
+
+/*$aMessage->updateObjectDynamically('response_id',$idRef,$lastId);*/
 
 //delete mark sold button from message
 $aMessage->updateObjectDynamically('isResponse','0',(int)($idMsgToDelete));
 //delete item from bd
-$anotherItem->updateObjectDynamically('sold','1',$idItem);
-
+/*$anotherItem->updateObjectDynamically('sold','1',$idItem);*/
+$anotherItem->setItem_id($idItem);
+$anotherItem->setSold(1);
+$anotherItem->updateSold();
 ?>

@@ -17,8 +17,6 @@ $desc = htmlspecialchars ($_POST ['item_desc'] );
 $key = htmlspecialchars ($_POST ['item_keywords'] );
 $points = htmlspecialchars ($_POST ['item_points'] );
 $link= htmlspecialchars ($_POST ['link'] );
-$userId ="1";
-
 
 //add item to bd
 $anItem->setItem_cat($cat);
@@ -27,18 +25,23 @@ $anItem->setItem_price($price);
 $anItem->setItem_desc($desc);
 $anItem->setItem_keywords($key);
 $anItem->setUser_id($_SESSION['current_user']['user_id']);
+
+date_default_timezone_set('UTC');
+$anItem->setDate_created(date('Y-m-d h:i:s'));
+
 $anItem->setLink('https://www.'.$link);
 $anItem->setSold('0');
 $anItem->setPoints($points);
 
+$anItem->addItem();
 
-
-$anItem->addDBObject();
 
 $aUser = new User();
 $newPoints = $_SESSION['current_user']['points'] - $points;
 $_SESSION['current_user']['points'] = $newPoints;
-$aUser = $aUser->updateObjectDynamically("points", $newPoints, $_SESSION['current_user']['user_id']);
+$aUser->setUser_id($_SESSION['current_user']['user_id']);
+$aUser->setPoints($newPoints);
+$aUser->updatePoints();
 
 
 //---get image---
@@ -88,7 +91,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
     $anImage->setName($ImageName);
     $anImage->setItem_id($aTempitem["item_id"]);
-    $anImage->addDBObject();
+    $anImage->addImage();
  
     header("Location: ../index.php");
 ?>

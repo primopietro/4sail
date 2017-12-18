@@ -11,8 +11,10 @@ $idItem = htmlspecialchars ( $_POST['idItem'] );
 
 
 //delete item from bd
-$aItem->updateObjectDynamically('sold','1',$idItem);
 
+/*$aItem->updateObjectDynamically('sold','1',$idItem);*/
+$aItem->setItem_id($idItem);
+$aItem->setSold(1);
+$aItem->updateSold();
 ?>
-
 
