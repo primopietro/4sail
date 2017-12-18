@@ -38,11 +38,20 @@ $aMessage->setDate_sent(date('Y-m-d h:i:s'));
 
 $lastId = $aMessage->addMessage();
 
-$aMessage->updateObjectDynamically('response_id',$idRef,$lastId);
+$lastId = $aMessage->addMessage();
+ $aMessage->setMessage_id($idMsgToDelete);
+ $aMessage->setIsResponse(0);
+ $aMessage->setResponse_id($idRef)
+ $aMessage->updateIsReponse();
+ $aMessage->updateResponseId();
+
+/*$aMessage->updateObjectDynamically('response_id',$idRef,$lastId);*/
 
 //delete mark sold button from message
 $aMessage->updateObjectDynamically('isResponse','0',(int)($idMsgToDelete));
 //delete item from bd
-$anotherItem->updateObjectDynamically('sold','1',$idItem);
-
+/*$anotherItem->updateObjectDynamically('sold','1',$idItem);*/
+$anotherItem->setItem_id($idItem);
+$anotherItem->setSold(1);
+$anotherItem->updateSold();
 ?>

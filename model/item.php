@@ -13,7 +13,7 @@ class Item extends BaseModel {
 	protected $user_id = 0;
 	protected $points = 0;
     protected $link = NULL;
-    protected $sold = false;
+    protected $sold = 0;
     protected $date_created = "";
 
 
@@ -289,18 +289,20 @@ class Item extends BaseModel {
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
          
         
-        $stmt = $conn->prepare("UPDATE item SET item_cat = ?, item_title = ?, item_price = ?, item_desc = ?, item_keywords = ?, points = ?, link = ?, sold = ? WHERE item_id = ?");
-        $stmt->bind_param("iisisiisisisi", $item_cat, $item_title, $item_price, $item_desc, $item_keywords, $points, $link, $sold,$item_id);
+        $stmt = $conn->prepare("UPDATE `item` SET `item_cat` = ?, `item_title` = ?, `item_price` = ?, `item_desc` = ?, `item_keywords` = ?, `points` = ?, `link` = ?, `sold` = ? WHERE `item_id` = ?");
+        $stmt->bind_param("isissisii", $item_cat, $item_title, $item_price, $item_desc, $item_keywords, $points, $link, $sold, $item_id);
         
-        $item_id =  $this->item_id;
-        $item_cat = $this->item_cat;
-        $item_title = $this->item_title;
-        $item_price = $this->item_price;
-        $item_desc = $this->item_desc;
-        $item_keywords = $this->item_keywords;
-        $points = $this->points;
-        $link = $this->link;
-        $sold = $this->sold;
+         $item_id =  $this->item_id;
+         $item_cat = $this->item_cat;
+         $item_title = $this->item_title;
+         $item_price = $this->item_price;
+         $item_desc = $this->item_desc;
+         $item_keywords = $this->item_keywords;
+         $user_id = $this->user_id;
+         $date_created = $this->date_created;
+         $points = $this->points;
+         $link = $this->link;
+         $sold = $this->sold;
         
         $stmt->execute();
         $id = mysqli_insert_id($conn);
@@ -314,5 +316,30 @@ class Item extends BaseModel {
         
         return $id;
     }
-
+    
+    function updateSold(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $internalAttributes = get_object_vars ( $this );
+        
+        $stmt = $conn->prepare("UPDATE `item` SET `sold` = ?  WHERE `item_id` = ?");
+        
+        
+        $stmt->bind_param("ii",$sold, $item_id);
+        
+       echo $item_id =  $this->item_id;
+        
+       echo $sold = $this->sold;
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
+    
 }

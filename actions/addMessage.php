@@ -27,9 +27,14 @@ $aMessage->setDate_sent(date('Y-m-d h:i:s'));
 if (isset($_POST['idref']) && $_POST['idref']!='')
 {
     $refId = htmlspecialchars ($_POST['idref'] );
-    $lastId = $aMessage->addMessage();
-    $aMessage->updateObjectDynamically('isResponse','1',$lastId);
-    $aMessage->updateObjectDynamically('response_id',$refId,$lastId);
+   $lastId = $aMessage->addMessage();
+    $aMessage->setMessage_id($lastId);
+    $aMessage->setIsResponse(1);
+     $aMessage->setResponse_id($refId)
+     $aMessage->updateIsReponse();
+      $aMessage->updateResponseId();
+    /*$aMessage->updateObjectDynamically('isResponse','1',$lastId);
+    $aMessage->updateObjectDynamically('response_id',$refId,$lastId);*/
 }else {
 	$aMessage->addMessage();
 }

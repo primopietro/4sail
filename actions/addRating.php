@@ -26,7 +26,10 @@ if($boolRating == 0){
 	
 	$aRating->addRating();
 } else{
-	$aRating->updateObjectDynamically("rating", $rating, $checkRating['id_rating']);
+	/*$aRating->updateObjectDynamically("rating", $rating, $checkRating['id_rating']);*/
+    $aRating->setId_rating($checkRating['id_rating']);
+    $aRating->setRating($rating);
+    $aRating->updateRating();
 }
 
 
@@ -47,6 +50,8 @@ if($allRatings != null){
 	$finalRating = $rating;
 }
 
-
-$aUser->updateObjectDynamically("rating", $finalRating, $id_rated)
+$aUser->setUser_id($id_rated);
+$aUser->setRating($finalRating);
+$aUser->updateRating();
+/*$aUser->updateObjectDynamically("rating", $finalRating, $id_rated)*/
 ?>

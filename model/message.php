@@ -355,5 +355,54 @@ class Message extends BaseModel {
     	
     	return $id;
     }
-
+    function updateIsReponse(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $internalAttributes = get_object_vars ( $this );
+        
+        $stmt = $conn->prepare("UPDATE `message` SET  `isResponse` = ?  WHERE `message_id` = ?");
+        
+        
+        $stmt->bind_param("ii",$isResponse, $message_id);
+        
+        $isResponse = $this->isResponse;
+        
+        $message_id = $this->message_id;
+        
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
+    function updateResponseId(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $internalAttributes = get_object_vars ( $this );
+        
+        $stmt = $conn->prepare("UPDATE `message` SET  `response_id` = ?  WHERE `message_id` = ?");
+        
+        
+        $stmt->bind_param("ii",$response_id, $message_id);
+        
+        $response_id = $this->response_id;
+        
+        $message_id = $this->message_id;
+        
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
 }

@@ -111,4 +111,29 @@ class Ratings extends BaseModel {
     	return $id;
     }
 
+    function updateRating(){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $internalAttributes = get_object_vars ( $this );
+        
+        $stmt = $conn->prepare("UPDATE `ratings` SET  `rating` = ?  WHERE `id_rating` = ?");
+        
+        
+        $stmt->bind_param("ii",$rating, $id_rating);
+        
+         $id_rating = $this->id_rating;;
+        
+         $rating = $this->rating;
+        
+        
+        $stmt->execute();
+        $id = mysqli_insert_id($conn);
+        if($id != 0){
+            echo "success";
+        }
+        
+        $stmt->close ();
+        $conn->close ();
+        
+        return $id;
+    }
 }

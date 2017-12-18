@@ -39,7 +39,9 @@ $anItem->addItem();
 $aUser = new User();
 $newPoints = $_SESSION['current_user']['points'] - $points;
 $_SESSION['current_user']['points'] = $newPoints;
-$aUser = $aUser->updateObjectDynamically("points", $newPoints, $_SESSION['current_user']['user_id']);
+$aUser->setUser_id($_SESSION['current_user']['user_id']);
+$aUser->setPoints($newPoints);
+$aUser->updatePoints();
 
 
 //---get image---
