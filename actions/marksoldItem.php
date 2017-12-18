@@ -14,3 +14,5 @@ $idItem = htmlspecialchars ( $_POST['idItem'] );
 $aItem->updateObjectDynamically('sold','1',$idItem);
 
 ?>
+
+
