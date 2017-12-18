@@ -8,8 +8,8 @@ if(isset($_GET)){
     $itemID = htmlspecialchars($_GET['itemID']);
     
     $currentItem = new Item();
-    $currentItem = $currentItem->getObjectFromDB($itemID);
-    
+    /*$currentItem = $currentItem->getObjectFromDB($itemID);*/
+    $currentItem = $currentItem->getItem($itemID);
 }else{
     print_r ($_GET);
    // header("Location: ../index.php");
@@ -30,8 +30,13 @@ if(isset($_GET)){
            <?php 
                 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
                 $aCategory = new Category();
-                $aCategoryList = $aCategory->getListOfAllDBObjects();
-             
+                /*$aCategoryList = $aCategory->getListOfAllDBObjects();*/
+                $aCategoryList = $aCategory->getcatego();
+                
+                  echo "<pre>";
+                  print_r($localObjects);
+                echo "</pre>";
+                 
                 foreach($aCategoryList as $aLocalCategory){
                     if($currentItem['item_cat'] == $aLocalCategory['cat_id']){
                         $aLI =  '  <option  selected value="'.$aLocalCategory["cat_id"].'">'.$aLocalCategory["cat_title"].'</option>';

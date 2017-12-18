@@ -18,11 +18,15 @@ $anotherItem = new Item();
 $aMessage = new Message();
 $aUser = new User();
 $aUserBefore = new User();
-$aReferral = $aReferral->getObjectFromDB($idRef);
-$aItem = $aItem->getObjectFromDB($idItem);
+/*$aReferral = $aReferral->getObjectFromDB($idRef);
+$aItem = $aItem->getObjectFromDB($idItem);*/
+
+$aReferral = $aReferral->getReferral($idRef);
+$aItem = $aItem->getItem($idItem);
 
 $pointstoAdd = (int)($aItem['points']/10);
-$aUserBefore = $aUserBefore->getObjectFromDB($aReferral['ref_user_id']);
+/*$aUserBefore = $aUserBefore->getObjectFromDB($aReferral['ref_user_id']);*/
+$aUserBefore = $aUserBefore->getUser($aReferral['ref_user_id']);
 $pointsReward = $pointstoAdd + (int)($aUserBefore['points']);
 $aUser->updateObjectDynamically('points',$pointsReward,$aReferral['ref_user_id']);
 

@@ -292,6 +292,47 @@ class User extends BaseModel {
         return $id;
     }
     
-    
+    function getUser($id)
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars($this);
+        
+        $stmt = $conn->prepare("SELECT * FROM `user` WHERE `user_id` = ?");
+        $stmt->bind_param("i", $id);
+        
+        $stmt->execute();
+        
+        $stmt->bind_result($user_id, $first_name, $last_name, $email, $password, $phone, $address, $points, $rating);
+        
+        $localObjects = array();
+        
+        while ($stmt->fetch()) {
+            
+            $anObject = Array();
+            $anObject["primary_key"] = $this->primary_key;
+            $anObject["table_name"] = $this->table_name;
+            
+            $anObject["user_id"] = $user_id;
+            $anObject["first_name"] = $first_name;
+            $anObject["last_name"] = $last_name;
+            $anObject["email"] = $email;
+            $anObject["password"] = $password;
+            $anObject["phone"] = $phone;
+            $anObject["address"] = $address;
+            $anObject["points"] = $points;
+            $anObject["rating"] = $rating;
+           
+            
+            
+            $localObjects+= $anObject;
+        }
+        /*
+         * echo "<pre>";
+         * print_r($localObjects);
+         * echo "</pre>";
+         */
+        return $localObjects;
+    }
 
 }

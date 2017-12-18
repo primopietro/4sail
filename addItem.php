@@ -18,7 +18,8 @@ require_once 'view/menu/menu.php';
            <?php 
                 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
                 $aCategory = new Category();
-                $aCategoryList = $aCategory->getListOfAllDBObjects();
+                /*$aCategoryList = $aCategory->getListOfAllDBObjects();*/
+                $aCategoryList = $aCategory->getCatego();
              
                 foreach($aCategoryList as $aLocalCategory){
                     $aLI =  '  <option value="'.$aLocalCategory["cat_id"].'">'.$aLocalCategory["cat_title"].'</option>';

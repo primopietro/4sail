@@ -43,5 +43,77 @@ class Category extends BaseModel {
         $this->cat_title = $cat_title;
         return $this;
     }
-
+    
+    
+    function getCategoWhere($id)
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars($this);
+        
+        $stmt = $conn->prepare("SELECT * FROM `category` WHERE `cat_id` = ?");
+        $stmt->bind_param("i", $id);
+        
+        $stmt->execute();
+        
+        $stmt->bind_result($cat_id, $cat_title);
+        
+        $localObjects = array();
+        
+        while ($stmt->fetch()) {
+            
+            $anObject = Array();
+            $anObject["primary_key"] = $this->primary_key;
+            $anObject["table_name"] = $this->table_name;
+            
+            $anObject["cat_id"] = $cat_id;
+            $anObject["cat_title"] = $cat_title;
+        
+            
+            
+            $localObjects += $anObject;
+        }
+        /*
+         * echo "<pre>";
+         * print_r($localObjects);
+         * echo "</pre>";
+         */
+        return $localObjects;
+    }
+    
+    function getCatego()
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars($this);
+        
+        $stmt = $conn->prepare("SELECT * FROM `category`");
+     
+        
+        $stmt->execute();
+        
+        $stmt->bind_result($cat_id, $cat_title);
+        
+        $localObjects = array();
+        
+        while ($stmt->fetch()) {
+            
+            $anObject = Array();
+            $anObject["primary_key"] = $this->primary_key;
+            $anObject["table_name"] = $this->table_name;
+            
+            $anObject["cat_id"] = $cat_id;
+            $anObject["cat_title"] = $cat_title;
+            
+            
+            
+            $localObjects[$cat_id] = $anObject;
+        }
+        /*
+         * echo "<pre>";
+         * print_r($localObjects);
+         * echo "</pre>";
+         */
+        return $localObjects;
+    }
 }
