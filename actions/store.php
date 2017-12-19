@@ -44,8 +44,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                         <div class="xt-feature">';
 							            if(isset($_SESSION['current_user'])){
 							            	$title = "Add to 'Watch list'";
-							            	$querryToCheck = " user_id = '" . $_SESSION['current_user']['user_id']. "' AND item_id = '" . $aLocalItem["item_id"] . "'";
-							            	$checkWatchList = $aWatchList->getObjectFromDBWhere("", "", $querryToCheck);
+							            	$checkWatchList = $aWatchList->getWatchListWhere($_SESSION['current_user']['user_id'], $aLocalItem["item_id"]);
 							            	$component .= '<div class="rating-stars watch_listDiv">
 							            	<ul id="watch_listUl">
 								            	<li class="star';

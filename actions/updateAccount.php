@@ -17,18 +17,25 @@ $address = htmlspecialchars ($_POST['address'] );
 //update item in bd
 $aUser->setUser_id($_SESSION['current_user']['user_id']);
 $aUser->setFirst_name($first_name);
+
 $aUser->setLast_name($last_name);
+
 $aUser->setEmail($email);
+
 $aUser->setPassword($password);
+
 $aUser->setPhone($phone);
+
 $aUser->setAddress($address);
+
+
 $aUser->setPoints($_SESSION['current_user']['points']);
 $aUser->setRating($_SESSION['current_user']['rating']);
 
 
 /*$aUser->updateDBObject();*/
 /*for prepare statement*/
-$aUser->updateAccount()
+$aUser->updateAccount();
 
 
 ?>
