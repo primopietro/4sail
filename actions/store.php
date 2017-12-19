@@ -66,7 +66,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
             }
             
             $anImage = new Image();
-            $anImage = $anImage->getListOfAllDBObjectsWhereSort('item_id', ' = ', $aLocalItem["item_id"],null,null,null,null);
+            $anImage = $anImage->getImageWhereItem($aLocalItem["item_id"]);
             $imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
             if (sizeof($anImage) > 0) {
                 $imgString = '<img src="images/' . current($anImage)['name'] . '" alt="" class="img-responsive">';
