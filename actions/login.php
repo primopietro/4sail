@@ -6,10 +6,8 @@ $_SESSION['isAdmin'] = false;
 $email = htmlspecialchars ($_POST['email']);
 $password = htmlspecialchars ($_POST['password']);
 
-$querry = 'email = "' . $email . '" AND password = "' . $password . '"';
-
 $aUser = new User();
-$aUser = $aUser->getObjectFromDBWhere('','', $querry);
+$aUser = $aUser->getUserWhere($email, $password);
 
 if($aUser != null){
 	$_SESSION['current_user'] = $aUser;

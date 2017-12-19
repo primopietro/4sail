@@ -15,6 +15,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
     //If no category is selected, show all products
     if($priceFrom ===null && $_SESSION['currentCategory'] == 0 || $_SESSION['currentCategory'] ==7 && $priceTo === null){
         //echo "no cat no price filt" . "<br>";
+       /* $anItemList = $anItem->getListOfAllDBObjectsOrder($orderBy,$orderSense);*/
         $anItemList = $anItem->getListOfAllDBObjectsOrder($orderBy,$orderSense);
     }
     elseif ($_SESSION['currentCategory'] ==0  ||$_SESSION['currentCategory'] ==7 && $priceFrom !== null && $priceTo !== null){
@@ -36,8 +37,11 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
     if (sizeof($anItemList) > 0) {
         foreach ($anItemList as $aLocalItem) {
             $aCategory = new Category();
-            $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
             
+           /* $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);*/
+            $aCategory = $aCategory->getCategoWhere($aLocalItem['item_cat']);
+            
+             
             $component = '<div class="col-md-4 col-sm-4 vignetteFix">
                                         <div class="xt-feature">';
 							            if(isset($_SESSION['current_user'])){

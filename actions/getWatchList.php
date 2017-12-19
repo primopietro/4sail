@@ -17,10 +17,14 @@ $finalString = "";
 
 if($myWatchList != null){
 	foreach($myWatchList as $theWatchList){
-		$theItem = $anItem->getObjectFromDB($theWatchList['item_id']);
+		/*$theItem = $anItem->getObjectFromDB($theWatchList['item_id']);
 		$theImage = $anImage->getListOfAllDBObjectsWhereSort('item_id', ' = ', $theItem["item_id"],null,null,null,null);
-		$theCategory = $aCategory->getObjectFromDB($theItem['item_cat']);
+		$theCategory = $aCategory->getObjectFromDB($theItem['item_cat']);*/
 		
+	    $theItem = $anItem->getItem($theWatchList['item_id']);
+	    $theImage = $anImage->getImageWhereItem($theItem["item_id"],null,null,null,null);
+	    $theCategory = $aCategory->getCategoWhere($theItem['item_cat']);
+	    
 		$imgString = '<img src="images/notFound.gif" alt="" class="img-responsive">';
 		if (sizeof($theImage) > 0) {
 			$pathImage = 'http://localhost/4sail/images/' . current($theImage)['name'];

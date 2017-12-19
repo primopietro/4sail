@@ -18,7 +18,8 @@ $aRef->setRef_link(getToken());
 $aRef = $aRef->addRef();
 
 if($aRef != null){
-    $aSecondRef->getObjectFromDB($aRef);
+    /*$aSecondRef->getObjectFromDB($aRef);*/
+    $aSecondRef->getReferral($aRef);
     echo $aSecondRef->getRef_link();
 }else{
     echo "fail";

@@ -11,7 +11,7 @@ $item_id = htmlspecialchars ($_POST['item_id'] );
 
 $querryToCheck = " user_id = '" . $user_id. "' AND item_id = '" . $item_id. "'";
 
-$checkWatchList = $aWatchList->getObjectFromDBWhere("", "", $querryToCheck);
+$checkWatchList = $aWatchList->getWatchListWhere($user_id, $item_id);
 
 if($checkWatchList == null){
 	//add item to bd
@@ -20,7 +20,7 @@ if($checkWatchList == null){
 	
 	$aWatchList->addWatchList();
 } else{
-	$aWatchList->deleteFromDBWhere("","",$querryToCheck);
+	$aWatchList->deleteWatchListWhere($user_id, $item_id);
 	echo "exist";
 }
 

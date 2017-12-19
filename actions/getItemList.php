@@ -6,14 +6,14 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/image.php';
 $addedString = "";
 $aItem = new Item();
 
-$aItemList = $aItem->getItemListForUser($_SESSION['current_user']['user_id'] );
+$aItemList = $aItem->getItemsForUser($_SESSION['current_user']['user_id'] );
 $finalString = "";
 if($aItemList != null){
     if(sizeof($aItemList)>0){
         foreach($aItemList as $aLocalMessage){
             $anImage = new Image();            
             
-            $anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aLocalMessage["item_id"],null,null,null,null );
+            $anImage = $anImage->getImageWhereItem($aLocalMessage["item_id"],null,null,null,null );
             $imgString = 'assets/images/s-1.jpg';
             
             if(sizeof($anImage)>0){
