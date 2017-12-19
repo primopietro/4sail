@@ -193,7 +193,9 @@ class BaseModel{
     	$conn->close ();
     	return null;
     }
-    
+
+
+
     
     public function getListOfAllDBObjectsWhereSort($argument,$operation, $value,$orderBy, $orderSense, $search, $keyword) {
     	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
@@ -222,6 +224,8 @@ class BaseModel{
         elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'ASC'){
             $sql .= 'AND sold !=1  order by points DESC, item_price ASC';
         }
+
+
 
         //echo $sql . "<br>";
     	$result = $conn->query ( $sql );
@@ -344,16 +348,23 @@ class BaseModel{
         $conn->close ();
         return null;
     }
+
     function getObjectFromDB($primary_key) {
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
         
         $internalAttributes = get_object_vars ( $this );
      
         
-        $sql = "SELECT * FROM `" . $this->table_name . "` WHERE " . $this->primary_key . " = '" .$primary_key ."'";
+        $sql = "SELECT * FROM `" . $this->table_name . "` WHERE " . $this->primary_key . " = ?";
         //echo $sql." ";
-        $result = $conn->query ( $sql );
-        
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param("i", $primary_key);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+
         if ($result->num_rows > 0) {
             $anObject = Array ();
             while ( $row = $result->fetch_assoc () ) {

@@ -17,19 +17,20 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
         //echo "no cat no price filt" . "<br>";
         $anItemList = $anItem->getListOfAllDBObjectsOrder($orderBy,$orderSense);
     }
-    elseif ($_SESSION['currentCategory'] ==0  ||$_SESSION['currentCategory'] ==7 && $priceFrom !== null && $priceTo !== null){
-        //echo "no cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
+    elseif ($priceFrom !== null && ($_SESSION['currentCategory'] == 0  || $_SESSION['currentCategory'] == 7) && $priceTo !== null){
+        //echo "no cat price filt " ."<br>";
+        //$anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
+        $anItemList = $anItem->getListOfAllDBObjectsWhereSortPrice($priceTo,$priceFrom,$orderBy,$orderSense,$search,$keyword);
     }
     //Else if category and price range, show filtered products
     elseif($priceFrom !== null && $priceTo !== null){
         //echo "cat price filt" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_cat =' .  $_SESSION['currentCategory'] . ' AND item_price < ' . $priceTo . ' AND item_price > ' . $priceFrom .'', null,null,$orderBy,$orderSense,$search,$keyword);
+        $anItemList = $anItem->getListOfAllDBObjectsWhereSortCatPrice($priceTo ,$priceFrom , $_SESSION['currentCategory'],$orderBy,$orderSense,$search,$keyword);
     }
     //Else show product for a certain category
     else{
         //echo "cat" . "<br>";
-        $anItemList = $anItem->getListOfAllDBObjectsWhereSort('item_cat',' = ',$_SESSION['currentCategory'],null,null,$search,$keyword);
+        $anItemList = $anItem->getListOfAllDBObjectsWhereSortCat($_SESSION['currentCategory'],null,null,$search,$keyword);
     }
     //for each item in list
     

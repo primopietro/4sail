@@ -62,7 +62,7 @@ else if ($routes[3] != null && $routes[1] != null  ) {
   
     $categoryID = htmlspecialchars($routes[1]);
     $itemID = htmlspecialchars($routes[2]);
-    if ($categoryID !== 'assets') {
+    if ($categoryID !== 'assets' && $categoryID !== 'themes') {
         $_SESSION['currentCategory'] = $categoryID;
     }
     $_SESSION['currentItem'] = $itemID;

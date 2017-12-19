@@ -341,5 +341,190 @@ class Item extends BaseModel {
         
         return $id;
     }
-    
+
+
+    function getListOfAllDBObjectsWhereSortPrice($priceTo,$priceFrom, $orderBy, $orderSense, $search, $keyword) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $isSearch = false;
+        $internalAttributes = get_object_vars ( $this);
+        $keyword2 = $keyword;
+        $sql = "SELECT * FROM `" . $this->table_name . "`";
+
+
+        $sql .= " WHERE item_price < ? AND item_price > ? AND sold !=1 ";
+
+
+        //search things
+        if($search == 'active' && $keyword !==null){
+            echo '<div>Results for "'.$keyword.'".</div>';
+            $sql .= "AND (item_keywords LIKE CONCAT('%',?,'%') OR item_title LIKE CONCAT('%',?,'%') ) ";
+            $isSearch = true;
+        }
+
+        //order things
+        if($this->table_name == "item" && $orderBy == null && $orderSense == null){
+            $sql .= 'order by points DESC, item_id DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'DESC'){
+            $sql .= 'order by points DESC, item_price DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'ASC'){
+            $sql .= 'order by points DESC, item_price ASC';
+        }
+        //echo $sql;
+
+        $stmt = $conn->prepare($sql);
+
+        if ($isSearch == true) {
+            $stmt->bind_param("iiss", $priceTo, $priceFrom, $keyword, $keyword2);
+        }else{
+            $stmt->bind_param("ii", $priceTo, $priceFrom);
+        }
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
+
+
+    function getListOfAllDBObjectsWhereSortCat($cat, $orderBy, $orderSense, $search, $keyword) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $isSearch = false;
+        $internalAttributes = get_object_vars ( $this);
+        $keyword2 = $keyword;
+        $sql = "SELECT * FROM `" . $this->table_name . "`";
+
+
+        $sql .= " WHERE item_cat = ? AND sold !=1 ";
+
+
+        //search things
+        if($search == 'active' && $keyword !==null){
+            echo '<div>Results for "'.$keyword.'".</div>';
+            $sql .= "AND (item_keywords LIKE CONCAT('%',?,'%') OR item_title LIKE CONCAT('%',?,'%') ) ";
+            $isSearch = true;
+        }
+
+        //order things
+        if($this->table_name == "item" && $orderBy == null && $orderSense == null){
+            $sql .= 'order by points DESC, item_id DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'DESC'){
+            $sql .= 'order by points DESC, item_price DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'ASC'){
+            $sql .= 'order by points DESC, item_price ASC';
+        }
+        //echo $sql;
+
+        $stmt = $conn->prepare($sql);
+
+        if ($isSearch == true) {
+            $stmt->bind_param("iss", $cat, $keyword, $keyword2);
+        }else{
+            $stmt->bind_param("i", $cat);
+        }
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
+
+
+    function getListOfAllDBObjectsWhereSortCatPrice($priceTo,$priceFrom,$cat, $orderBy, $orderSense, $search, $keyword) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        $isSearch = false;
+        $internalAttributes = get_object_vars ( $this);
+        $keyword2 = $keyword;
+        $sql = "SELECT * FROM `" . $this->table_name . "`";
+
+
+        $sql .= " WHERE item_price < ? AND item_price > ? AND item_cat = ? AND sold !=1 ";
+
+
+        //search things
+        if($search == 'active' && $keyword !==null){
+            echo '<div>Results for "'.$keyword.'".</div>';
+            $sql .= "AND (item_keywords LIKE CONCAT('%',?,'%') OR item_title LIKE CONCAT('%',?,'%') ) ";
+            $isSearch = true;
+        }
+
+        //order things
+        if($this->table_name == "item" && $orderBy == null && $orderSense == null){
+            $sql .= 'order by points DESC, item_id DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'DESC'){
+            $sql .= 'order by points DESC, item_price DESC';
+        }
+        elseif($this->table_name == "item" && $orderBy == 'price' && $orderSense == 'ASC'){
+            $sql .= 'order by points DESC, item_price ASC';
+        }
+        //echo $sql;
+
+        $stmt = $conn->prepare($sql);
+
+        if ($isSearch == true) {
+            $stmt->bind_param("iiiss", $priceTo, $priceFrom, $cat, $keyword, $keyword2);
+        }else{
+            $stmt->bind_param("iii", $priceTo, $priceFrom,$cat);
+        }
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
 }
