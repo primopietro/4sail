@@ -37,9 +37,8 @@ $anItem->setItem_title($title);
 $anItem->setItem_price($price);
 $anItem->setItem_desc($desc);
 $anItem->setItem_keywords($key);
-$anItem->setLink('https://www.'.$link);
+$anItem->setLink($link);
 $anItem->setPoints($pointsAfter);
-$anItem->setDate_created("666");
 $anItem->updateItem();
 
 
