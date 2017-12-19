@@ -124,5 +124,50 @@ class WatchList extends BaseModel {
     	echo "</pre>";*/
     	return $localObjects;
     }
+    
+    function getWatchListWhere($user_id, $item_id)
+    {
+    	include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("SELECT * FROM `watch_list` WHERE `user_id` = ? AND `item_id` = ?");
+    	$stmt->bind_param("ii", $user_id, $item_id);
+    	
+    	$stmt->execute();
+    	
+    	$stmt->bind_result($id_watch_list, $user_id_result, $item_id_result);
+    	
+    	$localObjects = array();
+    	
+    	while ($stmt->fetch()) {
+    		
+    		$anObject = Array();
+    		$anObject["primary_key"] = $this->primary_key;
+    		$anObject["table_name"] = $this->table_name;
+    		
+    		$anObject["id_watch_list"] = $id_watch_list;
+    		$anObject["user_id"] = $user_id_result;
+    		$anObject["item_id"] = $item_id_result;
+    		
+    		$localObjects += $anObject;
+    	}
+    	/*
+    	 * echo "<pre>";
+    	 * print_r($localObjects);
+    	 * echo "</pre>";
+    	 */
+    	return $localObjects;
+    }
+    
+    function deleteWatchListWhere($user_id, $item_id) {
+    	include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$stmt = $conn->prepare("DELETE FROM `watch_list` WHERE `user_id` = ? AND `item_id` = ?");
+    	$stmt->bind_param("ii", $user_id, $item_id);
+    	
+    	$stmt->execute();
+    	
+    	$stmt->close();
+    	$conn->close ();
+    }
 
 }
