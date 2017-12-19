@@ -159,5 +159,43 @@ class Referral extends BaseModel {
     	
     	return $id_insert;
     }
+    
+    function getReferral($id)
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars($this);
+        
+        $stmt = $conn->prepare("SELECT * FROM `referral` WHERE `id` = ?");
+        $stmt->bind_param("i", $id);
+        
+        $stmt->execute();
+        
+        $stmt->bind_result($id, $item_id, $ref_user_id, $sell_user_id, $ref_link);
+        
+        $localObjects = array();
+        
+        while ($stmt->fetch()) {
+            
+            $anObject = Array();
+            $anObject["primary_key"] = $this->primary_key;
+            $anObject["table_name"] = $this->table_name;
+            
+            $anObject["id"] = $id;
+            $anObject["item_id"] = $item_id;
+            $anObject["ref_user_id"] = $ref_user_id;
+            $anObject["sell_user_id"] = $sell_user_id;
+            $anObject["ref_link"] = $ref_link;
+            
+            
+            $localObjects += $anObject;
+        }
+        /*
+         * echo "<pre>";
+         * print_r($localObjects);
+         * echo "</pre>";
+         */
+        return $localObjects;
+    }
 
 }

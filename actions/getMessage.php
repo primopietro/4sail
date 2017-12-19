@@ -18,10 +18,14 @@ if(isset($_GET['idMessage'])){
 	$anImage = new Image();
 	
 	
-	$aMessageToBeDisplayed = $aMessage->getObjectFromDB($messageID);
-	$aUserDisplayed = $aUser->getObjectFromDB($aMessageToBeDisplayed['fk_user_from']);
-	$anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aMessageToBeDisplayed["fk_item_id"] );
+	/*$aMessageToBeDisplayed = $aMessage->getObjectFromDB($messageID);*/
+	$aMessageToBeDisplayed = $aMessage->getMessageWhere($messageID);
 	
+	/*$aUserDisplayed = $aUser->getObjectFromDB($aMessageToBeDisplayed['fk_user_from']);*/
+	$aUserDisplayed = $aUser->getUser($aMessageToBeDisplayed['fk_user_from']);
+	
+	/*$anImage = $anImage->getListOfAllDBObjectsWhere('item_id', ' = ',$aMessageToBeDisplayed["fk_item_id"] );*/
+	$anImage = $anImage->getImageWhereItem($aMessageToBeDisplayed["fk_item_id"] );
 	
 	
 	$finalString ="";

@@ -24,7 +24,7 @@ $key = htmlspecialchars ($_POST ['item_keywords'] );
 $pointsAfter = htmlspecialchars ($_POST ['item_points'] );
 $link= htmlspecialchars ($_POST ['link'] );
 $itemID= htmlspecialchars ($_POST ['item_id'] );
-$anItemBefore = $anItemBefore->getObjectFromDB($itemID);
+$anItemBefore = $anItemBefore->getItem($itemID);
 $pointsBefore = $anItemBefore['points'];
 
 $pointsDifference = $pointsBefore - $pointsAfter;
@@ -78,5 +78,5 @@ $aUser->setPoints($newPoints);
 $aUser->updatePoints();
 
 
-/*header("Location: ../index.php");*/
+header("Location: ../index.php");
 ?>

@@ -136,4 +136,63 @@ class Ratings extends BaseModel {
         
         return $id;
     }
+    
+    function getRatingFromDBWhere($id_rater_perpare, $id_rated_prepare){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$internalAttributes = get_object_vars ( $this);
+    	
+    	$stmt = $conn->prepare("SELECT * FROM ratings
+								WHERE id_rater = ? AND id_rated = ?");
+    	$stmt->bind_param("ii", $id_rater_perpare, $id_rated_prepare);
+    	
+    	$stmt->execute();
+    	
+    	$stmt->bind_result($id_rating_result, $id_rater_result, $id_rated_result, $rating_result);
+    	
+    	while($stmt->fetch()){
+    		$anObject = Array ();
+    		$anObject ["primary_key"] = $this->primary_key;
+    		$anObject ["table_name"] = $this->table_name;
+    		
+    		$anObject["id_rating"] = $id_rating_result;
+    		$anObject["id_rater"] = $id_rater_result;
+    		$anObject["id_rated"] = $id_rated_result;
+    		$anObject["rating"] = $rating_result;
+    		
+    	}
+    	return $anObject;
+    }
+    
+    function getListOfAllRatingWhere($rating_id){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	$internalAttributes = get_object_vars ( $this);
+    	
+    	$stmt = $conn->prepare("SELECT * FROM ratings
+								WHERE id_rated = ?");
+    	$stmt->bind_param("i", $rating_id);
+    	
+    	$stmt->execute();
+    	
+    	$stmt->bind_result($id_rating_result, $id_rater_result, $id_rated_result, $rating_result);
+    	//$result = $stmt->get_result();
+    	
+    	$localObjects = array ();
+    	while($stmt->fetch()){
+    		$anObject = Array ();
+    		$anObject ["primary_key"] = $this->primary_key;
+    		$anObject ["table_name"] = $this->table_name;
+    		
+    		$anObject["id_rating"] = $id_rating_result;
+    		$anObject["id_rater"] = $id_rater_result;
+    		$anObject["id_rated"] = $id_rated_result;
+    		$anObject["rating"] = $rating_result;
+    		$localObjects[$id_rating_result] = $anObject;
+    	}
+    	echo "<pre>";
+    	 print_r($localObjects);
+    	 echo "</pre>";
+    	return $localObjects;
+    }
 }

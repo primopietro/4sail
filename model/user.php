@@ -273,7 +273,7 @@ class User extends BaseModel {
         $stmt = $conn->prepare("UPDATE `user` SET  `rating` = ?  WHERE `user_id` = ?");
         
         
-        $stmt->bind_param("ii",$rating, $user_id);
+        $stmt->bind_param("di",$rating, $user_id);
         
          $user_id = $this->user_id;;
         
@@ -292,6 +292,86 @@ class User extends BaseModel {
         return $id;
     }
     
+    function getUser($id)
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars($this);
+        
+        $stmt = $conn->prepare("SELECT * FROM `user` WHERE `user_id` = ?");
+        $stmt->bind_param("i", $id);
+        
+        $stmt->execute();
+        
+        $stmt->bind_result($user_id, $first_name, $last_name, $email, $password, $phone, $address, $points, $rating);
+        
+        $localObjects = array();
+        
+        while ($stmt->fetch()) {
+            
+            $anObject = Array();
+            $anObject["primary_key"] = $this->primary_key;
+            $anObject["table_name"] = $this->table_name;
+            
+            $anObject["user_id"] = $user_id;
+            $anObject["first_name"] = $first_name;
+            $anObject["last_name"] = $last_name;
+            $anObject["email"] = $email;
+            $anObject["password"] = $password;
+            $anObject["phone"] = $phone;
+            $anObject["address"] = $address;
+            $anObject["points"] = $points;
+            $anObject["rating"] = $rating;
+           
+            
+            
+            $localObjects+= $anObject;
+        }
+        /*
+         * echo "<pre>";
+         * print_r($localObjects);
+         * echo "</pre>";
+         */
+        return $localObjects;
+    }
     
+    function getUserWhere($email, $pass)
+    {
+    	include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+    	
+    	
+    	$stmt = $conn->prepare("SELECT * FROM `user` WHERE `email` = ? AND `password` = ?");
+    	$stmt->bind_param("ss", $email, $pass);
+    	
+    	$stmt->execute();
+    	
+    	$stmt->bind_result($user_id, $first_name, $last_name, $email_result, $password_result, $phone, $address, $points, $rating);
+    	
+    	$localObjects = array();
+    	
+    	while ($stmt->fetch()) {
+    		
+    		$anObject = Array();
+    		$anObject["primary_key"] = $this->primary_key;
+    		$anObject["table_name"] = $this->table_name;
+    		
+    		$anObject["user_id"] = $user_id;
+    		$anObject["first_name"] = $first_name;
+    		$anObject["last_name"] = $last_name;
+    		$anObject["email"] = $email_result;
+    		$anObject["password"] = $password_result;
+    		$anObject["phone"] = $phone;
+    		$anObject["address"] = $address;
+    		$anObject["points"] = $points;
+    		$anObject["rating"] = $rating;
+    		
+    		
+    		
+    		$localObjects+= $anObject;
+    	}
+    	
+    	 
+    	return $localObjects;
+    }
 
 }

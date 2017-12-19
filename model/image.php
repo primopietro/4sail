@@ -85,5 +85,42 @@ class Image extends BaseModel {
     	
     	return $id;
     }
+    
+    
+    function getImageWhereItem($idItem)
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars($this);
+        
+        $stmt = $conn->prepare("SELECT * FROM `image` WHERE `item_id` = ?");
+        $stmt->bind_param("i", $idItem);
+        
+        $stmt->execute();
+        
+        $stmt->bind_result($image_id, $item_id, $name);
+        
+        $localObjects = array();
+        
+        while ($stmt->fetch()) {
+            
+            $anObject = Array();
+            $anObject["primary_key"] = $this->primary_key;
+            $anObject["table_name"] = $this->table_name;
+            
+            $anObject["image_id"] = $image_id;
+            $anObject["item_id"] = $item_id;
+            $anObject["name"] = $name;
+            
+            
+            $localObjects[$item_id] = $anObject;
+        }
+        /*
+         * echo "<pre>";
+         * print_r($localObjects);
+         * echo "</pre>";
+         */
+        return $localObjects;
+    }
 
 }

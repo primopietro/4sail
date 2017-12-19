@@ -8,7 +8,8 @@ if(isset($_GET)){
     $itemID = htmlspecialchars($_GET['itemID']);
     
     $currentItem = new Item();
-    $currentItem = $currentItem->getObjectFromDB($itemID);
+    /*$currentItem = $currentItem->getObjectFromDB($itemID);*/
+    $currentItem = $currentItem->getItem($itemID);
     
 }else{
     print_r ($_GET);
@@ -30,8 +31,8 @@ if(isset($_GET)){
            <?php 
                 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
                 $aCategory = new Category();
-                $aCategoryList = $aCategory->getListOfAllDBObjects();
-             
+                $aCategoryList = $aCategory->getCatego();
+                
                 foreach($aCategoryList as $aLocalCategory){
                     if($currentItem['item_cat'] == $aLocalCategory['cat_id']){
                         $aLI =  '  <option  selected value="'.$aLocalCategory["cat_id"].'">'.$aLocalCategory["cat_title"].'</option>';
@@ -67,8 +68,3 @@ if(isset($_GET)){
     require_once 'view/footer/footer.php';
    require_once 'static/footer.php';
 ?>
-   
-      
-
-     
-       

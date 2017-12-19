@@ -405,4 +405,46 @@ class Message extends BaseModel {
         
         return $id;
     }
+    function getMessageWhere($id)
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars($this);
+        
+        $stmt = $conn->prepare("SELECT * FROM `message` WHERE `message_id` = ?");
+        $stmt->bind_param("i", $id);
+        
+        $stmt->execute();
+        
+        $stmt->bind_result($message_id, $fk_user_from, $fk_user_to, $object, $messaged, $date_sent, $date_viewed, $isResponse, $response_id, $fk_item_id);
+        
+        $localObjects = array();
+        
+        while ($stmt->fetch()) {
+            
+            $anObject = Array();
+            $anObject["primary_key"] = $this->primary_key;
+            $anObject["table_name"] = $this->table_name;
+            
+            $anObject["message_id"] = $message_id;
+            $anObject["fk_user_from"] = $fk_user_from;
+            $anObject["fk_user_to"] = $fk_user_to;
+            $anObject["object"] = $object;
+            $anObject["messaged"] = $messaged;
+            $anObject["date_sent"] = $date_sent;
+            $anObject["date_viewed"] = $date_viewed;
+            $anObject["isResponse"] = $isResponse;
+            $anObject["response_id"] = $response_id;
+            $anObject["fk_item_id"] = $fk_item_id;
+            
+            
+            $localObjects+= $anObject;
+        }
+        /*
+         * echo "<pre>";
+         * print_r($localObjects);
+         * echo "</pre>";
+         */
+        return $localObjects;
+    }
 }
