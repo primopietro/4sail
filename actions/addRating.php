@@ -10,9 +10,8 @@ $id_rater = htmlspecialchars ( $_SESSION['current_user']['user_id']);
 $id_rated = htmlspecialchars ($_POST['id_rated'] );
 $rating = htmlspecialchars ($_POST['rating'] );
 
-$querryToCheck = " id_rater = '" . $id_rater . "' AND id_rated = '" . $id_rated . "'";
 
-$checkRating = $aRating->getObjectFromDBWhere("", "", $querryToCheck);
+$checkRating = $aRating->getRatingFromDBWhere($id_rater, $id_rated);
 $boolRating = 0;
 if($checkRating != null){
 	$boolRating = 1;
@@ -37,18 +36,19 @@ if($boolRating == 0){
 /*Update rated user rating*/
 $aUser = new User();
 
-$allRatings = $aRating->getListOfAllDBObjectsWhere("id_rated", "=", $id_rated);
+$allRatings = $aRating->getListOfAllRatingWhere($id_rated);
 $totalRating = 0;
 $finalRating = 0;
 
 if($allRatings != null){
 	foreach($allRatings as $theRating){
-		$totalRating += $theRating['rating'];
+		$totalRating += (float)$theRating['rating'];
 	}
 	$finalRating = $totalRating/sizeof($allRatings);
 } else{
 	$finalRating = $rating;
 }
+echo "Final :" . $finalRating . " Size : " . sizeof($allRatings) . " Total: " . $totalRating;
 
 $aUser->setUser_id($id_rated);
 $aUser->setRating($finalRating);

@@ -273,7 +273,7 @@ class User extends BaseModel {
         $stmt = $conn->prepare("UPDATE `user` SET  `rating` = ?  WHERE `user_id` = ?");
         
         
-        $stmt->bind_param("ii",$rating, $user_id);
+        $stmt->bind_param("di",$rating, $user_id);
         
          $user_id = $this->user_id;;
         
