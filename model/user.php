@@ -211,33 +211,35 @@ class User extends BaseModel {
     
     function updateAccount(){
         include $_SERVER ["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
-        $internalAttributes = get_object_vars ( $this );
         
-        $stmt = $conn->prepare("UPDATE `user` SET `first_name` = ?, `last_name` = ?, `email` = ?, `password` = ?, `phone` = ?, `address` = ?, `points` = ?, `rating` = ?  WHERE `user_id` = ?");
+        $stmt = $conn->prepare("UPDATE user SET first_name = ?, last_name = ?, email = ?, password = ?, phone = ?, address = ?, points = ?, rating = ? WHERE user_id = ?");
         
       
-        $stmt->bind_param("ssssssidi", $first_name, $last_name, $email, $password, $phone, $address, $points, $rating, $user_id);
+        $stmt->bind_param("ssssssidi", $first_name_bind, $last_name_bind, $email_bind, $password_bind, $phone_bind, $address_bind, $points_bind, $rating_bind, $user_id_bind);
        
-        $user_id = $this->user_id;;
-        $first_name = $this->first_name;
-        $last_name = $this->last_name;
-        $email = $this->email;
-        $password = $this->password;
-        $phone = $this->phone;
-        $address = $this->address;
-        $points = $this->points;
-        $rating = $this->rating;
+        $user_id_bind = $this->user_id;
+        $first_name_bind = $this->first_name;
+        $last_name_bind = $this->last_name;
+        $email_bind = $this->email;
+        $password_bind = $this->password;
+        $phone_bind = $this->phone;
+        $address_bind = $this->address;
+        $points_bind = $this->points;
+        $rating_bind = $this->rating;
         
         $stmt->execute();
-        $id = mysqli_insert_id($conn);
-        if($id != 0){
-            echo "success";
-        }
         
+        if(!isset($_SESSION['current_user'])){session_start();}
+        $_SESSION['current_user']['first_name'] = $first_name_bind;
+        $_SESSION['current_user']['last_name'] = $last_name_bind;
+        $_SESSION['current_user']['email'] = $email_bind;
+        $_SESSION['current_user']['password'] = $password_bind;
+        $_SESSION['current_user']['phone'] = $phone_bind;
+        $_SESSION['current_user']['address'] = $address_bind;
+         
         $stmt->close ();
         $conn->close ();
         
-        return $id;
     }
     
     function updatePoints(){
