@@ -1,33 +1,12 @@
-var ajaxPath = 'http://gestionhoraire.xyz/4sail/';
+var ajaxPath = 'http://localhost/4sail/';
 
 
 /***************STAR SYSTEM***************/
 
-$(document).ready(function(){			
-    
-/* Pressing enter*/
-	$.fn.enterKey = function (fnc) {
-        return this.each(function () {
-            $(this).keypress(function (ev) {
-                var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-                if (keycode == '13') {
-                    fnc.call(this, ev);
-                }
-            })
-        })
-    }
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
 
-    $("#search").enterKey(function () {
-        filter();
-    })
-	
-	$("#amount").enterKey(function () {
-        filter();
-    })
-
-$('[data-toggle="tooltip"]').tooltip();
-
-    $("#fileToUpload").fileinput({allowedFileExtensions: ["jpg", "png", "gif"]});		
+    $("#fileToUpload").fileinput({allowedFileExtensions: ["jpg", "png", "gif"]});
 
 	$('#stars li').on('mouseover', function(){
 	    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
@@ -171,7 +150,7 @@ $(document).on("click","#pay",function(){
     var dataToSend = "";
 
     dataToSend += "object=" + object + "&messaged=" + messaged + "&fk_user_to=" + fk_user_to +"&item_id="+fk_item_id;
-    //alert(dataToSend);
+    alert(dataToSend);
     if(object != "" && messaged != ""){
         $.ajax({
             url: ajaxPath + 'actions/addMessage.php',
@@ -205,7 +184,7 @@ $(document).on("click","#payRef",function(){
     var dataToSend = "";
 
     dataToSend += "object=" + object + "&messaged=" + messaged + "&fk_user_to=" + fk_user_to +"&item_id="+fk_item_id + "&idref=" + idref;
-    //alert(dataToSend);
+    alert(dataToSend);
     if(object != "" && messaged != ""){
         $.ajax({
             url: ajaxPath + 'actions/addMessage.php',
@@ -635,7 +614,7 @@ function filter() {
     var pricewithoutsymbol = pricerangetext.replace('$', '');
     var pricewithoutsymbol2 = pricewithoutsymbol.replace('$', '');
     var pricerange = pricewithoutsymbol2.split(' - ');
-	if (pricerange[1] == '9999'){		pricerange[1] = '99999';	}
+
     //order by
     var orderSense = $("#order").val();
     var orderBy = null;

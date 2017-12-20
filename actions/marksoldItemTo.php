@@ -24,7 +24,7 @@ $aItem = $aItem->getObjectFromDB($idItem);*/
 $aReferral = $aReferral->getReferral($idRef);
 $aItem = $aItem->getItem($idItem);
 
-$pointstoAdd = 200;
+$pointstoAdd = (int)($aItem['points']/10);
 /*$aUserBefore = $aUserBefore->getObjectFromDB($aReferral['ref_user_id']);*/
 $aUserBefore = $aUserBefore->getUser($aReferral['ref_user_id']);
 $pointsReward = $pointstoAdd + (int)($aUserBefore['points']);
@@ -42,9 +42,10 @@ $aMessage->setDate_sent(date('Y-m-d h:i:s'));
 
 $lastId = $aMessage->addMessage();
 
+$lastId = $aMessage->addMessage();
  $aMessage->setMessage_id($idMsgToDelete);
  $aMessage->setIsResponse(0);
- $aMessage->setResponse_id($idRef);
+ $aMessage->setResponse_id($idRef)
  $aMessage->updateIsReponse();
  $aMessage->updateResponseId();
 

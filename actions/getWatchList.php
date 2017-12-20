@@ -44,7 +44,7 @@ if($myWatchList != null){
 								<span id='title' class='name xt-semibold'>" . $theItem['item_title'] . "</span>
 								
 								<ul class='reaction pull-right'>
-                                	<li><a href='http://gestionhoraire.xyz/4sail/" . $theCategory["cat_id"] . "/" . $theItem["item_id"] . "'  data-toggle='tooltip' title='View details.' ><i class='fa fa-search'></i></a></li>
+                                	<li><a href='./" . $theCategory["cat_id"] . "/" . $theItem["item_id"] . "'  data-toggle='tooltip' title='View details.' ><i class='fa fa-search'></i></a></li>
                                 </ul>
 							</div>
 						</div>";

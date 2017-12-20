@@ -355,9 +355,14 @@ class BaseModel{
         $internalAttributes = get_object_vars ( $this );
      
         
-        $sql = "SELECT * FROM " . $this->table_name . " WHERE " . $this->primary_key . " = '" .$primary_key ."'";
+        $sql = "SELECT * FROM `" . $this->table_name . "` WHERE " . $this->primary_key . " = ?";
         //echo $sql." ";
-        $result = $conn->query ( $sql );
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param("i", $primary_key);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
 
 
         if ($result->num_rows > 0) {

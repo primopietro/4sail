@@ -1,9 +1,9 @@
 <?php
 
-$user = "adminhoraire";
-$password = "H0r4ire!";
+$user = "root";
+$password = "";
 $server = "localhost";
-$dbName = "Testerino";
+$dbName = "4sail";
 
 $conn = new mysqli($server,$user, $password, $dbName);
 $conn->set_charset("utf8");

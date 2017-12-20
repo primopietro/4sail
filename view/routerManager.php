@@ -41,7 +41,7 @@ if ($routes[1] == null) {
     require_once 'static/header.php';
     require_once 'view/header/header.php';
     require_once 'view/menu/menu.php';
-   require_once 'body/bodyGeneral.php';
+   require_once "body/bodyGeneral.php";
    require_once 'view/footer/footer.php';
 }
 //If we're at a certain category but no product

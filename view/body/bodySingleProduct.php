@@ -20,8 +20,8 @@ $getRef = false;
 
 $anItem = new Item();
 
-$anItem = $anItem->getItem($_SESSION['currentItem'] );
-$aCategory = $aCategory->getCategoWhere($anItem['item_cat']);
+$anItem = $anItem->getObjectFromDB($_SESSION['currentItem'] );
+$aCategory = $aCategory->getObjectFromDB($anItem['item_cat']);
 ?>
  <!--
         |========================
@@ -39,7 +39,7 @@ $aCategory = $aCategory->getCategoWhere($anItem['item_cat']);
                           if($_SESSION['currentCategory'] != 0){
                               
                               $aCategory = new Category();
-                              $aCategory = $aCategory->getCategoWhere( $_SESSION['currentCategory']);
+                              $aCategory = $aCategory->getObjectFromDB( $_SESSION['currentCategory']);
                               
                               $string = ' <div class="price-range" style="position:absolute;"><h2 style="color:rgb(51, 51, 51);">';                           
                               $string .= $aCategory['cat_title'];
@@ -141,7 +141,7 @@ $aCategory = $aCategory->getCategoWhere($anItem['item_cat']);
                                             require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/user.php';
                                             
                                             $aUser = new User();
-                                            $theUser = $aUser->getUser($anItem["user_id"]);
+                                            $theUser = $aUser->getObjectFromDB($anItem["user_id"]);
                                             
                                             echo "<label class='none' id='path' thepath='".$anItem["item_cat"]. "/".$anItem["item_id"]."'></label>";
                                             
@@ -149,7 +149,8 @@ $aCategory = $aCategory->getCategoWhere($anItem['item_cat']);
                                             require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/ratings.php';
                                             $aRating = new Ratings();
                                             
-                                            $checkRating = $aRating->getRatingFromDBWhere($_SESSION['current_user']['user_id'], $anItem["user_id"]);
+                                            $querryToCheck = " id_rater = '" . $_SESSION['current_user']['user_id'] . "' AND id_rated = '" . $anItem["user_id"] . "'";
+                                            $checkRating = $aRating->getObjectFromDBWhere("", "", $querryToCheck);
                                             
                                             if($checkRating != null){
                                             	echo "<div id='rating'><label id='theUser' user_id='".$theUser['user_id']."'>".$theUser['first_name']. " " .$theUser['last_name']." rating: ".round($theUser['rating'], 2)." stars</label><br>
