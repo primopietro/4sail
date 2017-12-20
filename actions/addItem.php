@@ -29,7 +29,7 @@ $anItem->setUser_id($_SESSION['current_user']['user_id']);
 date_default_timezone_set('UTC');
 $anItem->setDate_created(date('Y-m-d h:i:s'));
 
-$anItem->setLink('https://www.'.$link);
+$anItem->setLink($link);
 $anItem->setSold('0');
 $anItem->setPoints($points);
 

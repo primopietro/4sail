@@ -144,20 +144,19 @@ class Referral extends BaseModel {
     	$ref_link = $this->ref_link;
     	
     	$stmt->execute();
-    	$id_insert = mysqli_insert_id($conn);
-    	
-    	/*echo "<pre>";
-    	 print_r($stmt);
-    	 echo "</pre>";*/
-    	
-    	if($id_insert!= 0){
-    		echo "success";
-    	}
+    	$id_insert = $stmt->insert_id;
+
+        /*echo "<pre>";
+         print_r($stmt);
+         echo "</pre>";*/
+
+        $token = $this->getReferral($id_insert);
     	
     	$stmt->close ();
     	$conn->close ();
     	
-    	return $id_insert;
+    	echo $token['ref_link'];
+    	
     }
     
     function getReferral($id)

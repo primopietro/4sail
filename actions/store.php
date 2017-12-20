@@ -5,7 +5,6 @@ require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/item.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/image.php";
 require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/model/category.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . '/4sail/model/watch_list.php';
-
 function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keyword){
     $anItem = new Item();
     $anItemList = array();
@@ -32,14 +31,13 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
     else{
         //echo "cat" . "<br>";
         $anItemList = $anItem->getListOfAllDBObjectsWhereSortCat($_SESSION['currentCategory'],null,null,$search,$keyword);
+		
     }
     //for each item in list
-    
     if (sizeof($anItemList) > 0) {
         foreach ($anItemList as $aLocalItem) {
             $aCategory = new Category();
-            $aCategory = $aCategory->getObjectFromDB($aLocalItem['item_cat']);
-            
+            $aCategory = $aCategory->getCategoWhere($aLocalItem['item_cat']);
             $component = '<div class="col-md-4 col-sm-4 vignetteFix">
                                         <div class="xt-feature">';
 							            if(isset($_SESSION['current_user'])){
@@ -95,7 +93,7 @@ function loadStore($priceFrom, $priceTo, $orderBy, $orderSense, $search, $keywor
                                                     </div>
                                                     <div class="add-cart">';
                                                         if($aLocalItem["link"] != '') {
-                                                            $component .= '<a href="'. $aLocalItem["link"] .'/'. $aLocalItem["item_price"] .'" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill">Pay now</a>';
+                                                            $component .= '<a href="https://www.'. $aLocalItem["link"] .'/'. $aLocalItem["item_price"] .'" data-toggle="tooltip" title="Always contact the seller first!" id="pay" target="_blank" class="btn btn-fill">Pay now</a>';
                                                         }
                                                         if(isset($_SESSION['current_user'])){
                                                             if($aLocalItem["user_id"]==$_SESSION['current_user']['user_id']){

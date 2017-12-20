@@ -22,7 +22,7 @@ if($aRef != null){
     $aSecondRef->getReferral($aRef);
     echo $aSecondRef->getRef_link();
 }else{
-    echo "fail";
+    //echo "fail";
 }
 
 function crypto_rand_secure($min, $max) {

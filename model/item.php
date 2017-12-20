@@ -489,7 +489,7 @@ class Item extends BaseModel
         $sql = "SELECT * FROM `" . $this->table_name . "`";
 
 
-        $sql .= " WHERE item_price < ? AND item_price > ? AND sold !=1 ";
+        $sql .= " WHERE item_price <= ? AND item_price >= ? AND sold !=1 ";
 
 
         //search things
@@ -521,25 +521,31 @@ class Item extends BaseModel
 
 
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
+        $stmt->bind_result($item_id, $item_cat, $item_title, $item_price, $item_desc, $item_keywords, $user_id,  $date_created, $points, $link,$sold);
+        //if ($result->num_rows > 0) {
             $localObjects = array ();
-            while ( $row = $result->fetch_assoc () ) {
-                $anObject = Array ();
-                $anObject ["primary_key"] = $this->primary_key;
-                $anObject ["table_name"] = $this->table_name;
-                foreach ( $row as $aRowName => $aValue ) {
-                    $anObject [$aRowName] = $aValue;
-                }
-
-                $localObjects [$row [$this->primary_key]] = $anObject;
+            while ( $stmt->fetch() ) {
+                $anObject = Array();
+				$anObject["primary_key"] = $this->primary_key;
+				$anObject["table_name"] = $this->table_name;
+				
+				$anObject["item_id"] = $item_id;
+				$anObject["item_cat"] = $item_cat;
+				$anObject["item_title"] = $item_title;
+				$anObject["item_price"] = $item_price;
+				$anObject["item_desc"] = $item_desc;
+				$anObject["item_keywords"] = $item_keywords;
+				$anObject["user_id"] = $user_id;
+				$anObject["points"] = $points;
+				$anObject["link"] = $link;
+				$anObject["sold"] = $sold;
+				$anObject["date_created"] = $date_created;
+				
+				$localObjects[$item_id] = $anObject;
             }
 
             $conn->close ();
             return $localObjects;
-        }
-        $conn->close ();
-        return null;
     }
 
 
@@ -581,27 +587,36 @@ class Item extends BaseModel
             $stmt->bind_param("i", $cat);
         }
 
-
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
+        //$result = $stmt->get_result();
+		$stmt->bind_result($item_id, $item_cat, $item_title, $item_price, $item_desc, $item_keywords, $user_id,  $date_created, $points, $link,$sold);
+        //if ($result->num_rows > 0) {
             $localObjects = array ();
-            while ( $row = $result->fetch_assoc () ) {
-                $anObject = Array ();
-                $anObject ["primary_key"] = $this->primary_key;
-                $anObject ["table_name"] = $this->table_name;
-                foreach ( $row as $aRowName => $aValue ) {
-                    $anObject [$aRowName] = $aValue;
-                }
-
-                $localObjects [$row [$this->primary_key]] = $anObject;
+            while ( $stmt->fetch() ) {
+                $anObject = Array();
+				$anObject["primary_key"] = $this->primary_key;
+				$anObject["table_name"] = $this->table_name;
+				
+				$anObject["item_id"] = $item_id;
+				$anObject["item_cat"] = $item_cat;
+				$anObject["item_title"] = $item_title;
+				$anObject["item_price"] = $item_price;
+				$anObject["item_desc"] = $item_desc;
+				$anObject["item_keywords"] = $item_keywords;
+				$anObject["user_id"] = $user_id;
+				$anObject["points"] = $points;
+				$anObject["link"] = $link;
+				$anObject["sold"] = $sold;
+				$anObject["date_created"] = $date_created;
+				
+				$localObjects[$item_id] = $anObject;
             }
 
             $conn->close ();
             return $localObjects;
-        }
+        /*}
         $conn->close ();
-        return null;
+        return null;*/
     }
 
 
@@ -613,7 +628,7 @@ class Item extends BaseModel
         $sql = "SELECT * FROM `" . $this->table_name . "`";
 
 
-        $sql .= " WHERE item_price < ? AND item_price > ? AND item_cat = ? AND sold !=1 ";
+        $sql .= " WHERE item_price <= ? AND item_price >= ? AND item_cat = ? AND sold !=1 ";
 
 
         //search things
@@ -645,25 +660,31 @@ class Item extends BaseModel
 
 
         $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
+        $stmt->bind_result($item_id, $item_cat, $item_title, $item_price, $item_desc, $item_keywords, $user_id,  $date_created, $points, $link,$sold);
+        //if ($result->num_rows > 0) {
             $localObjects = array ();
-            while ( $row = $result->fetch_assoc () ) {
-                $anObject = Array ();
-                $anObject ["primary_key"] = $this->primary_key;
-                $anObject ["table_name"] = $this->table_name;
-                foreach ( $row as $aRowName => $aValue ) {
-                    $anObject [$aRowName] = $aValue;
-                }
-
-                $localObjects [$row [$this->primary_key]] = $anObject;
+            while ( $stmt->fetch() ) {
+                $anObject = Array();
+				$anObject["primary_key"] = $this->primary_key;
+				$anObject["table_name"] = $this->table_name;
+				
+				$anObject["item_id"] = $item_id;
+				$anObject["item_cat"] = $item_cat;
+				$anObject["item_title"] = $item_title;
+				$anObject["item_price"] = $item_price;
+				$anObject["item_desc"] = $item_desc;
+				$anObject["item_keywords"] = $item_keywords;
+				$anObject["user_id"] = $user_id;
+				$anObject["points"] = $points;
+				$anObject["link"] = $link;
+				$anObject["sold"] = $sold;
+				$anObject["date_created"] = $date_created;
+				
+				$localObjects[$item_id] = $anObject;
             }
 
             $conn->close ();
             return $localObjects;
-        }
-        $conn->close ();
-        return null;
     }
     
 

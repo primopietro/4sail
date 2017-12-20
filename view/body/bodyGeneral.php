@@ -1,6 +1,5 @@
   <?php
   require_once $_SERVER ["DOCUMENT_ROOT"] . "/4sail/actions/store.php";
-  
   ?>
    <!--
         |========================
@@ -22,7 +21,7 @@
                           if($_SESSION['currentCategory'] != 0){
                               
                               $aCategory = new Category();
-                              $aCategory = $aCategory->getObjectFromDB( $_SESSION['currentCategory']);
+                              $aCategory = $aCategory->getCategoWhere( $_SESSION['currentCategory']);
                               echo '<h2>'.$aCategory['cat_title'].'</h2>';
                             
                            

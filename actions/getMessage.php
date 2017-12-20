@@ -34,8 +34,8 @@ if(isset($_GET['idMessage'])){
 		$imgString = 'images/'.current($anImage)['name'];
 	}
 	
-	$finalString .="<a href='http://localhost/4sail/item/".current($anImage)['item_id']."'>";
-	$finalString .='<img style="width:100%;" src="http://localhost/4sail/'  . $imgString .'" alt="" class="img-responsive">';
+	$finalString .="<a href='http://gestionhoraire.xyz/4sail/item/".current($anImage)['item_id']."'>";
+	$finalString .='<img style="width:100%;" src="http://gestionhoraire.xyz/4sail/'  . $imgString .'" alt="" class="img-responsive">';
 	$finalString .="</a >";
 	
 	
