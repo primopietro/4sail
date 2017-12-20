@@ -24,7 +24,7 @@ class WatchList extends BaseModel {
      */
     public function setId_watch_list($id_watch_list){
         $this->id_watch_list = $id_watch_list;
-        return $this;
+        return $this; 
     }
 
     /**
