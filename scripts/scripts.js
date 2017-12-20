@@ -150,7 +150,7 @@ $(document).on("click","#pay",function(){
     var dataToSend = "";
 
     dataToSend += "object=" + object + "&messaged=" + messaged + "&fk_user_to=" + fk_user_to +"&item_id="+fk_item_id;
-    alert(dataToSend);
+    //alert(dataToSend);
     if(object != "" && messaged != ""){
         $.ajax({
             url: ajaxPath + 'actions/addMessage.php',
@@ -184,7 +184,7 @@ $(document).on("click","#payRef",function(){
     var dataToSend = "";
 
     dataToSend += "object=" + object + "&messaged=" + messaged + "&fk_user_to=" + fk_user_to +"&item_id="+fk_item_id + "&idref=" + idref;
-    alert(dataToSend);
+    //alert(dataToSend);
     if(object != "" && messaged != ""){
         $.ajax({
             url: ajaxPath + 'actions/addMessage.php',

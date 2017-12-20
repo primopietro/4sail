@@ -369,6 +369,20 @@ class Item extends BaseModel
         return $id;
     }
 
+    function deleteItem($item_id)
+    {
+        include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';
+
+        $stmt = $conn->prepare("DELETE FROM `item` WHERE `item_id` = ?");
+        $stmt->bind_param("i", $item_id);
+
+        $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
+    }
+
     function updateSold()
     {
         include $_SERVER["DOCUMENT_ROOT"] . '/4sail/DB/dbConnect.php';

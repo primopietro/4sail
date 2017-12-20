@@ -11,6 +11,6 @@ $idItem = htmlspecialchars ( $_POST['idItem'] );
 
 
 //delete item from bd
-$aItem->deleteFromDB($idItem);
+$aItem->deleteItem($idItem);
 
 ?>
